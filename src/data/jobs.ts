@@ -1,0 +1,143 @@
+export interface Job {
+  id: string;
+  title: string;
+  organisation: string;
+  location: string;
+  salary: string;
+  posted: string;
+  closing: string;
+  contractType: string;
+  workingPattern: string;
+  band?: string;
+  description: string;
+  responsibilities: string[];
+  requirements: string[];
+  benefits: string[];
+}
+
+export const jobs: Job[] = [
+  {
+    id: "diabetes-specialist-nurse",
+    title: "Nurse / Clinical Practitioner – Diabetes Specialist Nurse",
+    organisation: "East Sussex Healthcare NHS Trust",
+    location: "St Leonards on Sea, TN37 7RD",
+    salary: "£47,810 – £54,710 a year",
+    posted: "10 February 2026",
+    closing: "24 February 2026",
+    contractType: "Permanent",
+    workingPattern: "Full time",
+    band: "Band 7",
+    description: "An exciting opportunity has arisen for a Diabetes Specialist Nurse to join our friendly, well-established Diabetes and Endocrine Team.",
+    responsibilities: ["Provide expert clinical advice and management for patients with diabetes", "Deliver structured education programmes", "Support service development and participate in clinical audit", "Work autonomously managing a specialist caseload", "Liaise with primary care teams and community services"],
+    requirements: ["Registered Nurse (NMC) with current registration", "Recognised qualification in diabetes care", "Demonstrable experience in diabetes specialist nursing", "Non-medical prescribing qualification (V300)", "Evidence of continued professional development"],
+    benefits: ["NHS Pension Scheme", "Generous annual leave entitlement", "Access to training and development", "Flexible working arrangements", "Staff discounts and wellbeing support"],
+  },
+  {
+    id: "nursing-auxiliary",
+    title: "Nursing Auxiliary",
+    organisation: "Partnership of East London Co-operatives (PELC) Ltd",
+    location: "East London (multiple sites)",
+    salary: "£24,336 – £25,468 a year",
+    posted: "2 February 2026",
+    closing: "20 February 2026",
+    contractType: "Permanent",
+    workingPattern: "Full time, Part time",
+    band: "Band 2",
+    description: "We are looking for enthusiastic and caring Nursing Auxiliaries to join our out-of-hours urgent care service across multiple sites in East London.",
+    responsibilities: ["Assist registered nurses and clinicians with patient assessments", "Record patient observations accurately", "Maintain a clean, safe and well-stocked clinical environment", "Support patients with comfort and mobility needs", "Contribute to infection prevention and control practices"],
+    requirements: ["Care Certificate or willingness to complete", "Previous experience in a healthcare setting desirable", "Good communication and interpersonal skills", "Ability to work flexibly including evenings and weekends", "Basic IT literacy"],
+    benefits: ["NHS Pension Scheme", "Unsocial hours enhancements", "Training and development opportunities", "Multiple site locations", "Supportive team environment"],
+  },
+  {
+    id: "registered-nurse-hornchurch",
+    title: "Registered Nurse",
+    organisation: "HC-One",
+    location: "Hornchurch, RM12 6RJ",
+    salary: "£20.43 – £20.93 an hour",
+    posted: "6 February 2026",
+    closing: "13 March 2026",
+    contractType: "Permanent",
+    workingPattern: "Full time",
+    description: "HC-One is seeking a Registered Nurse to provide outstanding person-centred care within our residential and nursing home.",
+    responsibilities: ["Lead and manage a team of care staff", "Assess, plan, implement and evaluate care plans", "Administer medications safely", "Liaise with GPs, families and MDTs", "Maintain accurate documentation"],
+    requirements: ["Active NMC registration", "Experience in elderly care preferred", "Strong leadership skills", "Excellent clinical assessment abilities", "Commitment to compassionate care"],
+    benefits: ["Paid NMC PIN renewal", "Uniform provided", "Refer a friend bonus scheme", "Employee assistance programme", "Career development opportunities"],
+  },
+  {
+    id: "outpatient-nurse",
+    title: "Outpatient Nurse",
+    organisation: "Practice Plus Group",
+    location: "Ilford, IG3 8YY",
+    salary: "£35,780 a year",
+    posted: "5 February 2026",
+    closing: "28 February 2026",
+    contractType: "Permanent",
+    workingPattern: "Full time",
+    band: "Band 5",
+    description: "An exciting opportunity to join Practice Plus Group as an Outpatient Nurse.",
+    responsibilities: ["Deliver pre-operative assessments", "Support consultant-led outpatient clinics", "Ensure patient safety through accurate documentation", "Assist with minor procedures and wound management", "Educate patients about treatment plans"],
+    requirements: ["NMC Registered Nurse with valid PIN", "Experience in outpatient or day surgery nursing", "Competent in venepuncture and ECG recording", "Strong organisational skills", "Ability to work independently"],
+    benefits: ["25 days annual leave plus bank holidays", "Private medical insurance", "Life assurance", "Company pension scheme", "Exclusive employee discounts"],
+  },
+  {
+    id: "practice-nurse-lambeth",
+    title: "Practice Nurse",
+    organisation: "Lambeth Walk Group Practice",
+    location: "London, SE11 4HJ",
+    salary: "Depends on experience",
+    posted: "3 February 2026",
+    closing: "31 March 2026",
+    contractType: "Permanent",
+    workingPattern: "Full time",
+    description: "Lambeth Walk Group Practice is seeking an experienced Practice Nurse to join our primary care team in South London.",
+    responsibilities: ["Manage long-term conditions including diabetes, asthma, COPD", "Deliver cervical screening and immunisation programmes", "Conduct new patient health checks", "Provide wound care and minor injury management", "Participate in practice audit and quality improvement"],
+    requirements: ["NMC Registered Nurse with primary care experience", "Experience in chronic disease management", "Cervical screening qualification", "Immunisation and vaccination training", "IT proficiency with clinical systems"],
+    benefits: ["NHS Pension Scheme", "Generous annual leave", "Protected learning time", "Supportive team environment", "Central London location"],
+  },
+  {
+    id: "registered-nurse-croydon",
+    title: "Registered Nurse",
+    organisation: "Aria Care",
+    location: "Croydon, CR0 2BZ",
+    salary: "£21 an hour",
+    posted: "15 January 2026",
+    closing: "16 March 2026",
+    contractType: "Permanent",
+    workingPattern: "Full time",
+    description: "Aria Care is looking for compassionate Registered Nurses to join our care home team in Croydon.",
+    responsibilities: ["Deliver person-centred nursing care", "Carry out comprehensive assessments", "Administer medications per NMC guidelines", "Supervise and mentor healthcare assistants", "Ensure compliance with CQC standards"],
+    requirements: ["Active NMC registration", "Experience in elderly care", "Strong clinical and assessment skills", "Caring and professional approach", "Flexibility to work shifts"],
+    benefits: ["Competitive hourly rate", "Paid breaks", "Free DBS check", "Employee recognition scheme", "Ongoing training"],
+  },
+  {
+    id: "charge-nurse",
+    title: "Charge Nurse",
+    organisation: "Fairlie Healthcare Group",
+    location: "Purley, CR8 2HJ",
+    salary: "£21.50 – £22.50 an hour",
+    posted: "28 January 2026",
+    closing: "28 February 2026",
+    contractType: "Permanent",
+    workingPattern: "Full time",
+    description: "Fairlie Healthcare Group is looking for an experienced Charge Nurse to lead nursing care delivery.",
+    responsibilities: ["Lead the nursing team on shift", "Manage medication rounds and clinical assessments", "Supervise and mentor junior staff", "Liaise with families and GPs", "Ensure CQC compliance"],
+    requirements: ["Active NMC registration", "Previous charge nurse experience", "Strong leadership skills", "Experience in elderly care", "Passion for high-quality care"],
+    benefits: ["Competitive hourly rate with shift enhancements", "Free DBS check and uniform", "Paid NMC renewal", "Staff meals on shift", "Career progression opportunities"],
+  },
+  {
+    id: "staff-nurse-mental-health",
+    title: "Staff Nurse",
+    organisation: "Everyturn Mental Health",
+    location: "Croydon, CR7 7YE",
+    salary: "£33,034.95 – £40,111.60 a year",
+    posted: "16 February 2026",
+    closing: "31 March 2026",
+    contractType: "Permanent",
+    workingPattern: "Full time",
+    band: "Band 5/6",
+    description: "Everyturn Mental Health is seeking a Staff Nurse to join our community mental health team in Croydon.",
+    responsibilities: ["Deliver evidence-based mental health nursing interventions", "Conduct comprehensive mental health assessments", "Develop personalised care plans", "Administer and monitor psychotropic medications", "Contribute to safeguarding and crisis management"],
+    requirements: ["NMC Registered Mental Health Nurse (RMN)", "Experience in mental health settings", "Knowledge of the Mental Health Act", "Excellent therapeutic communication skills", "Commitment to recovery-focused care"],
+    benefits: ["NHS-equivalent terms and conditions", "Generous annual leave", "Clinical supervision and reflective practice", "Wellbeing support", "CPD and career progression"],
+  },
+];
