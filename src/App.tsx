@@ -4,14 +4,31 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import AiSourcing from "./pages/AiSourcing";
+import InternalStaffBank from "./pages/InternalStaffBank";
+import CollaborativeStaffBank from "./pages/CollaborativeStaffBank";
+import ClinicalServicesPlanner from "./pages/ClinicalServicesPlanner";
+import Amplify from "./pages/Amplify";
+import EmployeeApp from "./pages/EmployeeApp";
+import PlatformFeatures from "./pages/PlatformFeatures";
+import Jobs from "./pages/Jobs";
+import JobDetail from "./pages/JobDetail";
+import JobSearchResults from "./pages/JobSearchResults";
+import JobApplication from "./pages/JobApplication";
+import News from "./pages/News";
+import Article from "./pages/Article";
+import Investors from "./pages/Investors";
+import About from "./pages/About";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import BookDemo from "./pages/BookDemo";
+import Contact from "./pages/Contact";
+import PrimaryCare from "./pages/PrimaryCare";
+import Hospitals from "./pages/Hospitals";
+import PrivateHealthcare from "./pages/PrivateHealthcare";
+import Pharmacy from "./pages/Pharmacy";
+import Rostering from "./pages/Rostering";
 import NotFound from "./pages/NotFound";
-import {
-  AiSourcing, InternalStaffBank, CollaborativeStaffBank, ClinicalServicesPlanner,
-  Amplify, EmployeeApp, PlatformFeatures, Jobs, JobDetail, JobSearchResults,
-  JobApplication, News, Article, Investors, About, TermsAndConditions,
-  PrivacyPolicy, BookDemo, Contact, PrimaryCare, Hospitals, PrivateHealthcare,
-  Pharmacy, Rostering,
-} from "./pages/SubPages";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +46,6 @@ const App = () => (
           <Route path="/products/clinical-services-planner" element={<ClinicalServicesPlanner />} />
           <Route path="/products/amplify" element={<Amplify />} />
           <Route path="/products/employee-app" element={<EmployeeApp />} />
-          <Route path="/products/rostering" element={<Rostering />} />
           <Route path="/platform-features" element={<PlatformFeatures />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/jobs/search" element={<JobSearchResults />} />
@@ -47,6 +63,8 @@ const App = () => (
           <Route path="/sectors/hospitals" element={<Hospitals />} />
           <Route path="/sectors/private-healthcare" element={<PrivateHealthcare />} />
           <Route path="/sectors/pharmacy" element={<Pharmacy />} />
+          <Route path="/products/rostering" element={<Rostering />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

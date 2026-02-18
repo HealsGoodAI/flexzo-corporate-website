@@ -17,16 +17,23 @@ const HeroSection = () => {
 
   return (
     <section className="relative overflow-hidden pt-28 pb-32 min-h-screen">
+      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
+      {/* Fade to white at the bottom */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+
+      {/* Agent network animation */}
       <AgentNetwork />
+
+      {/* Lighter overlays so network is more visible */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_left,hsl(var(--background)/0.3)_5%,transparent_40%)]" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 w-full text-center flex flex-col items-center justify-center min-h-[70vh]">
+        {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,6 +71,7 @@ const HeroSection = () => {
           <span className="font-semibold text-foreground">automatically</span>.
         </motion.p>
 
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

@@ -8,6 +8,7 @@ const dropdownMenus: Record<string, { label: string; href: string }[]> = {
   Products: [
     { label: "AI Sourcing", href: "/products/ai-sourcing" },
     { label: "Internal Staff Bank", href: "/products/internal-staff-bank" },
+    
     { label: "Collaborative Staff Bank", href: "/products/collaborative-staff-bank" },
     { label: "National Staff Bank", href: "#" },
     { label: "Amplify", href: "/products/amplify" },
@@ -61,6 +62,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [transparent]);
 
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
@@ -90,6 +92,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             />
           </a>
 
+          {/* Desktop */}
           <div ref={navRef} className="hidden items-center gap-8 lg:flex">
             {navItems.map((item) => {
               const hasDropdown = item in dropdownMenus;
@@ -151,6 +154,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             </a>
           </div>
 
+          {/* Mobile toggle */}
           <button
             className={`relative z-[60] lg:hidden ${isTransparent ? "text-white" : "text-foreground"}`}
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -160,6 +164,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
         </div>
       </nav>
 
+      {/* Full-screen mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -169,10 +174,12 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             transition={{ type: "tween", duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             className="fixed inset-0 z-[55] flex flex-col bg-foreground lg:hidden"
           >
+            {/* Top bar with logo icon */}
             <div className="flex items-center px-8 pt-6">
               <a href="/" onClick={() => setMobileOpen(false)} className="h-8 w-8 rounded-full bg-[#0CE3FF] block" />
             </div>
 
+            {/* Links */}
             <div className="flex flex-1 flex-col justify-center px-8">
               <nav className="flex flex-col gap-2">
                 {navItems.map((item, i) => {
@@ -254,6 +261,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
               </motion.a>
             </div>
 
+            {/* Bottom info */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

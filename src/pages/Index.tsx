@@ -4,9 +4,11 @@ import PressBanner from "@/components/PressBanner";
 import BenefitsSection from "@/components/BenefitsSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import SectorsOverview from "@/components/SectorsOverview";
+
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FeaturedJobsSection from "@/components/FeaturedJobsSection";
 import Footer from "@/components/Footer";
+
 
 const Index = () => {
   return (
@@ -20,6 +22,7 @@ const Index = () => {
       <FeaturedJobsSection />
       <TestimonialsSection />
       <Footer />
+      
     </div>
   );
 };

@@ -44,6 +44,7 @@ const ALL_IMAGE_SOURCES = [
   { src: avatarWoman2, isAvatar: true },
 ];
 
+// Use fewer nodes on mobile
 const getMobileSources = () =>
   window.innerWidth < 768 ? ALL_IMAGE_SOURCES.slice(0, 8) : ALL_IMAGE_SOURCES;
 
@@ -69,6 +70,7 @@ const AgentNetwork = () => {
     };
     resize();
 
+    // Load ALL images upfront regardless of screen size
     const loadedImages: (HTMLImageElement | null)[] = ALL_IMAGE_SOURCES.map(() => null);
     let loaded = 0;
 
@@ -132,6 +134,7 @@ const AgentNetwork = () => {
       const nodes = nodesRef.current;
       const pad = 40;
 
+      // Update positions
       nodes.forEach((n) => {
         n.x += n.vx;
         n.y += n.vy;
@@ -143,6 +146,7 @@ const AgentNetwork = () => {
 
       const maxDist = 320;
 
+      // Draw connections
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -197,6 +201,7 @@ const AgentNetwork = () => {
         }
       }
 
+      // Draw nodes
       nodes.forEach((n) => {
         const pulse = Math.sin(time * 0.002 + n.pulsePhase) * 0.15 + 0.85;
         const halfSize = (n.size / 2) * pulse;
@@ -211,6 +216,7 @@ const AgentNetwork = () => {
 
         if (n.image) {
           ctx.save();
+
           if (n.isAvatar) {
             ctx.beginPath();
             ctx.arc(n.x, n.y, halfSize, 0, Math.PI * 2);
@@ -218,6 +224,7 @@ const AgentNetwork = () => {
             ctx.clip();
             ctx.drawImage(n.image, n.x - halfSize, n.y - halfSize, halfSize * 2, halfSize * 2);
             ctx.restore();
+
             ctx.save();
             ctx.beginPath();
             ctx.arc(n.x, n.y, halfSize + 1.5, 0, Math.PI * 2);
