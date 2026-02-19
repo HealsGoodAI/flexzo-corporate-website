@@ -47,13 +47,13 @@ const News = () => {
       <Navbar />
 
       {/* ── DARK HEADER ── */}
-      <section className="bg-foreground pt-32 pb-16 lg:pt-40 lg:pb-20 flex items-end">
-        <div className="mx-auto max-w-7xl px-6 mt-auto">
+      <section className="bg-foreground min-h-[40vh] flex items-end">
+        <div className="mx-auto max-w-7xl w-full px-6 pb-8">
           <motion.h1
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="text-6xl font-bold tracking-tight text-primary-foreground md:text-8xl lg:text-9xl"
+            className="text-left text-6xl font-bold tracking-tight text-primary-foreground md:text-8xl lg:text-9xl"
           >
             The News.
           </motion.h1>
