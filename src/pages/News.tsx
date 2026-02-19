@@ -210,7 +210,7 @@ const News = () => {
             {filtered.length > 7 && (
               <div className="py-12">
                 <h2 className="mb-8 text-2xl font-bold text-foreground">More Articles</h2>
-                <div className="grid gap-x-8 gap-y-0 md:grid-cols-2 divide-y md:divide-y-0">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {filtered.slice(7).map((article, i) => (
                     <motion.div
                       key={article.slug}
@@ -219,19 +219,18 @@ const News = () => {
                       viewport={{ once: true }}
                       custom={i}
                       variants={fadeUp}
-                      className="border-b border-border py-6"
                     >
-                      <Link to={`/news/${article.slug}`} className="group block">
+                      <Link to={`/news/${article.slug}`} className="group block rounded-xl border border-border bg-background p-6 transition-shadow hover:shadow-lg h-full">
                         <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0075FF]">
                           {article.category}
                         </span>
-                        <h3 className="mt-1 text-base font-bold leading-snug text-foreground group-hover:text-[#0075FF] transition-colors">
+                        <h3 className="mt-3 text-base font-bold leading-snug text-foreground group-hover:text-[#0075FF] transition-colors line-clamp-2">
                           {article.title}
                         </h3>
-                        <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                        <p className="mt-3 text-sm text-muted-foreground line-clamp-3">
                           {article.excerpt}
                         </p>
-                        <div className="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
+                        <div className="mt-4 flex items-center gap-3 text-xs text-muted-foreground">
                           <Clock size={12} />
                           {article.readTime}
                           <span>{article.date}</span>
