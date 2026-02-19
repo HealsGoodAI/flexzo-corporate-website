@@ -1,0 +1,1055 @@
+[
+  {
+    "_id": {"$oid": "67c987298eb196b9a8d0602d"},
+    "charge": 50,
+    "coreHours": {
+      "monday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "tuesday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "wednesday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "thursday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "friday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "saturday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 20,
+    "createdAt": {"$date": "2025-03-06T11:29:45.879Z"},
+    "createdBy": {"$oid": "67c94bef5f7a213ca47ebb00"},
+    "createdByEmail": "qa.healsgood@gmail.com",
+    "createdByFirstName": "Diaa",
+    "createdByLastName": "Recruiter",
+    "grade": "Band 5",
+    "hoursPerWeek": 40,
+    "jobDescription": "Radiology with 6+ years experience and many surgeries under the belt",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "Cardiology",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-03-06T11:29:45.879Z"},
+    "user": {"$oid": "67c94bef5f7a213ca47ebb00"},
+    "vacantFrom": {"$date": "2025-03-06T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-03-06T00:00:00.000Z"},
+    "vat": 10
+  },
+  {
+    "_id": {"$oid": "67ce81848eb196b9a8d07983"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": true,
+        "from": "08:00:00",
+        "to": "20:00:00"
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": false
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-03-10T06:07:00.478Z"},
+    "createdByEmail": "qa.healsgood@gmail.com",
+    "createdByFirstName": "Diaa",
+    "createdByLastName": "Recruiter",
+    "grade": "Band 5",
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-03-10T06:07:00.478Z"},
+    "user": {"$oid": "67c94bef5f7a213ca47ebb00"},
+    "vacantFrom": {"$date": "2025-03-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-03-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67f71837c055173a98186ec3"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "23:59:59"
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-04-10T01:00:39.594Z"},
+    "grade": "Band 5",
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-04-10T01:00:39.594Z"},
+    "vacantFrom": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67c990078eb196b9a8d06d15"},
+    "charge": 50,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": true,
+        "from": "08:00:00",
+        "to": "20:00:00"
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 10,
+    "createdAt": {"$date": "2025-03-06T12:07:35.355Z"},
+    "createdByEmail": "qa.healsgood@gmail.com",
+    "createdByFirstName": "Diaa",
+    "createdByLastName": "Recruiter",
+    "grade": "Band 5",
+    "hoursPerWeek": 40,
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 10,
+    "onCallPassivePrice": 10,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 10,
+    "updatedAt": {"$date": "2025-03-06T12:20:09.447Z"},
+    "user": {"$oid": "67c94bef5f7a213ca47ebb00"},
+    "vacantFrom": {"$date": "2025-03-06T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-03-06T00:00:00.000Z"},
+    "vat": 10,
+    "payOption": "time",
+    "actionByUserId": {"$oid": "67c94bef5f7a213ca47ebb00"}
+  },
+  {
+    "_id": {"$oid": "67f71841c055173a98186edf"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-04-10T01:00:49.865Z"},
+    "grade": "FY1",
+    "jobDescription": "Audio Vestibular Medicine FY1 doctor",
+    "level": "Junior Doctor",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "Audiology",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-04-10T01:00:49.865Z"},
+    "vacantFrom": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67f71841c055173a98186ef0"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "23:59:59"
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-04-10T01:00:49.925Z"},
+    "grade": "Band 5",
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "night",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-04-10T01:00:49.925Z"},
+    "vacantFrom": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67f71841c055173a98186ef4"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": false
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-04-10T01:00:49.930Z"},
+    "grade": "Consultant",
+    "jobDescription": "N/A",
+    "level": "Consultant",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-04-10T01:00:49.930Z"},
+    "vacantFrom": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67f71841c055173a98186eef"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "23:59:59"
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-04-10T01:00:49.974Z"},
+    "grade": "Band 5",
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-04-10T01:00:49.974Z"},
+    "vacantFrom": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67ce7b948eb196b9a8d07929"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "23:59:59"
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": false
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-03-10T05:41:40.139Z"},
+    "grade": "Band 5",
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-03-10T05:41:40.139Z"},
+    "user": {"$oid": "67c959e45f7a213ca47ecc09"},
+    "vacantFrom": {"$date": "2025-03-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-03-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67caa8a98eb196b9a8d07714"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": true,
+        "from": "07:00:00",
+        "to": "21:00:00"
+      },
+      "thursday": {
+        "isWorkingDay": false
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-03-07T08:04:57.152Z"},
+    "createdByEmail": "qa.healsgood@gmail.com",
+    "createdByFirstName": "Diaa",
+    "createdByLastName": "Recruiter",
+    "grade": "Band 5",
+    "jobDescription": "Band 5 General Medical Nurse",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-03-07T08:04:57.152Z"},
+    "user": {"$oid": "67c94bef5f7a213ca47ebb00"},
+    "vacantFrom": {"$date": "2025-03-26T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-03-26T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67ce7b948eb196b9a8d0792a"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "23:59:59"
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": false
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-03-10T05:41:40.134Z"},
+    "grade": "Band 5",
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "night",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-03-10T05:41:40.134Z"},
+    "user": {"$oid": "67c959e45f7a213ca47ecc09"},
+    "vacantFrom": {"$date": "2025-03-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-03-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67cfd1738eb196b9a8d07c9a"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": true,
+        "from": "08:00:00",
+        "to": "20:00:00"
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": false
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-03-11T06:00:19.141Z"},
+    "grade": "Band 5",
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-03-11T06:00:19.141Z"},
+    "user": {"$oid": "67c959e45f7a213ca47ecc09"},
+    "vacantFrom": {"$date": "2025-03-11T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-03-11T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67f36977c055173a981845ef"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "tuesday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "wednesday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "thursday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "friday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "saturday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "sunday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-04-07T05:58:15.771Z"},
+    "grade": "FY1",
+    "jobDescription": "General Medicine Junior Doctor",
+    "level": "Junior Doctor",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "night",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-04-07T05:58:15.771Z"},
+    "vacantFrom": {"$date": "2025-04-07T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-04-17T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67f71837c055173a98186ec4"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "23:59:59"
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-04-10T01:00:39.589Z"},
+    "grade": "Band 5",
+    "jobDescription": "N/A",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "night",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-04-10T01:00:39.589Z"},
+    "vacantFrom": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-04-10T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67f36977c055173a981845ee"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "tuesday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "wednesday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "thursday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "friday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "saturday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "sunday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-04-07T05:58:15.777Z"},
+    "grade": "FY1",
+    "jobDescription": "General Medicine Junior Doctor",
+    "level": "Junior Doctor",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-04-07T05:58:15.777Z"},
+    "vacantFrom": {"$date": "2025-04-07T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-04-17T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67d4d1248eb196b9a8d08abc"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "isWorkingDay": false
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": true,
+        "from": "00:00:00",
+        "to": "00:00:00"
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-03-15T01:00:20.167Z"},
+    "createdByEmail": "qa.healsgood@gmail.com",
+    "createdByFirstName": "Diaa",
+    "createdByLastName": "Recruiter",
+    "grade": "Consultant",
+    "jobDescription": "N/A",
+    "level": "Consultant",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-03-15T01:00:20.167Z"},
+    "user": {"$oid": "67c94bef5f7a213ca47ebb00"},
+    "vacantFrom": {"$date": "2025-03-15T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-03-15T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "67c97b928eb196b9a8d05d08"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "isWorkingDay": false
+      },
+      "tuesday": {
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "isWorkingDay": true,
+        "from": "07:00:00",
+        "to": "21:00:00"
+      },
+      "thursday": {
+        "isWorkingDay": false
+      },
+      "friday": {
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 0,
+    "createdAt": {"$date": "2025-03-06T10:40:18.207Z"},
+    "createdByEmail": "qa.healsgood@gmail.com",
+    "createdByFirstName": "Diaa",
+    "createdByLastName": "Recruiter",
+    "grade": "Band 5",
+    "jobDescription": "Band 5 General Medical Nurse",
+    "level": "Nurse",
+    "onCallActivePrice": 0,
+    "onCallPassivePrice": 0,
+    "shift": "day",
+    "specialty": "General Medicine",
+    "status": "active",
+    "unSocialPrice": 0,
+    "updatedAt": {"$date": "2025-03-06T10:40:18.207Z"},
+    "user": {"$oid": "67c94bef5f7a213ca47ebb00"},
+    "vacantFrom": {"$date": "2025-02-26T00:00:00.000Z"},
+    "vacantTo": {"$date": "2025-02-26T00:00:00.000Z"},
+    "vat": 0,
+    "payOption": "time"
+  },
+  {
+    "_id": {"$oid": "690e0e11a789750f256065ed"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "tuesday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "wednesday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "thursday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "friday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "saturday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "sunday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      }
+    },
+    "corePrice": 125,
+    "createdAt": {"$date": "2025-11-07T15:19:45.827Z"},
+    "createdByEmail": "john@flexzo.ai",
+    "createdByFirstName": "John",
+    "createdByLastName": "Nolan",
+    "grade": "Consultant",
+    "jobDescription": "Consultant Breast Radiologist",
+    "level": "Doctor",
+    "onCallActivePrice": 125,
+    "onCallPassivePrice": 125,
+    "shift": "day",
+    "specialty": "Breast Radiology",
+    "status": "closed",
+    "unSocialPrice": 125,
+    "updatedAt": {"$date": "2026-02-01T01:00:00.263Z"},
+    "user": {"$oid": "67c83f237244f236026c1f10"},
+    "vacantFrom": {"$date": "2025-12-01T00:00:00.000Z"},
+    "vacantTo": {"$date": "2026-01-31T00:00:00.000Z"},
+    "vat": 0,
+    "clientAddress": {
+      "street": null,
+      "city": null,
+      "country": "England",
+      "region": "South West",
+      "county": "Dorset",
+      "zip": "BH7 7DW ",
+      "lat": 50.7474818,
+      "long": -1.8205195
+    },
+    "clientName": "University Hospitals Dorset",
+    "clientWebsite": "https://www.uhd.nhs.uk/",
+    "extraSkills": [],
+    "mandatoryCompliances": [],
+    "skills": []
+  },
+  {
+    "_id": {"$oid": "690e1165a789750f25606750"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "tuesday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "wednesday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "thursday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "friday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "saturday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 29,
+    "createdAt": {"$date": "2025-11-07T15:33:57.611Z"},
+    "createdByEmail": "john@flexzo.ai",
+    "createdByFirstName": "John",
+    "createdByLastName": "Nolan",
+    "grade": "Band 7",
+    "jobDescription": "Band 7 Mammographer",
+    "level": "AHP",
+    "onCallActivePrice": 29,
+    "onCallPassivePrice": 29,
+    "shift": "day",
+    "specialty": "Diagnostic and Therapeutic Radiography",
+    "status": "closed",
+    "unSocialPrice": 29,
+    "updatedAt": {"$date": "2026-02-01T01:00:00.263Z"},
+    "user": {"$oid": "67c83f237244f236026c1f10"},
+    "vacantFrom": {"$date": "2025-12-01T00:00:00.000Z"},
+    "vacantTo": {"$date": "2026-01-31T00:00:00.000Z"},
+    "vat": 0,
+    "clientAddress": {
+      "street": null,
+      "city": null,
+      "country": "England",
+      "region": "South West",
+      "county": "Dorset",
+      "zip": "BH7 7DW ",
+      "lat": 50.7474818,
+      "long": -1.8205195
+    },
+    "clientName": "University Hospitals Dorset",
+    "clientWebsite": "https://www.uhd.nhs.uk/",
+    "extraSkills": ["Mammographer"],
+    "mandatoryCompliances": [],
+    "skills": []
+  },
+  {
+    "_id": {"$oid": "690e142ba789750f256067e8"},
+    "charge": 0,
+    "coreHours": {
+      "monday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": true
+      },
+      "tuesday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      },
+      "wednesday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      },
+      "thursday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      },
+      "friday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      },
+      "saturday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      },
+      "sunday": {
+        "from": "08:00",
+        "to": "17:30",
+        "isWorkingDay": false
+      }
+    },
+    "corePrice": 100,
+    "createdAt": {"$date": "2025-11-07T15:45:47.754Z"},
+    "createdByEmail": "john@flexzo.ai",
+    "createdByFirstName": "John",
+    "createdByLastName": "Nolan",
+    "grade": "Consultant",
+    "jobDescription": "Consultant Psychiatrist working within Older Adults for the CMHT.",
+    "level": "Doctor",
+    "onCallActivePrice": null,
+    "onCallPassivePrice": null,
+    "shift": "day",
+    "specialty": "Diagnostic & Investigative",
+    "status": "closed",
+    "unSocialPrice": null,
+    "updatedAt": {"$date": "2026-02-03T01:00:00.235Z"},
+    "user": {"$oid": "67c83f237244f236026c1f10"},
+    "vacantFrom": {"$date": "2026-02-02T00:00:00.000Z"},
+    "vacantTo": {"$date": "2026-02-02T00:00:00.000Z"},
+    "vat": 0,
+    "clientAddress": {
+      "street": null,
+      "city": null,
+      "country": "England",
+      "region": "London",
+      "county": "Greater London",
+      "zip": null
+    },
+    "clientName": "North London NHS Foundation Trust",
+    "clientWebsite": "https://www.northlondonmentalhealth.nhs.uk/",
+    "extraSkills": [],
+    "mandatoryCompliances": [],
+    "skills": [],
+    "clientEmail": "jack.howell@healsgood.com"
+  }
+]
