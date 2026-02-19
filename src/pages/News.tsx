@@ -47,8 +47,8 @@ const News = () => {
       <Navbar />
 
       {/* ── DARK HEADER ── */}
-      <section className="bg-foreground pt-32 pb-16 lg:pt-40 lg:pb-20">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-foreground pt-32 pb-16 lg:pt-40 lg:pb-20 flex items-end">
+        <div className="mx-auto max-w-7xl px-6 mt-auto">
           <motion.h1
             initial="hidden"
             animate="visible"
