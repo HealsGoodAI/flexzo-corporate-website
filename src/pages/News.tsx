@@ -5,16 +5,25 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
-import newsFeaturedImg from "@/assets/news-featured.jpg";
+
+import articleImg1 from "@/assets/article-1.jpg";
+import articleImg2 from "@/assets/article-2.jpg";
+import articleImg3 from "@/assets/article-3.jpg";
+import articleImg4 from "@/assets/article-4.jpg";
+import articleImg5 from "@/assets/article-5.jpg";
+import articleImg6 from "@/assets/article-6.jpg";
+import articleImg7 from "@/assets/article-7.jpg";
+
+const articleImages = [articleImg1, articleImg2, articleImg3, articleImg4, articleImg5, articleImg6, articleImg7];
 
 const categories = ["All", ...Array.from(new Set(articles.map((a) => a.category)))];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.08, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+    transition: { duration: 0.5, delay: i * 0.06, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
   }),
 };
 
@@ -33,34 +42,29 @@ const News = () => {
     });
   }, [search, activeCategory]);
 
-  const featured = filtered[0];
-  const rest = filtered.slice(1);
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* ── HERO ── Pentagram-inspired: minimal, typographic */}
-      <section className="pt-32 pb-12 lg:pt-40 lg:pb-16">
+      {/* ── DARK HEADER ── */}
+      <section className="bg-foreground pt-32 pb-16 lg:pt-40 lg:pb-20">
         <div className="mx-auto max-w-7xl px-6">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#0075FF]">
-              Knowledge Hub
-            </p>
-            <h1 className="max-w-3xl text-5xl font-bold leading-[1.08] tracking-tight text-foreground md:text-7xl">
-              Insights &<br />
-              <span className="text-[#0075FF]">Industry News</span>
-            </h1>
-          </motion.div>
-
-          {/* Search + filters — clean inline bar */}
-          <motion.div
+          <motion.h1
             initial="hidden"
             animate="visible"
-            custom={1}
             variants={fadeUp}
-            className="mt-12 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between"
+            className="text-6xl font-bold tracking-tight text-primary-foreground md:text-8xl lg:text-9xl"
           >
+            The News.
+          </motion.h1>
+        </div>
+      </section>
+
+      {/* ── WHITE BODY ── */}
+      <div className="bg-white">
+        {/* Filters bar */}
+        <div className="mx-auto max-w-7xl px-6 py-8 border-b border-border">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2">
               {categories.map((cat) => (
                 <button
@@ -86,136 +90,162 @@ const News = () => {
                 className="w-full rounded-full border border-border bg-background py-2.5 pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20"
               />
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="border-t border-border" />
-      </div>
-
-      {/* ── FEATURED ARTICLE ── Large editorial card */}
-      {featured && (
-        <section className="py-16 lg:py-20">
-          <div className="mx-auto max-w-7xl px-6">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-            >
-              <Link
-                to={`/news/${featured.slug}`}
-                className="group grid items-center gap-12 lg:grid-cols-[1.2fr_1fr]"
-              >
-                {/* Left: large color block with category */}
-                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-foreground flex flex-col justify-end lg:aspect-[4/3]">
-                  <img src={newsFeaturedImg} alt="Healthcare professional" className="absolute inset-0 h-full w-full object-cover opacity-40" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/60 to-transparent" />
-                  <div className="relative z-10 p-10">
-                    <span className="mb-4 inline-block rounded-full bg-[#0075FF] px-4 py-1.5 text-xs font-semibold text-white">
-                      {featured.category}
-                    </span>
-                    <h2 className="text-3xl font-bold leading-tight text-primary-foreground md:text-4xl lg:text-5xl">
-                      {featured.title}
-                    </h2>
-                  </div>
-                </div>
-
-                {/* Right: excerpt + meta */}
-                <div>
-                  <p className="text-lg leading-relaxed text-muted-foreground lg:text-xl">
-                    {featured.excerpt}
-                  </p>
-                  <div className="mt-8 flex items-center gap-6 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <Clock size={14} />
-                      {featured.readTime}
-                    </span>
-                    <span>{featured.date}</span>
-                  </div>
-                  <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-all group-hover:text-[#0075FF] group-hover:gap-3">
-                    Read Article
-                    <ArrowRight size={16} />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
           </div>
-        </section>
-      )}
+        </div>
 
-      {/* ── ARTICLE GRID ── Pentagram-style: alternating large/small */}
-      <section className="pb-24 lg:pb-32">
-        <div className="mx-auto max-w-7xl px-6">
-          {rest.length > 0 && (
-            <p className="mb-10 text-sm text-muted-foreground">
-              {filtered.length} article{filtered.length !== 1 ? "s" : ""}
-            </p>
-          )}
-
-          <div className="grid gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-            {rest.map((article, i) => {
-              // Every 4th item spans 2 columns for editorial variety
-              const isWide = i % 5 === 0 && i > 0;
-
-              return (
-                <motion.div
-                  key={article.slug}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  custom={i}
-                  variants={fadeUp}
-                  className={isWide ? "md:col-span-2" : ""}
-                >
-                  <Link
-                    to={`/news/${article.slug}`}
-                    className="group block"
-                  >
-                    {/* Color accent bar */}
-                    <div className={`mb-6 overflow-hidden rounded-xl bg-foreground ${isWide ? "aspect-[21/9]" : "aspect-[16/10]"} flex items-end p-6 relative`}>
-                      <div className="absolute inset-0 opacity-[0.05]" style={{
-                        backgroundImage: `radial-gradient(circle at ${30 + (i * 17) % 60}% ${20 + (i * 23) % 50}%, hsl(210 100% 45% / 0.3) 0%, transparent 60%)`
-                      }} />
-                      <span className="relative z-10 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-medium text-primary-foreground/70 backdrop-blur-sm">
-                        {article.category}
-                      </span>
-                    </div>
-
-                    <h3 className={`font-bold leading-snug text-foreground transition-colors group-hover:text-[#0075FF] ${isWide ? "text-2xl md:text-3xl" : "text-lg"}`}>
-                      {article.title}
-                    </h3>
-
-                    <p className={`mt-3 leading-relaxed text-muted-foreground ${isWide ? "text-base max-w-2xl" : "text-sm"}`}>
-                      {article.excerpt}
-                    </p>
-
-                    <div className="mt-5 flex items-center gap-4 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Clock size={12} />
-                        {article.readTime}
-                      </span>
-                      <span>{article.date}</span>
-                      <ArrowRight
-                        size={14}
-                        className="ml-auto transition-transform group-hover:translate-x-1 group-hover:text-[#0075FF]"
+        {filtered.length === 0 ? (
+          <div className="py-20 text-center mx-auto max-w-7xl px-6">
+            <p className="text-lg text-muted-foreground">No articles found matching your search.</p>
+          </div>
+        ) : (
+          <div className="mx-auto max-w-7xl px-6">
+            {/* ── ROW 1: Hero featured (large image left, stacked articles right) ── */}
+            <div className="grid gap-8 py-12 lg:grid-cols-[1.4fr_1fr] border-b border-border">
+              {/* Lead article */}
+              {filtered[0] && (
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+                  <Link to={`/news/${filtered[0].slug}`} className="group block">
+                    <div className="aspect-[16/10] overflow-hidden rounded-xl mb-5">
+                      <img
+                        src={articleImages[0]}
+                        alt={filtered[0].title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#0075FF]">
+                      {filtered[0].category}
+                    </span>
+                    <h2 className="mt-2 text-2xl font-bold leading-tight text-foreground group-hover:text-[#0075FF] transition-colors md:text-3xl">
+                      {filtered[0].title}
+                    </h2>
+                    <p className="mt-3 text-base text-muted-foreground leading-relaxed line-clamp-3">
+                      {filtered[0].excerpt}
+                    </p>
+                    <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1"><Clock size={12} />{filtered[0].readTime}</span>
+                      <span>{filtered[0].date}</span>
                     </div>
                   </Link>
                 </motion.div>
-              );
-            })}
-          </div>
+              )}
 
-          {filtered.length === 0 && (
-            <div className="py-20 text-center">
-              <p className="text-lg text-muted-foreground">No articles found matching your search.</p>
+              {/* Stacked articles 2-4 */}
+              <div className="flex flex-col divide-y divide-border">
+                {filtered.slice(1, 4).map((article, i) => (
+                  <motion.div
+                    key={article.slug}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={i + 1}
+                    variants={fadeUp}
+                    className="py-5 first:pt-0 last:pb-0"
+                  >
+                    <Link to={`/news/${article.slug}`} className="group flex gap-5">
+                      <div className="w-28 h-20 flex-shrink-0 overflow-hidden rounded-lg">
+                        <img
+                          src={articleImages[i + 1]}
+                          alt={article.title}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0075FF]">
+                          {article.category}
+                        </span>
+                        <h3 className="mt-1 text-sm font-bold leading-snug text-foreground group-hover:text-[#0075FF] transition-colors line-clamp-2">
+                          {article.title}
+                        </h3>
+                        <span className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
+                          <Clock size={10} />{article.readTime}
+                        </span>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          )}
-        </div>
-      </section>
+
+            {/* ── ROW 2: Three equal columns with images ── */}
+            {filtered.length > 4 && (
+              <div className="grid gap-8 py-12 md:grid-cols-3 border-b border-border">
+                {filtered.slice(4, 7).map((article, i) => (
+                  <motion.div
+                    key={article.slug}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={i}
+                    variants={fadeUp}
+                  >
+                    <Link to={`/news/${article.slug}`} className="group block">
+                      <div className="aspect-[16/10] overflow-hidden rounded-xl mb-4">
+                        <img
+                          src={articleImages[i + 4]}
+                          alt={article.title}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0075FF]">
+                        {article.category}
+                      </span>
+                      <h3 className="mt-2 text-lg font-bold leading-snug text-foreground group-hover:text-[#0075FF] transition-colors">
+                        {article.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        {article.excerpt}
+                      </p>
+                      <div className="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
+                        <Clock size={12} />
+                        {article.readTime}
+                        <ArrowRight size={12} className="ml-auto transition-transform group-hover:translate-x-1 group-hover:text-[#0075FF]" />
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {/* ── ROW 3+: Remaining articles as a compact list ── */}
+            {filtered.length > 7 && (
+              <div className="py-12">
+                <h2 className="mb-8 text-2xl font-bold text-foreground">More Articles</h2>
+                <div className="grid gap-x-8 gap-y-0 md:grid-cols-2 divide-y md:divide-y-0">
+                  {filtered.slice(7).map((article, i) => (
+                    <motion.div
+                      key={article.slug}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      custom={i}
+                      variants={fadeUp}
+                      className="border-b border-border py-6"
+                    >
+                      <Link to={`/news/${article.slug}`} className="group block">
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0075FF]">
+                          {article.category}
+                        </span>
+                        <h3 className="mt-1 text-base font-bold leading-snug text-foreground group-hover:text-[#0075FF] transition-colors">
+                          {article.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                          {article.excerpt}
+                        </p>
+                        <div className="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
+                          <Clock size={12} />
+                          {article.readTime}
+                          <span>{article.date}</span>
+                          <ArrowRight size={12} className="ml-auto transition-transform group-hover:translate-x-1 group-hover:text-[#0075FF]" />
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
       <Footer />
     </div>
