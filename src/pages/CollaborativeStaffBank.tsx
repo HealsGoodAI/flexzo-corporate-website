@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRegionText } from "@/lib/regionalize";
 import {
   ShieldCheck,
   Scale,
@@ -102,6 +103,8 @@ const stats = [
 ];
 
 const CollaborativeStaffBank = () => {
+  const { t } = useRegionText();
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar transparent />
@@ -117,30 +120,28 @@ const CollaborativeStaffBank = () => {
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <motion.div initial="hidden" animate="visible" variants={fadeUp}>
               <p className="mb-6 text-sm font-semibold uppercase tracking-[0.25em] text-[#0CE3FF]">
-                Collaborative Staff Bank
+                {t("Collaborative Staff Bank")}
               </p>
               <h1 className="text-5xl font-bold leading-[1.05] tracking-tight text-primary-foreground md:text-6xl lg:text-7xl">
-                Turn local capacity into{" "}
-                <span className="text-[#0075FF]">regional resilience</span>
+                {t("Turn local capacity into")}{" "}
+                <span className="text-[#0075FF]">{t("regional resilience")}</span>
               </h1>
               <p className="mt-8 max-w-lg text-lg leading-relaxed text-primary-foreground/60">
-                A governance-first platform that enables partner healthcare
-                organisations to share qualified clinical staff across sites and
-                systems — preserving credentialing, pay rules and local governance.
+                {t("A governance-first platform that enables partner healthcare organisations to share qualified clinical staff across sites and systems — preserving credentialing, pay rules and local governance.")}
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <a
                   href="/book-demo"
                   className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
                 >
-                  Book a Demo
+                  {t("Book a Demo")}
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </a>
                 <a
                   href="/contact"
                   className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:border-primary-foreground/40"
                 >
-                  Contact Sales
+                  {t("Contact Sales")}
                 </a>
               </div>
             </motion.div>
@@ -162,7 +163,7 @@ const CollaborativeStaffBank = () => {
                   className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-8 backdrop-blur-sm"
                 >
                   <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
-                  <p className="mt-2 text-sm text-primary-foreground/50">{stat.label}</p>
+                  <p className="mt-2 text-sm text-primary-foreground/50">{t(stat.label)}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -181,12 +182,12 @@ const CollaborativeStaffBank = () => {
               variants={fadeUp}
             >
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">
-                Overview
+                {t("Overview")}
               </p>
               <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-                A single operational
+                {t("A single operational")}
                 <br />
-                fabric for cross-org staffing
+                {t("fabric for cross-org staffing")}
               </h2>
             </motion.div>
             <motion.div
@@ -198,24 +199,13 @@ const CollaborativeStaffBank = () => {
               className="space-y-6 text-lg leading-relaxed text-muted-foreground"
             >
               <p>
-                Designed specifically for integrated care partnerships, ICSs and
-                multi-trust networks, Flexzo Collaborative Staff Bank provides a
-                single operational fabric for cross-organisation staffing while
-                preserving each organisation's credentialing, pay rules and local
-                governance.
+                {t("Designed specifically for integrated care partnerships, ICSs and multi-trust networks, Flexzo Collaborative Staff Bank provides a single operational fabric for cross-organisation staffing while preserving each organisation's credentialing, pay rules and local governance.")}
               </p>
               <p>
-                The solution removes administrative friction with automated
-                credential portability, trust-to-trust approvals, and audited
-                handovers that ensure clinicians meet site-specific competencies
-                before deployment. Flexible sharing models support temporary cover,
-                surge capacity and planned rotations.
+                {t("The solution removes administrative friction with automated credential portability, trust-to-trust approvals, and audited handovers that ensure clinicians meet site-specific competencies before deployment. Flexible sharing models support temporary cover, surge capacity and planned rotations.")}
               </p>
               <p>
-                For clinicians, the experience is mobile-first and simple: profiles
-                carry verified credentials and preferences, shift offers surface
-                appropriate cross-site roles, and pay or travel variations are
-                transparent before acceptance.
+                {t("For clinicians, the experience is mobile-first and simple: profiles carry verified credentials and preferences, shift offers surface appropriate cross-site roles, and pay or travel variations are transparent before acceptance.")}
               </p>
             </motion.div>
           </div>
@@ -233,10 +223,10 @@ const CollaborativeStaffBank = () => {
             className="mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0CE3FF]">
-              Capabilities
+              {t("Capabilities")}
             </p>
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-primary-foreground md:text-5xl">
-              Features
+              {t("Features")}
             </h2>
           </motion.div>
 
@@ -253,10 +243,10 @@ const CollaborativeStaffBank = () => {
               >
                 <feature.icon className="mb-6 h-8 w-8 text-[#0075FF] transition-transform group-hover:scale-110" />
                 <h3 className="mb-3 text-xl font-semibold text-primary-foreground">
-                  {feature.title}
+                  {t(feature.title)}
                 </h3>
                 <p className="text-sm leading-relaxed text-primary-foreground/50">
-                  {feature.description}
+                  {t(feature.description)}
                 </p>
               </motion.div>
             ))}
@@ -275,10 +265,10 @@ const CollaborativeStaffBank = () => {
             className="mb-20 text-center"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">
-              How it works
+              {t("How it works")}
             </p>
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              From local pools to regional fabric
+              {t("From local pools to regional fabric")}
             </h2>
           </motion.div>
 
@@ -322,8 +312,8 @@ const CollaborativeStaffBank = () => {
                   <div className="mb-4 flex items-center gap-4">
                     <span className="text-6xl font-bold text-[#0075FF]/20 md:text-7xl">{item.step}</span>
                   </div>
-                  <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{item.title}</h3>
-                  <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{item.text}</p>
+                  <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{t(item.title)}</h3>
+                  <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
                 <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
                   <div className="flex h-full items-center justify-center">
@@ -349,10 +339,10 @@ const CollaborativeStaffBank = () => {
             className="mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">
-              Why Collaborative Staff Bank
+              {t("Why Collaborative Staff Bank")}
             </p>
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Benefits
+              {t("Benefits")}
             </h2>
           </motion.div>
 
@@ -370,8 +360,8 @@ const CollaborativeStaffBank = () => {
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-[#0075FF]/10 transition-colors group-hover:bg-[#0075FF]/20">
                   <benefit.icon className="h-7 w-7 text-[#0075FF]" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-foreground">{benefit.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{benefit.description}</p>
+                <h3 className="mb-3 text-xl font-semibold text-foreground">{t(benefit.title)}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(benefit.description)}</p>
               </motion.div>
             ))}
           </div>
@@ -391,14 +381,11 @@ const CollaborativeStaffBank = () => {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <p className="text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
-              A shared bank that actually works for{" "}
-              <span className="text-[#0075FF]">clinical services</span>.
+              {t("A shared bank that actually works for")}{" "}
+              <span className="text-[#0075FF]">{t("clinical services")}</span>.
             </p>
             <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/50">
-              Increasing resilience, lowering regional agency reliance and
-              accelerating cross-site cover — delivering measurable reductions in
-              premium spend and faster restoration of capacity during peaks or
-              incidents.
+              {t("Increasing resilience, lowering regional agency reliance and accelerating cross-site cover — delivering measurable reductions in premium spend and faster restoration of capacity during peaks or incidents.")}
             </p>
           </motion.div>
         </div>
@@ -414,25 +401,24 @@ const CollaborativeStaffBank = () => {
             variants={fadeUp}
           >
             <h2 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Ready to build a <span className="text-[#0075FF]">shared bank</span>?
+              {t("Ready to build a")} <span className="text-[#0075FF]">{t("shared bank")}</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              Book a demo and discover how Flexzo Collaborative Staff Bank can
-              transform fragmented local pools into governed regional resilience.
+              {t("Book a demo and discover how Flexzo Collaborative Staff Bank can transform fragmented local pools into governed regional resilience.")}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a
                 href="/book-demo"
-                className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
+                className="group inline-flex items-center gap-2 rounded-md bg-primary px-10 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white"
               >
-                Book a Demo
+                {t("Book a Demo")}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-md border border-border px-8 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                className="inline-flex items-center gap-2 rounded-md border border-border px-10 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
-                Contact Sales
+                {t("Contact Us")}
               </a>
             </div>
           </motion.div>

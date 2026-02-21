@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, Sparkles, Brain, Shield, Users, Clock, Zap, T
 import privateHero from "@/assets/private-healthcare-hero.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRegionText } from "@/lib/regionalize";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -77,6 +78,7 @@ const BookDemoButton = () => (
 );
 
 const PrivateHealthcare = () => {
+  const { t } = useRegionText();
   return (
     <div className="min-h-screen bg-background">
       <Navbar transparent />
