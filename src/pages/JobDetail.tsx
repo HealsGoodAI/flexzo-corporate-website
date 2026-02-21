@@ -4,6 +4,8 @@ import { MapPin, Clock, Building2, Briefcase, Calendar, ArrowLeft, ArrowRight, T
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { jobs } from "@/data/jobs";
+import { useRegion } from "@/hooks/useRegion";
+import { useRegionText } from "@/lib/regionalize";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -16,6 +18,8 @@ const fadeUp = {
 
 const JobDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const { regionPath } = useRegion();
+  const { t } = useRegionText();
   const job = jobs.find((j) => j.id === id);
 
   if (!job) {
@@ -26,8 +30,8 @@ const JobDetail = () => {
           <div className="text-center">
             <h1 className="mb-4 text-3xl font-bold text-foreground">Job not found</h1>
             <p className="mb-8 text-muted-foreground">The job listing you're looking for doesn't exist or has been removed.</p>
-            <Link to="/jobs" className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white">
-              <ArrowLeft size={16} /> Back to Jobs
+            <Link to={regionPath("/jobs")} className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white">
+              <ArrowLeft size={16} /> {t("Back to Jobs")}
             </Link>
           </div>
         </div>
@@ -44,8 +48,8 @@ const JobDetail = () => {
       <section className="border-b border-border bg-muted pt-32 pb-12">
         <div className="mx-auto max-w-4xl px-6">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <Link to="/jobs" className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-[#0075FF]">
-              <ArrowLeft size={14} /> Back to all jobs
+            <Link to={regionPath("/jobs")} className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-[#0075FF]">
+              <ArrowLeft size={14} /> {t("Back to all jobs")}
             </Link>
             <h1 className="mb-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               {job.title}
@@ -136,7 +140,7 @@ const JobDetail = () => {
 
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2} variants={fadeUp}>
                 <Link
-                  to={`/jobs/${job.id}/apply`}
+                  to={regionPath(`/jobs/${job.id}/apply`)}
                   className="group flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white"
                 >
                   Apply Now

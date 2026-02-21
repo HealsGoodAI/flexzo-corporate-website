@@ -15,6 +15,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { jobs, type Job } from "@/data/jobs";
 import { Slider } from "@/components/ui/slider";
+import { useRegion } from "@/hooks/useRegion";
+import { useRegionText } from "@/lib/regionalize";
 
 /* ── helpers ───────────────────────────────────────── */
 
@@ -59,6 +61,8 @@ function matchesCategory(job: Job, category: string): boolean {
 /* ── component ─────────────────────────────────────── */
 
 const JobSearchResults = () => {
+  const { regionPath } = useRegion();
+  const { t } = useRegionText();
   const [searchParams] = useSearchParams();
   const initialRole = searchParams.get("role") || "";
   const initialLocation = searchParams.get("location") || "";
@@ -146,10 +150,10 @@ const JobSearchResults = () => {
       <section className="border-b border-border bg-muted pt-28 pb-8">
         <div className="mx-auto max-w-6xl px-6">
           <Link
-            to="/jobs"
+            to={regionPath("/jobs")}
             className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft className="h-4 w-4" /> Back to Jobs
+            <ArrowLeft className="h-4 w-4" /> {t("Back to Jobs")}
           </Link>
 
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -350,7 +354,7 @@ const JobSearchResults = () => {
                       transition={{ delay: i * 0.03 }}
                     >
                       <Link
-                        to={`/jobs/${job.id}`}
+                        to={regionPath(`/jobs/${job.id}`)}
                         className="group flex h-full flex-col justify-between rounded-xl border border-border bg-background p-5 transition-all hover:shadow-lg hover:border-accent/30"
                       >
                         <div>
