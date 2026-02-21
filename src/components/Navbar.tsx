@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import flexzoLogo from "@/assets/Flexzo-Logo.svg";
 import flexzoLogoWhite from "@/assets/flexzo-logo-white.png";
 import { useRegion } from "@/hooks/useRegion";
+import { useRegionText } from "@/lib/regionalize";
 
 const dropdownMenus: Record<string, { label: string; href: string }[]> = {
   Products: [
@@ -44,6 +45,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const { regionPath } = useRegion();
+  const { t } = useRegionText();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -125,7 +127,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                             className="block px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                             onClick={() => setOpenDropdown(null)}
                           >
-                            {link.label}
+                            {t(link.label)}
                           </a>
                         ))}
                       </div>
@@ -226,7 +228,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                                     className="py-2 text-lg text-primary-foreground/50 transition-colors hover:text-[#0075FF]"
                                     onClick={() => setMobileOpen(false)}
                                   >
-                                    {link.label}
+                                    {t(link.label)}
                                   </motion.a>
                                 ))}
                               </div>
