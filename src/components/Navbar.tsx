@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import flexzoLogo from "@/assets/Flexzo-Logo.svg";
 import flexzoLogoWhite from "@/assets/flexzo-logo-white.png";
+import { useRegion } from "@/hooks/useRegion";
 
 const dropdownMenus: Record<string, { label: string; href: string }[]> = {
   Products: [
     { label: "AI Sourcing", href: "/products/ai-sourcing" },
     { label: "Internal Staff Bank", href: "/products/internal-staff-bank" },
-    
     { label: "Collaborative Staff Bank", href: "/products/collaborative-staff-bank" },
     { label: "National Staff Bank", href: "#" },
     { label: "Amplify", href: "/products/amplify" },
@@ -43,6 +43,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const { regionPath } = useRegion();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -62,7 +63,6 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [transparent]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
@@ -74,6 +74,11 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
 
   const isTransparent = transparent && !scrolled && !mobileOpen;
 
+  const resolveHref = (href: string) => {
+    if (href.startsWith("http") || href === "#") return href;
+    return regionPath(href);
+  };
+
   return (
     <>
       <nav
@@ -84,7 +89,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <a href="/" className="relative z-[60] flex items-center">
+          <a href={regionPath("/")} className="relative z-[60] flex items-center">
             <img
               src={isTransparent ? flexzoLogoWhite : flexzoLogo}
               alt="Flexzo"
@@ -116,7 +121,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                         {dropdownMenus[item].map((link) => (
                           <a
                             key={link.label}
-                            href={link.href}
+                            href={resolveHref(link.href)}
                             className="block px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                             onClick={() => setOpenDropdown(null)}
                           >
@@ -131,7 +136,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
               return (
                 <a
                   key={item}
-                  href={simpleLinks[item] || `#${item.toLowerCase()}`}
+                  href={resolveHref(simpleLinks[item] || `#${item.toLowerCase()}`)}
                   className={`text-sm transition-colors ${
                     isTransparent
                       ? "text-white/70 hover:text-white"
@@ -143,7 +148,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
               );
             })}
             <a
-              href="/book-demo"
+              href={resolveHref("/book-demo")}
               className={`rounded-md px-6 py-2.5 text-sm font-medium transition-all ${
                 isTransparent
                   ? "bg-white/10 text-white border border-white/20 hover:bg-[#0075FF] hover:border-[#0075FF]"
@@ -174,12 +179,10 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             transition={{ type: "tween", duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             className="fixed inset-0 z-[55] flex flex-col bg-foreground lg:hidden"
           >
-            {/* Top bar with logo icon */}
             <div className="flex items-center px-8 pt-6">
-              <a href="/" onClick={() => setMobileOpen(false)} className="h-8 w-8 rounded-full bg-[#0CE3FF] block" />
+              <a href={regionPath("/")} onClick={() => setMobileOpen(false)} className="h-8 w-8 rounded-full bg-[#0CE3FF] block" />
             </div>
 
-            {/* Links */}
             <div className="flex flex-1 flex-col justify-center px-8">
               <nav className="flex flex-col gap-2">
                 {navItems.map((item, i) => {
@@ -216,7 +219,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                                 {dropdownMenus[item].map((link, j) => (
                                   <motion.a
                                     key={link.label}
-                                    href={link.href}
+                                    href={resolveHref(link.href)}
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: j * 0.04, duration: 0.3 }}
@@ -236,7 +239,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                   return (
                     <motion.a
                       key={item}
-                      href={simpleLinks[item] || `#${item.toLowerCase()}`}
+                      href={resolveHref(simpleLinks[item] || `#${item.toLowerCase()}`)}
                       initial={{ opacity: 0, x: 40 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.15 + i * 0.06, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -250,7 +253,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
               </nav>
 
               <motion.a
-                href="/book-demo"
+                href={resolveHref("/book-demo")}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.4 }}
@@ -261,7 +264,6 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
               </motion.a>
             </div>
 
-            {/* Bottom info */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

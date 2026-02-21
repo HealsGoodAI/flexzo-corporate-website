@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useRegion } from "@/hooks/useRegion";
 
 const footerColumns = [
   {
@@ -7,7 +8,6 @@ const footerColumns = [
     links: [
       { label: "AI Sourcing", href: "/products/ai-sourcing" },
       { label: "Internal Staff Bank", href: "/products/internal-staff-bank" },
-      
       { label: "Collaborative Staff Bank", href: "#" },
       { label: "National Staff Bank", href: "#" },
       { label: "Amplify", href: "/products/amplify" },
@@ -60,9 +60,19 @@ const footerColumns = [
   },
 ];
 
+const regionLabels: Record<string, string> = {
+  uk: "United Kingdom",
+  us: "United States",
+};
+
 const Footer = () => {
-  const [region, setRegion] = useState("United Kingdom");
+  const { region, switchRegion, regionPath } = useRegion();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const resolveHref = (href: string) => {
+    if (href.startsWith("http") || href === "#") return href;
+    return regionPath(href);
+  };
 
   return (
     <footer className="bg-foreground text-primary-foreground">
@@ -76,18 +86,25 @@ const Footer = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex w-full max-w-[220px] items-center justify-between rounded-lg border border-primary-foreground/20 px-4 py-3 text-sm text-primary-foreground"
               >
-                {region}
+                {regionLabels[region]}
                 <ChevronDown size={16} className="ml-2 opacity-60" />
               </button>
               {dropdownOpen && (
                 <div className="absolute top-full left-0 z-10 mt-1 w-full max-w-[220px] rounded-lg border border-primary-foreground/20 bg-foreground shadow-lg">
-                  {["United Kingdom", "United States"].map((r) => (
+                  {(["uk", "us"] as const).map((r) => (
                     <button
                       key={r}
-                      onClick={() => { setRegion(r); setDropdownOpen(false); }}
-                      className="block w-full px-4 py-2.5 text-left text-sm text-primary-foreground/80 hover:text-primary-foreground"
+                      onClick={() => {
+                        switchRegion(r);
+                        setDropdownOpen(false);
+                      }}
+                      className={`block w-full px-4 py-2.5 text-left text-sm transition-colors ${
+                        r === region
+                          ? "text-primary-foreground font-medium"
+                          : "text-primary-foreground/60 hover:text-primary-foreground"
+                      }`}
                     >
-                      {r}
+                      {regionLabels[r]}
                     </button>
                   ))}
                 </div>
@@ -101,7 +118,7 @@ const Footer = () => {
             </p>
 
             <a
-              href="/book-demo"
+              href={resolveHref("/book-demo")}
               className="mt-8 inline-block rounded-lg border border-primary-foreground/30 px-8 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-[#0075FF] hover:text-white hover:border-[#0075FF]"
             >
               Book a Demo
@@ -118,7 +135,7 @@ const Footer = () => {
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <a
-                      href={link.href}
+                      href={resolveHref(link.href)}
                       {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                     >
@@ -136,7 +153,7 @@ const Footer = () => {
                     {col.subsection.links.map((link) => (
                       <li key={link.label}>
                         <a
-                          href={link.href}
+                          href={resolveHref(link.href)}
                           className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                         >
                           {link.label}
