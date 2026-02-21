@@ -6,22 +6,24 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { jobs } from "@/data/jobs";
+import { useRegion } from "@/hooks/useRegion";
+import { useRegionText } from "@/lib/regionalize";
 
 const JobApplication = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { regionPath } = useRegion();
+  const { t } = useRegionText();
   const job = jobs.find((j) => j.id === id);
 
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    mobile: "",
   });
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [agreeTerms, setAgreeTerms] = useState(false);
-  const [agreeShare, setAgreeShare] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -55,11 +57,8 @@ const JobApplication = () => {
     if (!form.lastName.trim()) errs.lastName = "Last name is required";
     if (!form.email.trim()) errs.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Enter a valid email";
-    if (!form.mobile.trim()) errs.mobile = "Mobile number is required";
-    else if (!/^[\d\s\+\-\(\)]{7,20}$/.test(form.mobile)) errs.mobile = "Enter a valid mobile number";
-    if (!cvFile) errs.cv = "Please upload your CV or resume";
+    if (!cvFile) errs.cv = "Please upload your CV/resume";
     if (!agreeTerms) errs.terms = "You must agree to the terms and conditions";
-    if (!agreeShare) errs.share = "You must agree to share your profile";
     return errs;
   };
 
@@ -70,7 +69,6 @@ const JobApplication = () => {
     if (Object.keys(errs).length > 0) return;
 
     setSubmitting(true);
-    // Simulate submission — replace with Cloud integration
     await new Promise((r) => setTimeout(r, 1500));
     setSubmitting(false);
 
@@ -78,7 +76,7 @@ const JobApplication = () => {
       title: "Application submitted",
       description: `Your application for ${job?.title || "this role"} has been received. We'll be in touch soon.`,
     });
-    navigate(`/jobs/${id}`);
+    navigate(regionPath(`/jobs/${id}`));
   };
 
   if (!job) {
@@ -87,9 +85,9 @@ const JobApplication = () => {
         <Navbar />
         <div className="flex min-h-[60vh] items-center justify-center pt-24">
           <div className="text-center">
-            <h1 className="mb-4 text-3xl font-bold text-foreground">Job not found</h1>
-            <Link to="/jobs" className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white">
-              <ArrowLeft size={16} /> Back to Jobs
+            <h1 className="mb-4 text-3xl font-bold text-foreground">{t("Job not found")}</h1>
+            <Link to={regionPath("/jobs")} className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white">
+              <ArrowLeft size={16} /> {t("Back to Jobs")}
             </Link>
           </div>
         </div>
@@ -105,10 +103,10 @@ const JobApplication = () => {
       <section className="border-b border-border bg-muted pt-32 pb-10">
         <div className="mx-auto max-w-2xl px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <Link to={`/jobs/${id}`} className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-[#0075FF]">
-              <ArrowLeft size={14} /> Back to job details
+            <Link to={regionPath(`/jobs/${id}`)} className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-[#0075FF]">
+              <ArrowLeft size={14} /> {t("Back to job details")}
             </Link>
-            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#0075FF]">Apply Now</p>
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#0075FF]">{t("Apply Now")}</p>
             <h1 className="mb-2 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
               {job.title}
             </h1>
@@ -130,7 +128,7 @@ const JobApplication = () => {
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-sm font-medium text-foreground">
-                  First name <span className="text-[#0075FF]">*</span>
+                  {t("First name")} <span className="text-[#0075FF]">*</span>
                 </label>
                 <input
                   type="text"
@@ -143,7 +141,7 @@ const JobApplication = () => {
               </div>
               <div>
                 <label className="mb-2 block text-sm font-medium text-foreground">
-                  Last name <span className="text-[#0075FF]">*</span>
+                  {t("Last name")} <span className="text-[#0075FF]">*</span>
                 </label>
                 <input
                   type="text"
@@ -159,7 +157,7 @@ const JobApplication = () => {
             {/* Email */}
             <div>
               <label className="mb-2 block text-sm font-medium text-foreground">
-                Email address <span className="text-[#0075FF]">*</span>
+                {t("Email address")} <span className="text-[#0075FF]">*</span>
               </label>
               <input
                 type="email"
@@ -171,25 +169,10 @@ const JobApplication = () => {
               {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email}</p>}
             </div>
 
-            {/* Mobile */}
-            <div>
-              <label className="mb-2 block text-sm font-medium text-foreground">
-                Mobile number <span className="text-[#0075FF]">*</span>
-              </label>
-              <input
-                type="tel"
-                value={form.mobile}
-                onChange={(e) => setForm({ ...form, mobile: e.target.value })}
-                className={`w-full rounded-lg border px-4 py-3 text-sm text-foreground bg-background outline-none transition-colors placeholder:text-muted-foreground focus:border-[#0075FF] focus:ring-1 focus:ring-[#0075FF] ${errors.mobile ? "border-red-400" : "border-border"}`}
-                placeholder="+44 7700 900000"
-              />
-              {errors.mobile && <p className="mt-1.5 text-xs text-red-500">{errors.mobile}</p>}
-            </div>
-
             {/* CV Upload */}
             <div>
               <label className="mb-2 block text-sm font-medium text-foreground">
-                CV / Resume <span className="text-[#0075FF]">*</span>
+                {t("CV / Resume")} <span className="text-[#0075FF]">*</span>
               </label>
               {cvFile ? (
                 <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/50 px-4 py-3">
@@ -207,8 +190,8 @@ const JobApplication = () => {
                 <label className={`flex cursor-pointer flex-col items-center gap-3 rounded-lg border-2 border-dashed px-6 py-8 transition-colors hover:border-[#0075FF]/40 hover:bg-muted/30 ${errors.cv ? "border-red-400" : "border-border"}`}>
                   <Upload className="h-8 w-8 text-muted-foreground" />
                   <div className="text-center">
-                    <p className="text-sm font-medium text-foreground">Click to upload your CV</p>
-                    <p className="mt-1 text-xs text-muted-foreground">PDF or Word document, max 10MB</p>
+                    <p className="text-sm font-medium text-foreground">{t("Click to upload your CV")}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{t("PDF or Word document, max 10MB")}</p>
                   </div>
                   <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="hidden" />
                 </label>
@@ -216,7 +199,7 @@ const JobApplication = () => {
               {errors.cv && <p className="mt-1.5 text-xs text-red-500">{errors.cv}</p>}
             </div>
 
-            {/* Checkboxes */}
+            {/* Terms checkbox */}
             <div className="space-y-4">
               <label className={`flex cursor-pointer gap-3 ${errors.terms ? "text-red-500" : ""}`}>
                 <input
@@ -226,27 +209,14 @@ const JobApplication = () => {
                   className="mt-0.5 h-4 w-4 shrink-0 rounded border-border accent-[#0075FF]"
                 />
                 <span className="text-sm text-muted-foreground">
-                  I agree to the{" "}
-                  <Link to="/terms-and-conditions" target="_blank" className="text-[#0075FF] underline hover:text-[#0060D0]">
-                    Terms and Conditions
+                  {t("I agree to the")}{" "}
+                  <Link to={regionPath("/terms-and-conditions")} target="_blank" className="text-[#0075FF] underline hover:text-[#0060D0]">
+                    {t("Terms and Conditions")}
                   </Link>{" "}
                   <span className="text-[#0075FF]">*</span>
                 </span>
               </label>
               {errors.terms && <p className="-mt-2 ml-7 text-xs text-red-500">{errors.terms}</p>}
-
-              <label className={`flex cursor-pointer gap-3 ${errors.share ? "text-red-500" : ""}`}>
-                <input
-                  type="checkbox"
-                  checked={agreeShare}
-                  onChange={(e) => setAgreeShare(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-border accent-[#0075FF]"
-                />
-                <span className="text-sm text-muted-foreground">
-                  I agree to share my profile with Hospitals & Trusts who are employers on the Flexzo platform <span className="text-[#0075FF]">*</span>
-                </span>
-              </label>
-              {errors.share && <p className="-mt-2 ml-7 text-xs text-red-500">{errors.share}</p>}
             </div>
 
             {/* Submit */}
@@ -255,7 +225,7 @@ const JobApplication = () => {
               disabled={submitting}
               className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white disabled:opacity-60"
             >
-              {submitting ? "Submitting…" : "Submit Application"}
+              {submitting ? t("Submitting…") : t("Submit Application")}
               {!submitting && <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />}
             </button>
           </motion.form>
