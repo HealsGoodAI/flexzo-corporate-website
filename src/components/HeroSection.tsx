@@ -36,10 +36,10 @@ const HeroSection = () => {
         >
           {t("An Agentic AI")}
           <br />
-          {t("Workforce System")}{" "}
-          <span className="relative inline-block">
-            <span className="text-[#0075FF]">{t("for")}</span>
-            <br />
+          {t("Workforce System")}
+          <br />
+          <span className="text-[#0075FF]">
+            {t("for")}{" "}
             <AnimatePresence mode="wait">
               <motion.span
                 key={sectorIndex}
@@ -47,7 +47,7 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
-                className="text-[#0075FF]"
+                className="inline-block"
               >
                 {sectors[sectorIndex]}
               </motion.span>
@@ -69,7 +69,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-wrap items-center gap-4"
+          className="flex flex-wrap items-center justify-center gap-4"
         >
           <a
             href="/book-demo"
