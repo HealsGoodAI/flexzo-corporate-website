@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Upload, X, FileText } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { jobs } from "@/data/jobs";
@@ -12,7 +11,6 @@ import { useRegionText } from "@/lib/regionalize";
 const JobApplication = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { toast } = useToast();
   const { regionPath } = useRegion();
   const { t } = useRegionText();
   const job = jobs.find((j) => j.id === id);
@@ -72,11 +70,7 @@ const JobApplication = () => {
     await new Promise((r) => setTimeout(r, 1500));
     setSubmitting(false);
 
-    toast({
-      title: "Application submitted",
-      description: `Your application for ${job?.title || "this role"} has been received. We'll be in touch soon.`,
-    });
-    navigate(regionPath(`/jobs/${id}`));
+    navigate(regionPath(`/jobs/${id}/apply/success`), { state: { jobTitle: job?.title } });
   };
 
   if (!job) {
