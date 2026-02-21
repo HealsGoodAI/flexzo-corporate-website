@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRegionText } from "@/lib/regionalize";
 import staffBankStepImg from "@/assets/staff-bank-step.jpg";
 import staffBankStep2Img from "@/assets/staff-bank-step-2.jpg";
 import staffBankStep3Img from "@/assets/staff-bank-step-3.jpg";
@@ -106,6 +107,8 @@ const stats = [
 ];
 
 const InternalStaffBank = () => {
+  const { t } = useRegionText();
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar transparent />
@@ -121,7 +124,7 @@ const InternalStaffBank = () => {
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <motion.div initial="hidden" animate="visible" variants={fadeUp}>
               <p className="mb-6 text-sm font-semibold uppercase tracking-[0.25em] text-[#0CE3FF]">
-                Internal Staff Bank
+                {t("Internal Staff Bank")}
               </p>
               <h1 className="text-5xl font-bold leading-[1.05] tracking-tight text-primary-foreground md:text-6xl lg:text-7xl">
                 Make your bank the {" "}
@@ -188,9 +191,9 @@ const InternalStaffBank = () => {
                 Overview
               </p>
               <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-                Centralise, mobilise
+                {t("Centralise, mobilise")}
                 <br />
-                & engage your bank
+                {t("& engage your bank")}
               </h2>
             </motion.div>
             <motion.div
@@ -202,24 +205,13 @@ const InternalStaffBank = () => {
               className="space-y-6 text-lg leading-relaxed text-muted-foreground"
             >
               <p>
-                Flexzo Staff Bank centralises onboarding, compliance, availability
-                and engagement so that bank activity is embedded in everyday
-                workforce planning. Managers see a single view of credential
-                currency, shift preferences, recent activity and performance
-                indicators, enabling confident approvals and faster fills.
+                {t("Flexzo Staff Bank centralises onboarding, compliance, availability and engagement so that bank activity is embedded in everyday workforce planning. Managers see a single view of credential currency, shift preferences, recent activity and performance indicators, enabling confident approvals and faster fills.")}
               </p>
               <p>
-                Automated verification workflows streamline pre-employment checks
-                and maintain an auditable compliance trail, reducing manual
-                administration and protecting patient safety. Predictive
-                prioritisation ensures that high-value internal candidates are
-                surfaced before agency options are considered.
+                {t("Automated verification workflows streamline pre-employment checks and maintain an auditable compliance trail, reducing manual administration and protecting patient safety. Predictive prioritisation ensures that high-value internal candidates are surfaced before agency options are considered.")}
               </p>
               <p>
-                For multi-site organisations, the Staff Bank can operate
-                collaboratively to share capacity across departments or partner
-                trusts while preserving credential checks, pay rules and local
-                approvals — increasing resilience during periods of peak demand.
+                {t("For multi-site organisations, the Staff Bank can operate collaboratively to share capacity across departments or partner trusts while preserving credential checks, pay rules and local approvals — increasing resilience during periods of peak demand.")}
               </p>
             </motion.div>
           </div>
@@ -257,10 +249,10 @@ const InternalStaffBank = () => {
               >
                 <feature.icon className="mb-6 h-8 w-8 text-[#0075FF] transition-transform group-hover:scale-110" />
                 <h3 className="mb-3 text-xl font-semibold text-primary-foreground">
-                  {feature.title}
+                  {t(feature.title)}
                 </h3>
                 <p className="text-sm leading-relaxed text-primary-foreground/50">
-                  {feature.description}
+                  {t(feature.description)}
                 </p>
               </motion.div>
             ))}
@@ -330,8 +322,8 @@ const InternalStaffBank = () => {
                   <div className="mb-4 flex items-center gap-4">
                     <span className="text-6xl font-bold text-[#0075FF]/20 md:text-7xl">{item.step}</span>
                   </div>
-                  <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{item.title}</h3>
-                  <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{item.text}</p>
+                  <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{t(item.title)}</h3>
+                  <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
                 <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
                   <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
@@ -353,7 +345,7 @@ const InternalStaffBank = () => {
             className="mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">
-              Why Flexzo Staff Bank
+              {t("Why Flexzo Staff Bank")}
             </p>
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
               Benefits
@@ -374,8 +366,8 @@ const InternalStaffBank = () => {
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-[#0075FF]/10 transition-colors group-hover:bg-[#0075FF]/20">
                   <benefit.icon className="h-7 w-7 text-[#0075FF]" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-foreground">{benefit.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{benefit.description}</p>
+                <h3 className="mb-3 text-xl font-semibold text-foreground">{t(benefit.title)}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(benefit.description)}</p>
               </motion.div>
             ))}
           </div>
@@ -417,11 +409,10 @@ const InternalStaffBank = () => {
             variants={fadeUp}
           >
             <h2 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Ready to build your <span className="text-[#0075FF]">staff bank</span>?
+              {t("Ready to build your")} <span className="text-[#0075FF]">{t("staff bank")}</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              Book a demo and discover how Flexzo Staff Bank can transform your
-              internal workforce into a dependable source of clinical cover.
+              {t("Book a demo and discover how Flexzo Staff Bank can transform your internal workforce into a dependable source of clinical cover.")}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a

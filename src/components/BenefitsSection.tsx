@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { TrendingDown, Zap, ShieldCheck, Users, BarChart3 } from "lucide-react";
+import { useRegionText } from "@/lib/regionalize";
 
 const benefits = [
   {
@@ -35,6 +36,8 @@ const benefits = [
 ];
 
 const BenefitsSection = () => {
+  const { t } = useRegionText();
+
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-6">
@@ -45,7 +48,7 @@ const BenefitsSection = () => {
           className="mb-16 max-w-2xl"
         >
           <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Why teams choose <span className="text-[#0075FF]">Flexzo</span>
+            {t("Why teams choose")} <span className="text-[#0075FF]">Flexzo</span>
           </h2>
         </motion.div>
 
@@ -64,10 +67,10 @@ const BenefitsSection = () => {
               </div>
               <div>
                 <h3 className="mb-2 font-display text-base font-semibold text-foreground">
-                  {benefit.title}
+                  {t(benefit.title)}
                 </h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  {benefit.description}
+                  {t(benefit.description)}
                 </p>
               </div>
             </motion.div>

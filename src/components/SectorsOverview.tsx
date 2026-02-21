@@ -5,6 +5,7 @@ import hospitalsHero from "@/assets/hospitals-hero.jpg";
 import primaryCareHero from "@/assets/primary-care-hero.jpg";
 import privateHealthcareHero from "@/assets/private-healthcare-hero.jpg";
 import pharmacyHero from "@/assets/pharmacy-hero.jpg";
+import { useRegionText } from "@/lib/regionalize";
 
 const sectors = [
   {
@@ -46,6 +47,8 @@ const sectors = [
 ];
 
 const SectorsOverview = () => {
+  const { t } = useRegionText();
+
   return (
     <section className="bg-foreground py-28">
       <div className="mx-auto max-w-7xl px-6">
@@ -56,10 +59,10 @@ const SectorsOverview = () => {
           className="mb-14"
         >
           <span className="mb-3 inline-block text-xs font-medium uppercase tracking-widest text-background/40">
-            Sectors We Serve
+            {t("Sectors We Serve")}
           </span>
           <h2 className="max-w-xl font-display text-3xl font-bold text-background md:text-4xl">
-            Built for every corner of healthcare
+            {t("Built for every corner of healthcare")}
           </h2>
         </motion.div>
 
@@ -77,27 +80,23 @@ const SectorsOverview = () => {
                 to={sector.href}
                 className="group relative flex h-full flex-col overflow-hidden rounded-2xl"
               >
-                {/* Image */}
                 <div className={`relative w-full overflow-hidden ${sector.imgHeight}`}>
                   <img
                     src={sector.image}
-                    alt={sector.title}
+                    alt={t(sector.title)}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 </div>
-
-                {/* Content pinned to bottom */}
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <h3 className="mb-1 font-display text-lg font-semibold text-white md:text-xl">
-                    {sector.title}
+                    {t(sector.title)}
                   </h3>
                   <p className="mb-3 text-sm leading-relaxed text-white/70 line-clamp-2">
-                    {sector.description}
+                    {t(sector.description)}
                   </p>
                   <span className="inline-flex items-center gap-1 text-xs font-semibold text-white/90 transition-colors group-hover:text-white">
-                    Explore sector <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
+                    {t("Explore sector")} <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
               </Link>

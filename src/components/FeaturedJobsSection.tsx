@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { MapPin, Briefcase, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { jobs } from "@/data/jobs";
+import { useRegionText } from "@/lib/regionalize";
 
 const FeaturedJobsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t } = useRegionText();
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -50,17 +52,17 @@ const FeaturedJobsSection = () => {
         >
           <div>
             <span className="mb-3 inline-block text-xs font-medium uppercase tracking-widest text-muted-foreground">
-              Featured Roles
+              {t("Featured Roles")}
             </span>
             <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">
-              Latest opportunities
+              {t("Latest opportunities")}
             </h2>
           </div>
           <Link
             to="/jobs"
             className="hidden items-center gap-1 text-sm font-semibold text-accent transition-colors hover:text-accent/80 sm:flex"
           >
-            View all roles <ArrowRight size={14} />
+            {t("View all roles")} <ArrowRight size={14} />
           </Link>
         </motion.div>
       </div>
@@ -70,7 +72,6 @@ const FeaturedJobsSection = () => {
         className="flex gap-5 overflow-x-auto px-6 pb-4"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {/* Duplicate jobs for seamless loop */}
         {[...jobs, ...jobs].map((job, i) => (
           <motion.div
             key={`${job.id}-${i}`}
@@ -94,10 +95,10 @@ const FeaturedJobsSection = () => {
                   </span>
                 </div>
                 <h3 className="mb-1 font-display text-base font-semibold text-foreground group-hover:text-accent transition-colors line-clamp-2">
-                  {job.title}
+                  {t(job.title)}
                 </h3>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  {job.organisation}
+                  {t(job.organisation)}
                 </p>
               </div>
               <div className="flex flex-col gap-2 border-t border-border pt-4 text-sm text-muted-foreground">
@@ -124,7 +125,7 @@ const FeaturedJobsSection = () => {
           to="/jobs"
           className="inline-flex items-center gap-1 text-sm font-semibold text-accent"
         >
-          View all roles <ArrowRight size={14} />
+          {t("View all roles")} <ArrowRight size={14} />
         </Link>
       </div>
     </section>
