@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRegionText } from "@/lib/regionalize";
 import {
   BarChart3,
   ShieldCheck,
@@ -98,6 +99,7 @@ const stats = [
 ];
 
 const ClinicalServicesPlanner = () => {
+  const { t } = useRegionText();
   return (
     <div className="min-h-screen bg-background">
       <Navbar transparent />

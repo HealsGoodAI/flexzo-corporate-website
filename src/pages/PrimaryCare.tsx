@@ -4,6 +4,7 @@ import primaryCareHero from "@/assets/primary-care-hero.jpg";
 import primaryCarePractice from "@/assets/primary-care-practice.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRegionText } from "@/lib/regionalize";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -59,6 +60,7 @@ const getStartedBenefits = [
 ];
 
 const PrimaryCare = () => {
+  const { t } = useRegionText();
   return (
     <div className="min-h-screen bg-background">
       <Navbar transparent />

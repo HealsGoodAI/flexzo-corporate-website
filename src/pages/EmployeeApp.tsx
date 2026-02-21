@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRegionText } from "@/lib/regionalize";
 import {
   Smartphone,
   Bell,
@@ -93,6 +94,8 @@ const stats = [
 ];
 
 const EmployeeApp = () => {
+  const { t } = useRegionText();
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar transparent />
@@ -107,31 +110,29 @@ const EmployeeApp = () => {
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <motion.div initial="hidden" animate="visible" variants={fadeUp}>
               <p className="mb-6 text-sm font-semibold uppercase tracking-[0.25em] text-[#0CE3FF]">
-                Employee App
+                {t("Employee App")}
               </p>
               <h1 className="text-5xl font-bold leading-[1.05] tracking-tight text-primary-foreground md:text-6xl lg:text-7xl">
-                Shifts, pay &
+                {t("Shifts, pay &")}
                 <br />
-                <span className="text-[#0075FF]">docs in one app</span>
+                <span className="text-[#0075FF]">{t("docs in one app")}</span>
               </h1>
               <p className="mt-8 max-w-lg text-lg leading-relaxed text-primary-foreground/60">
-                A mobile-first companion for clinicians and bank staff that
-                simplifies shift discovery, acceptance and credential management
-                while keeping payroll and compliance at your fingertips.
+                {t("A mobile-first companion for clinicians and bank staff that simplifies shift discovery, acceptance and credential management while keeping payroll and compliance at your fingertips.")}
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <a
                   href="/book-demo"
                   className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
                 >
-                  Book a Demo
+                  {t("Book a Demo")}
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </a>
                 <a
                   href="/contact"
                   className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:border-primary-foreground/40"
                 >
-                  Contact Sales
+                  {t("Contact Sales")}
                 </a>
               </div>
             </motion.div>
@@ -153,7 +154,7 @@ const EmployeeApp = () => {
                   className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-8 backdrop-blur-sm"
                 >
                   <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
-                  <p className="mt-2 text-sm text-primary-foreground/50">{stat.label}</p>
+                  <p className="mt-2 text-sm text-primary-foreground/50">{t(stat.label)}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -172,12 +173,12 @@ const EmployeeApp = () => {
               variants={fadeUp}
             >
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">
-                Overview
+                {t("Overview")}
               </p>
               <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-                Mobile convenience,
+                {t("Mobile convenience,")}
                 <br />
-                operational gains
+                {t("operational gains")}
               </h2>
             </motion.div>
             <motion.div
@@ -188,24 +189,9 @@ const EmployeeApp = () => {
               variants={fadeUp}
               className="space-y-6 text-lg leading-relaxed text-muted-foreground"
             >
-              <p>
-                Built for clinicians on the move, the app delivers real-time
-                notifications for available shifts, intelligent matching based on
-                credential currency and preferences, and fast one-tap booking
-                workflows that reduce friction and increase fill rates.
-              </p>
-              <p>
-                Intelligent push logic prioritises opportunities by fit, proximity
-                and manager-defined priority sequences so the highest-value internal
-                candidates see appropriate roles before external or agency channels
-                are used.
-              </p>
-              <p>
-                A transparent pay and entitlement view shows shift pay rates, travel
-                allowances and expected earnings, improving trust and reducing
-                disputes. Security and identity are central: secure authentication,
-                encrypted document storage and role-based access.
-              </p>
+              <p>{t("Built for clinicians on the move, the app delivers real-time notifications for available shifts, intelligent matching based on credential currency and preferences, and fast one-tap booking workflows that reduce friction and increase fill rates.")}</p>
+              <p>{t("Intelligent push logic prioritises opportunities by fit, proximity and manager-defined priority sequences so the highest-value internal candidates see appropriate roles before external or agency channels are used.")}</p>
+              <p>{t("A transparent pay and entitlement view shows shift pay rates, travel allowances and expected earnings, improving trust and reducing disputes. Security and identity are central: secure authentication, encrypted document storage and role-based access.")}</p>
             </motion.div>
           </div>
         </div>
@@ -222,10 +208,10 @@ const EmployeeApp = () => {
             className="mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0CE3FF]">
-              Capabilities
+              {t("Capabilities")}
             </p>
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-primary-foreground md:text-5xl">
-              Features
+              {t("Features")}
             </h2>
           </motion.div>
 
@@ -242,10 +228,10 @@ const EmployeeApp = () => {
               >
                 <feature.icon className="mb-6 h-8 w-8 text-[#0075FF] transition-transform group-hover:scale-110" />
                 <h3 className="mb-3 text-xl font-semibold text-primary-foreground">
-                  {feature.title}
+                  {t(feature.title)}
                 </h3>
                 <p className="text-sm leading-relaxed text-primary-foreground/50">
-                  {feature.description}
+                  {t(feature.description)}
                 </p>
               </motion.div>
             ))}
@@ -264,10 +250,10 @@ const EmployeeApp = () => {
             className="mb-20 text-center"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">
-              How it works
+              {t("How it works")}
             </p>
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              From notification to shift
+              {t("From notification to shift")}
             </h2>
           </motion.div>
 
@@ -311,8 +297,8 @@ const EmployeeApp = () => {
                   <div className="mb-4 flex items-center gap-4">
                     <span className="text-6xl font-bold text-[#0075FF]/20 md:text-7xl">{item.step}</span>
                   </div>
-                  <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{item.title}</h3>
-                  <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{item.text}</p>
+                  <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{t(item.title)}</h3>
+                  <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
                 <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
                   <div className="flex h-full items-center justify-center">
@@ -338,10 +324,10 @@ const EmployeeApp = () => {
             className="mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">
-              Why Employee App
+              {t("Why Employee App")}
             </p>
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Benefits
+              {t("Benefits")}
             </h2>
           </motion.div>
 
@@ -359,8 +345,8 @@ const EmployeeApp = () => {
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-[#0075FF]/10 transition-colors group-hover:bg-[#0075FF]/20">
                   <benefit.icon className="h-7 w-7 text-[#0075FF]" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-foreground">{benefit.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{benefit.description}</p>
+                <h3 className="mb-3 text-xl font-semibold text-foreground">{t(benefit.title)}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(benefit.description)}</p>
               </motion.div>
             ))}
           </div>
@@ -380,8 +366,8 @@ const EmployeeApp = () => {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl"
           >
-            Work when you want:{" "}
-            <span className="text-[#0075FF]">shifts, pay & documents in one app</span>.
+            {t("Work when you want:")}{" "}
+            <span className="text-[#0075FF]">{t("shifts, pay & documents in one app")}</span>.
           </motion.p>
         </div>
       </section>
@@ -396,25 +382,24 @@ const EmployeeApp = () => {
             variants={fadeUp}
           >
             <h2 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Ready to <span className="text-[#0075FF]">empower your workforce</span>?
+              {t("Ready to")} <span className="text-[#0075FF]">{t("empower your workforce")}</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              Book a demo and see how the Employee App can improve fill rates,
-              reduce agency spend and give clinicians control.
+              {t("Book a demo and see how the Employee App can improve fill rates, reduce agency spend and give clinicians control.")}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a
                 href="/book-demo"
                 className="group inline-flex items-center gap-2 rounded-md bg-primary px-10 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white"
               >
-                Book a Demo
+                {t("Book a Demo")}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-md border border-border px-10 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
-                Contact Us
+                {t("Contact Us")}
               </a>
             </div>
           </motion.div>

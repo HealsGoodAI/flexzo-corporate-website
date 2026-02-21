@@ -7,6 +7,7 @@ import aiSourcingLearnImg from "@/assets/ai-sourcing-learn.jpg";
 import aiSourcingOverviewImg from "@/assets/ai-sourcing-overview.png";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRegionText } from "@/lib/regionalize";
 import {
   BarChart3,
   ShieldCheck,
@@ -104,6 +105,7 @@ const stats = [
 ];
 
 const AiSourcing = () => {
+  const { t } = useRegionText();
   return (
     <div className="min-h-screen bg-background">
       <Navbar transparent />
