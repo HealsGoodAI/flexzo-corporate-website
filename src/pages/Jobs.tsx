@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { jobs } from "@/data/jobs";
 import { useRegionText } from "@/lib/regionalize";
+import { useRegion } from "@/hooks/useRegion";
 
 const whyFlexzo = [
   { icon: Smartphone, title: "Ditch the Agency Hassle", description: "No more juggling multiple agencies, endless phone calls, and constant paperwork. One intelligent platform replaces it all." },
@@ -18,6 +19,7 @@ const whyFlexzo = [
 
 const Jobs = () => {
   const { t } = useRegionText();
+  const { regionPath } = useRegion();
   const [roleQuery, setRoleQuery] = useState("");
   const [locationQuery, setLocationQuery] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -27,7 +29,7 @@ const Jobs = () => {
     const params = new URLSearchParams();
     if (roleQuery) params.set("role", roleQuery);
     if (locationQuery) params.set("location", locationQuery);
-    navigate(`/jobs/search?${params.toString()}`);
+    navigate(`${regionPath("/jobs/search")}?${params.toString()}`);
   };
 
   const filteredJobs = useMemo(() => {
@@ -92,7 +94,7 @@ const Jobs = () => {
           ) : (
             filteredJobs.map((job, i) => (
               <motion.div key={job.id} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="shrink-0">
-                <Link to={`/jobs/${job.id}`} className="group flex h-full w-[340px] flex-col justify-between rounded-xl border border-border bg-background p-6 transition-all hover:shadow-lg hover:border-accent/30">
+                <Link to={regionPath(`/jobs/${job.id}`)} className="group flex h-full w-[340px] flex-col justify-between rounded-xl border border-border bg-background p-6 transition-all hover:shadow-lg hover:border-accent/30">
                   <div>
                     <div className="mb-4 flex items-start justify-between gap-2">
                       <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">{job.contractType}</span>
@@ -163,7 +165,7 @@ const Jobs = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="mb-4 font-display text-3xl font-bold tracking-tight text-primary-foreground md:text-4xl">{t("Ready to take control of your career?")}</h2>
             <p className="mb-8 text-base text-primary-foreground/70">{t("Join the Flexzo AI Collaborative Staff Bank and access opportunities nationwide.")}</p>
-            <Link to="/book-demo" className="inline-block rounded-lg bg-accent px-8 py-3 font-display text-sm font-semibold text-accent-foreground transition-all hover:opacity-90">{t("Get Started")}</Link>
+            <Link to={regionPath("/book-demo")} className="inline-block rounded-lg bg-accent px-8 py-3 font-display text-sm font-semibold text-accent-foreground transition-all hover:opacity-90">{t("Get Started")}</Link>
           </motion.div>
         </div>
       </section>
