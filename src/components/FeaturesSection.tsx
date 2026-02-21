@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Zap, Shield, Users, Brain, Clock, Globe } from "lucide-react";
+import { useRegionText } from "@/lib/regionalize";
 
 const features = [
   {
@@ -35,6 +36,8 @@ const features = [
 ];
 
 const FeaturesSection = () => {
+  const { t } = useRegionText();
+
   return (
     <section id="features" className="relative py-32">
       <div className="relative z-10 mx-auto max-w-7xl px-6">
@@ -45,12 +48,12 @@ const FeaturesSection = () => {
           className="mb-16"
         >
           <span className="mb-4 inline-block text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Workforce Management, Simplified
+            {t("Workforce Management, Simplified")}
           </span>
           <h2 className="font-display text-4xl font-bold text-foreground md:text-5xl">
-            Flexzo AI puts your team
+            {t("Flexzo AI puts your team")}
             <br />
-            <span className="text-[#0075FF]">in control</span>
+            <span className="text-[#0075FF]">{t("in control")}</span>
           </h2>
         </motion.div>
 
@@ -68,10 +71,10 @@ const FeaturesSection = () => {
                 <f.icon size={22} strokeWidth={1.5} />
               </div>
               <h3 className="mb-3 font-display text-lg font-semibold text-foreground">
-                {f.title}
+                {t(f.title)}
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {f.desc}
+                {t(f.desc)}
               </p>
             </motion.div>
           ))}

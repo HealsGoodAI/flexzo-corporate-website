@@ -3,6 +3,7 @@ import { ArrowRight, Zap, Shield, Users, Brain, Clock, TrendingDown, CheckCircle
 import hospitalsHero from "@/assets/hospitals-hero.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useRegionText } from "@/lib/regionalize";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -30,6 +31,8 @@ const whyChoose = [
 ];
 
 const Hospitals = () => {
+  const { t } = useRegionText();
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar transparent />
@@ -45,11 +48,11 @@ const Hospitals = () => {
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-40">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-4xl">
             <p className="mb-8 text-sm font-semibold uppercase tracking-[0.3em] text-[#0CE3FF]">
-              NHS Hospitals
+              {t("NHS Hospitals")}
             </p>
             <h1 className="text-5xl font-bold leading-[1.08] tracking-tight text-primary-foreground md:text-7xl lg:text-8xl">
-              NHS Trust Staffing &{" "}
-              <span className="text-[#0075FF]">Workforce Platform</span>
+              {t("NHS Trust Staffing &")}{" "}
+              <span className="text-[#0075FF]">{t("Workforce Platform")}</span>
             </h1>
             <motion.p
               initial="hidden"
@@ -99,8 +102,8 @@ const Hospitals = () => {
                 Overview
               </p>
               <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-                AI-powered staffing for{" "}
-                <span className="text-[#0075FF]">NHS Trusts</span>
+              {t("AI-powered staffing for")}{" "}
+                <span className="text-[#0075FF]">{t("NHS Trusts")}</span>
               </h2>
             </motion.div>
             <motion.div
@@ -112,18 +115,13 @@ const Hospitals = () => {
               className="space-y-6 text-lg leading-relaxed text-muted-foreground"
             >
               <p>
-                Flexzo.ai is an AI-powered NHS staffing platform designed to help NHS Trusts
-                reduce agency reliance, improve workforce planning, and access compliant
-                healthcare professionals faster.
+                {t("Flexzo.ai is an AI-powered NHS staffing platform designed to help NHS Trusts reduce agency reliance, improve workforce planning, and access compliant healthcare professionals faster.")}
               </p>
               <p>
-                With NHS waiting lists under continued pressure, Trusts need smarter systems
-                to manage staffing gaps, deliver additional clinics, and maintain safe services
-                without escalating costs.
+                {t("With NHS waiting lists under continued pressure, Trusts need smarter systems to manage staffing gaps, deliver additional clinics, and maintain safe services without escalating costs.")}
               </p>
               <p>
-                Flexzo.ai supports NHS Trusts with a modern solution for insourcing, recruitment,
-                and temporary workforce management.
+                {t("Flexzo.ai supports NHS Trusts with a modern solution for insourcing, recruitment, and temporary workforce management.")}
               </p>
             </motion.div>
           </div>
@@ -144,12 +142,11 @@ const Hospitals = () => {
                 Workforce Challenges
               </p>
               <h2 className="text-3xl font-bold leading-tight tracking-tight text-primary-foreground md:text-5xl">
-                Solve NHS Staffing Shortages{" "}
-                <span className="text-[#0075FF]">Faster</span>
+                {t("Solve NHS Staffing Shortages")}{" "}
+                <span className="text-[#0075FF]">{t("Faster")}</span>
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-primary-foreground/60">
-                NHS Trusts are facing ongoing workforce challenges, including rota gaps,
-                recruitment delays, and limited visibility of available staff.
+                {t("NHS Trusts are facing ongoing workforce challenges, including rota gaps, recruitment delays, and limited visibility of available staff.")}
               </p>
             </motion.div>
 
@@ -161,7 +158,7 @@ const Hospitals = () => {
               variants={fadeUp}
             >
               <p className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-primary-foreground/40">
-                Flexzo.ai helps Trusts
+                {t("Flexzo.ai helps Trusts")}
               </p>
               <ul className="space-y-5">
                 {trustBenefits.map((item, i) => (
@@ -175,7 +172,7 @@ const Hospitals = () => {
                     className="flex items-start gap-4"
                   >
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#0075FF]" />
-                    <span className="text-lg text-primary-foreground">{item}</span>
+                    <span className="text-lg text-primary-foreground">{t(item)}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -195,16 +192,14 @@ const Hospitals = () => {
             className="max-w-5xl"
           >
             <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-foreground md:text-6xl lg:text-7xl">
-              Reduce NHS{" "}
-              <span className="text-[#0075FF]">Agency Spend</span>
+              {t("Reduce NHS")}{" "}
+              <span className="text-[#0075FF]">{t("Agency Spend")}</span>
             </h2>
             <p className="mt-8 max-w-3xl text-xl leading-relaxed text-muted-foreground md:text-2xl">
-              Agency fees continue to place major strain on NHS budgets. Flexzo.ai helps Trusts
-              reduce unnecessary agency costs by providing direct access to a large pool of
-              healthcare professionals through a transparent subscription model.
+              {t("Agency fees continue to place major strain on NHS budgets. Flexzo.ai helps Trusts reduce unnecessary agency costs by providing direct access to a large pool of healthcare professionals through a transparent subscription model.")}
             </p>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              This keeps funding within the NHS system and supports long-term financial sustainability.
+              {t("This keeps funding within the NHS system and supports long-term financial sustainability.")}
             </p>
           </motion.div>
         </div>
@@ -226,10 +221,7 @@ const Hospitals = () => {
                 AI-Powered Shift Matching & Recruitment
               </h3>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Flexzo.ai uses AI-driven technology to match the right professionals to the right
-                shifts quickly. Our platform supports smarter recruitment workflows, improved
-                candidate matching, and faster shift booking — helping NHS teams spend less time
-                on admin and more time on patient care.
+                {t("Flexzo.ai uses AI-driven technology to match the right professionals to the right shifts quickly. Our platform supports smarter recruitment workflows, improved candidate matching, and faster shift booking — helping NHS teams spend less time on admin and more time on patient care.")}
               </p>
             </motion.div>
 
@@ -246,9 +238,7 @@ const Hospitals = () => {
                 Compliance-Ready Healthcare Professionals
               </h3>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Flexzo.ai supports safer staffing by providing access to vetted professionals
-                with compliance monitoring and automated document tracking. Trusts benefit from
-                improved governance, audit readiness, and reduced compliance workload.
+                {t("Flexzo.ai supports safer staffing by providing access to vetted professionals with compliance monitoring and automated document tracking. Trusts benefit from improved governance, audit readiness, and reduced compliance workload.")}
               </p>
             </motion.div>
           </div>
@@ -268,8 +258,8 @@ const Hospitals = () => {
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeUp}
             >
-              <h2 className="text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
-                Why NHS Trusts choose{" "}
+            <h2 className="text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
+                {t("Why NHS Trusts choose")}{" "}
                 <span className="text-[#0075FF]">Flexzo.ai</span>
               </h2>
             </motion.div>
@@ -293,7 +283,7 @@ const Hospitals = () => {
                     className="flex items-start gap-4"
                   >
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#0075FF]" />
-                    <span className="text-lg text-primary-foreground">{item}</span>
+                    <span className="text-lg text-primary-foreground">{t(item)}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -316,9 +306,7 @@ const Hospitals = () => {
               Book a <span className="text-[#0075FF]">Demo</span>
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-              Looking for a smarter way to manage NHS staffing and workforce planning?
-              Book a demo today and discover how Flexzo.ai can help your Trust reduce agency
-              spend, improve shift coverage, and deliver services more efficiently.
+              {t("Looking for a smarter way to manage NHS staffing and workforce planning? Book a demo today and discover how Flexzo.ai can help your Trust reduce agency spend, improve shift coverage, and deliver services more efficiently.")}
             </p>
             <div className="mt-12 flex flex-wrap justify-center gap-4">
               <a

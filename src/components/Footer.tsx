@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useRegion } from "@/hooks/useRegion";
+import { useRegionText } from "@/lib/regionalize";
 
 const footerColumns = [
   {
@@ -67,6 +68,7 @@ const regionLabels: Record<string, string> = {
 
 const Footer = () => {
   const { region, switchRegion, regionPath } = useRegion();
+  const { t } = useRegionText();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const resolveHref = (href: string) => {
@@ -112,16 +114,14 @@ const Footer = () => {
             </div>
 
             <p className="max-w-xs text-lg font-semibold leading-snug text-primary-foreground">
-              Flexzo is an AI-powered healthcare staffing platform designed to
-              simplify recruitment for NHS Trusts, recruitment agencies, and
-              healthcare professionals.
+              {t("Flexzo is an AI-powered healthcare staffing platform designed to simplify recruitment for NHS Trusts, recruitment agencies, and healthcare professionals.")}
             </p>
 
             <a
               href={resolveHref("/book-demo")}
               className="mt-8 inline-block rounded-lg border border-primary-foreground/30 px-8 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-[#0075FF] hover:text-white hover:border-[#0075FF]"
             >
-              Book a Demo
+              {t("Book a Demo")}
             </a>
           </div>
 
@@ -129,7 +129,7 @@ const Footer = () => {
           {footerColumns.map((col) => (
             <div key={col.title}>
               <h4 className="mb-4 text-sm font-bold text-primary-foreground">
-                {col.title}
+                {t(col.title)}
               </h4>
               <ul className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
@@ -139,7 +139,7 @@ const Footer = () => {
                       {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                     >
-                      {link.label}
+                      {t(link.label)}
                     </a>
                   </li>
                 ))}
@@ -147,7 +147,7 @@ const Footer = () => {
               {"subsection" in col && col.subsection && (
                 <div className="mt-8">
                   <h4 className="mb-4 text-sm font-bold text-primary-foreground">
-                    {col.subsection.title}
+                    {t(col.subsection.title)}
                   </h4>
                   <ul className="flex flex-col gap-2.5">
                     {col.subsection.links.map((link) => (
@@ -156,7 +156,7 @@ const Footer = () => {
                           href={resolveHref(link.href)}
                           className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                         >
-                          {link.label}
+                          {t(link.label)}
                         </a>
                       </li>
                     ))}
