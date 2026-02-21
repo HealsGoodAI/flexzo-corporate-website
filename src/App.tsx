@@ -15,6 +15,7 @@ import EmployeeApp from "./pages/EmployeeApp";
 import PlatformFeatures from "./pages/PlatformFeatures";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
+import JobApplicationSuccess from "./pages/JobApplicationSuccess";
 import JobSearchResults from "./pages/JobSearchResults";
 import JobApplication from "./pages/JobApplication";
 import News from "./pages/News";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="jobs/search" element={<JobSearchResults />} />
             <Route path="jobs/:id" element={<JobDetail />} />
             <Route path="jobs/:id/apply" element={<JobApplication />} />
+            <Route path="jobs/:id/apply/success" element={<JobApplicationSuccess />} />
             <Route path="news" element={<News />} />
             <Route path="news/:slug" element={<Article />} />
             <Route path="investors" element={<Investors />} />
