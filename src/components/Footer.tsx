@@ -46,7 +46,7 @@ const footerColumns = [
       { label: "Terms & Conditions", href: "/terms-and-conditions" },
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Cookies Policy", href: "#" },
-      { label: "Legal", href: "#" },
+      { label: "Carbon Reduction Plan", href: "#" },
     ],
   },
   {
