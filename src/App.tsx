@@ -35,6 +35,7 @@ import PrivateHealthcare from "./pages/PrivateHealthcare";
 import Pharmacy from "./pages/Pharmacy";
 import Rostering from "./pages/Rostering";
 import CarbonReductionPlan from "./pages/CarbonReductionPlan";
+import EmailTemplateTest from "./pages/EmailTemplateTest";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -81,6 +82,7 @@ const App = () => (
             <Route path="sectors/hospitals" element={<Hospitals />} />
             <Route path="sectors/private-healthcare" element={<PrivateHealthcare />} />
             <Route path="sectors/pharmacy" element={<Pharmacy />} />
+            <Route path="internal/email-test" element={<EmailTemplateTest />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 

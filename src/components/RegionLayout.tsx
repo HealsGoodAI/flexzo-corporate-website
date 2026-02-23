@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { RegionProvider } from "@/hooks/useRegion";
+import RegionErrorBoundary from "@/components/RegionErrorBoundary";
 
 const RegionLayout = () => {
   const { region } = useParams<{ region: string }>();
@@ -41,7 +42,9 @@ const RegionLayout = () => {
 
   return (
     <RegionProvider>
-      <Outlet />
+      <RegionErrorBoundary region={region || "uk"}>
+        <Outlet />
+      </RegionErrorBoundary>
     </RegionProvider>
   );
 };

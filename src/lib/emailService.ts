@@ -9,6 +9,13 @@ export interface ApplicationEmailParams {
   cvFile: File;
 }
 
+export interface TestEmailResult {
+  leadEmailHtml: string;
+  applicantEmailHtml: string;
+  leadSubject: string;
+  applicantSubject: string;
+}
+
 const fileToBase64 = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -49,4 +56,38 @@ export const sendApplicationEmails = async (params: ApplicationEmailParams): Pro
     console.error("Email send error:", data.error);
     throw new Error(data.error);
   }
+};
+
+/**
+ * Preview email templates with test data without actually sending.
+ * Returns rendered HTML for both lead and applicant templates.
+ */
+export const testEmailTemplates = async (overrides?: Partial<{
+  firstName: string;
+  lastName: string;
+  email: string;
+  jobTitle: string;
+  jobLink: string;
+}>): Promise<TestEmailResult> => {
+  const { data, error } = await supabase.functions.invoke("send-application-email", {
+    body: {
+      testMode: true,
+      firstName: overrides?.firstName,
+      lastName: overrides?.lastName,
+      email: overrides?.email,
+      jobTitle: overrides?.jobTitle,
+      jobLink: overrides?.jobLink,
+    },
+  });
+
+  if (error) {
+    console.error("Test email error:", error);
+    throw new Error("Failed to generate test emails");
+  }
+
+  if (data?.error) {
+    throw new Error(data.error);
+  }
+
+  return data as TestEmailResult;
 };

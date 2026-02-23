@@ -8,23 +8,37 @@ const corsHeaders = {
 
 const GMAIL_USER = "applications@flexzo.ai";
 const SALES_EMAIL = "sales@flexzo.ai";
+const DEFAULT_JOBS_URL = "https://flexzo.ai/uk/jobs";
 
-/* ── HTML templates ── */
+/* ── UTM tracking ── */
 
-function leadEmailHtml(vars: Record<string, string>) {
-  let html = LEAD_TEMPLATE;
+function addUtmParams(url: string, source: "lead" | "applicant"): string {
+  if (!url) return url;
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}utm_source=email&utm_medium=application&utm_campaign=${source}_notification&utm_content=job_link`;
+}
+
+/* ── Template rendering ── */
+
+function renderTemplate(template: string, vars: Record<string, string>): string {
+  let html = template;
   for (const [k, v] of Object.entries(vars)) {
     html = html.replaceAll(`{{${k}}}`, v);
   }
   return html;
 }
 
-function applicantEmailHtml(vars: Record<string, string>) {
-  let html = APPLICANT_TEMPLATE;
-  for (const [k, v] of Object.entries(vars)) {
-    html = html.replaceAll(`{{${k}}}`, v);
-  }
-  return html;
+/* ── SMTP client factory ── */
+
+function createSmtpClient(appPassword: string) {
+  return new SMTPClient({
+    connection: {
+      hostname: "smtp.gmail.com",
+      port: 465,
+      tls: true,
+      auth: { username: GMAIL_USER, password: appPassword },
+    },
+  });
 }
 
 Deno.serve(async (req) => {
@@ -34,8 +48,38 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { firstName, lastName, email, jobTitle, jobLink, cvBase64, cvFileName } = body;
+    const { firstName, lastName, email, jobTitle, jobLink, cvBase64, cvFileName, testMode } = body;
 
+    // ── Test mode: render templates and return HTML without sending ──
+    if (testMode) {
+      const currentDate = new Date().toLocaleDateString("en-GB", {
+        day: "numeric", month: "long", year: "numeric",
+      });
+      const safeJobLink = addUtmParams(jobLink || DEFAULT_JOBS_URL, "applicant");
+      const testVars = {
+        firstName: firstName || "Jane",
+        lastName: lastName || "Doe",
+        email: email || "jane.doe@example.com",
+        jobTitle: jobTitle || "Registered Nurse – Test Position",
+        jobLink: safeJobLink,
+        jobLinkLead: addUtmParams(jobLink || DEFAULT_JOBS_URL, "lead"),
+        current_date: currentDate,
+      };
+
+      return new Response(
+        JSON.stringify({
+          success: true,
+          testMode: true,
+          leadEmailHtml: renderTemplate(LEAD_TEMPLATE, { ...testVars, jobLink: testVars.jobLinkLead }),
+          applicantEmailHtml: renderTemplate(APPLICANT_TEMPLATE, testVars),
+          leadSubject: `New Job Application – ${testVars.jobTitle}`,
+          applicantSubject: `Application Received – ${testVars.jobTitle}`,
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+
+    // ── Production mode ──
     if (!firstName || !lastName || !email || !jobTitle) {
       return new Response(JSON.stringify({ error: "Missing required fields" }), {
         status: 400,
@@ -44,9 +88,7 @@ Deno.serve(async (req) => {
     }
 
     const currentDate = new Date().toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
+      day: "numeric", month: "long", year: "numeric",
     });
 
     const appPassword = Deno.env.get("GMAIL_APP_PASSWORD");
@@ -54,19 +96,22 @@ Deno.serve(async (req) => {
       throw new Error("GMAIL_APP_PASSWORD not configured");
     }
 
-    const client = new SMTPClient({
-      connection: {
-        hostname: "smtp.gmail.com",
-        port: 465,
-        tls: true,
-        auth: {
-          username: GMAIL_USER,
-          password: appPassword,
-        },
-      },
-    });
+    // Fallback to default listings page if jobLink is missing
+    const safeJobLink = jobLink || DEFAULT_JOBS_URL;
 
-    const templateVars = { firstName, lastName, email, jobTitle, jobLink: jobLink || "", current_date: currentDate };
+    const templateVars = {
+      firstName,
+      lastName,
+      email,
+      jobTitle,
+      jobLink: addUtmParams(safeJobLink, "applicant"),
+      current_date: currentDate,
+    };
+
+    const leadTemplateVars = {
+      ...templateVars,
+      jobLink: addUtmParams(safeJobLink, "lead"),
+    };
 
     // Build attachments for lead email (CV)
     const attachments: Array<{ filename: string; content: Uint8Array; contentType: string }> = [];
@@ -83,12 +128,14 @@ Deno.serve(async (req) => {
       });
     }
 
+    const client = createSmtpClient(appPassword);
+
     // 1. Send lead notification to sales team
     await client.send({
       from: GMAIL_USER,
       to: SALES_EMAIL,
       subject: `New Job Application – ${jobTitle}`,
-      html: leadEmailHtml(templateVars),
+      html: renderTemplate(LEAD_TEMPLATE, leadTemplateVars),
       attachments,
     });
 
@@ -97,7 +144,7 @@ Deno.serve(async (req) => {
       from: GMAIL_USER,
       to: email,
       subject: `Application Received – ${jobTitle}`,
-      html: applicantEmailHtml(templateVars),
+      html: renderTemplate(APPLICANT_TEMPLATE, templateVars),
     });
 
     await client.close();
@@ -112,7 +159,7 @@ Deno.serve(async (req) => {
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
+      },
     );
   }
 });
