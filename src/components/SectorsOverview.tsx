@@ -118,7 +118,7 @@ const SectorsOverview = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-6">
-                  <h3 className="mb-1 font-display text-lg font-semibold text-white md:text-xl">
+                  <h3 className="mb-2 font-display text-2xl font-bold text-white md:text-3xl">
                     {t(sector.title)}
                   </h3>
                   <p className="mb-3 text-sm leading-relaxed text-white/70 line-clamp-2">
