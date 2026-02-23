@@ -346,8 +346,8 @@ const AiSourcing = () => {
                   <div className="mb-4 flex items-center gap-4">
                     <span className="text-6xl font-bold text-[#0075FF]/20 md:text-7xl">{item.step}</span>
                   </div>
-                  <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{item.title}</h3>
-                  <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{item.text}</p>
+                  <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{t(item.title)}</h3>
+                  <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
                 <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
                   {item.image ? (
