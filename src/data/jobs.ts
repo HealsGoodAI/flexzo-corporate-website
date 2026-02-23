@@ -1,4 +1,5 @@
-import ukJobs from "./jobs_uk.json";
+import ukJobsRaw from "./jobs_uk.json";
+import usJobsRaw from "./jobs_us.json";
 
 export interface Job {
   id: string;
@@ -19,7 +20,55 @@ export interface Job {
   benefits: string[];
 }
 
-const staticJobs: Job[] = [
+/* ── Raw JSON shape from the generated job files ── */
+
+interface RawJob {
+  id: string;
+  job_title: string;
+  organisation: string;
+  job_manager?: string;
+  job_role?: string;
+  grade?: string;
+  specialism?: string;
+  sub_specialism?: string;
+  shift?: string;
+  core_rate?: string;
+  start_date?: string;
+  end_date?: string;
+  about_the_role?: string;
+  key_responsibilities?: string[];
+  requirements?: string[];
+  formatted_description?: string;
+}
+
+function normalizeRawJob(raw: RawJob): Job {
+  const formatDate = (d?: string) => {
+    if (!d || d === "NaT") return "Open";
+    return d;
+  };
+
+  return {
+    id: raw.id,
+    title: raw.job_title,
+    organisation: raw.organisation,
+    location: "Not specified",
+    salary: raw.core_rate ?? "Competitive",
+    posted: formatDate(raw.start_date),
+    closing: formatDate(raw.end_date),
+    contractType: raw.shift ?? "Not specified",
+    workingPattern: raw.shift ?? "Not specified",
+    band: raw.grade,
+    speciality: raw.specialism,
+    description: raw.about_the_role ?? "",
+    responsibilities: raw.key_responsibilities ?? [],
+    requirements: raw.requirements ?? [],
+    benefits: [],
+  };
+}
+
+/* ── Static seed jobs (original hand-crafted listings) ── */
+
+const staticUkJobs: Job[] = [
   {
     id: "diabetes-specialist-nurse",
     title: "Nurse / Clinical Practitioner – Diabetes Specialist Nurse",
@@ -366,4 +415,20 @@ const staticJobs: Job[] = [
   },
 ];
 
-export const jobs: Job[] = [...(ukJobs as Job[]), ...staticJobs];
+/* ── Normalize imported JSON jobs ── */
+
+const normalizedUkJobs: Job[] = (ukJobsRaw as unknown as RawJob[]).map(normalizeRawJob);
+const normalizedUsJobs: Job[] = (usJobsRaw as unknown as RawJob[]).map(normalizeRawJob);
+
+/* ── Region-specific exports ── */
+
+export const ukJobs: Job[] = [...normalizedUkJobs, ...staticUkJobs];
+export const usJobs: Job[] = [...normalizedUsJobs];
+
+/** Get jobs for a given region */
+export const getJobsByRegion = (region: "uk" | "us"): Job[] => {
+  return region === "us" ? usJobs : ukJobs;
+};
+
+/** Default export: all jobs (backwards compat) */
+export const jobs: Job[] = ukJobs;
