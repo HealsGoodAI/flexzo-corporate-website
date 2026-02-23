@@ -52,7 +52,7 @@ const SectorsOverview = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(next, 4000);
+    const interval = setInterval(next, 8000);
     return () => clearInterval(interval);
   }, [next]);
 
