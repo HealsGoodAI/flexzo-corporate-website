@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 const GMAIL_USER = "applications@flexzo.ai";
-const SALES_EMAIL = "sales@flexzo.ai";
+const SALES_EMAIL = "job.leads@flexzo.ai";
 const DEFAULT_JOBS_URL = "https://flexzo.ai/uk/jobs";
 
 /* ── UTM tracking ── */
