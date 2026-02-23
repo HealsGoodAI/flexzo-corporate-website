@@ -345,7 +345,7 @@ const JobSearchResults = () => {
                   </p>
                 </div>
               ) : (
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                <div className="flex flex-col gap-3">
                   {filteredJobs.map((job, i) => (
                     <motion.div
                       key={job.id}
@@ -355,25 +355,25 @@ const JobSearchResults = () => {
                     >
                       <Link
                         to={regionPath(`/jobs/${job.id}`)}
-                        className="group flex h-full flex-col justify-between rounded-xl border border-border bg-background p-5 transition-all hover:shadow-lg hover:border-accent/30"
+                        className="group flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-border bg-background p-5 transition-all hover:shadow-lg hover:border-accent/30"
                       >
-                        <div>
-                          <div className="mb-3 flex items-start justify-between gap-2">
+                        <div className="flex-1 min-w-0">
+                          <div className="mb-2 flex items-center gap-3">
                             <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
                               {job.contractType}
                             </span>
-                            <span className="shrink-0 text-[11px] text-muted-foreground">
+                            <span className="text-[11px] text-muted-foreground">
                               Closes {job.closing}
                             </span>
                           </div>
-                          <h3 className="mb-1 font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors line-clamp-2">
+                          <h3 className="mb-1 font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
                             {job.title}
                           </h3>
-                          <p className="mb-3 text-xs text-muted-foreground">
+                          <p className="text-xs text-muted-foreground">
                             {job.organisation}
                           </p>
                         </div>
-                        <div className="flex flex-col gap-1.5 border-t border-border pt-3 text-xs text-muted-foreground">
+                        <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-muted-foreground sm:shrink-0">
                           <span className="flex items-center gap-1.5">
                             <MapPin className="h-3 w-3 shrink-0" />
                             {job.location}
