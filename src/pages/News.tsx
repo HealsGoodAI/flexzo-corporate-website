@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
+import { useRegion } from "@/hooks/useRegion";
 import newsFeaturedImg from "@/assets/news-featured.jpg";
 
 const categories = ["All", ...Array.from(new Set(articles.map((a) => a.category)))];
@@ -21,6 +22,7 @@ const fadeUp = {
 const News = () => {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
+  const { regionPath } = useRegion();
 
   const filtered = useMemo(() => {
     return articles.filter((a) => {
@@ -106,7 +108,7 @@ const News = () => {
               variants={fadeUp}
             >
               <Link
-                to={`/news/${featured.slug}`}
+                to={regionPath(`/news/${featured.slug}`)}
                 className="group grid items-center gap-12 lg:grid-cols-[1.2fr_1fr]"
               >
                 {/* Left: large color block with category */}
@@ -171,7 +173,7 @@ const News = () => {
                   className={isWide ? "md:col-span-2" : ""}
                 >
                   <Link
-                    to={`/news/${article.slug}`}
+                    to={regionPath(`/news/${article.slug}`)}
                     className="group block"
                   >
                     {/* Color accent bar */}
