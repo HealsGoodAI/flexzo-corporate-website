@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AgentNetwork from "./AgentNetwork";
-import heroBg from "@/assets/hero-bg.png";
 import { useRegionText } from "@/lib/regionalize";
 
 const sectors_uk = ["NHS Trusts", "Primary Care", "Community Pharmacy", "Mental Health"];
@@ -20,10 +19,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-20">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
       <div className="absolute inset-0 bg-background/70" />
       <AgentNetwork />
 
