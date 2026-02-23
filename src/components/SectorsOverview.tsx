@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
+import { useRegion } from "@/hooks/useRegion";
 import hospitalsHero from "@/assets/hospitals-hero.jpg";
 import primaryCareHero from "@/assets/primary-care.jpg";
 import privateHealthcareHero from "@/assets/private-healthcare.jpg";
@@ -41,6 +42,7 @@ const sectors = [
 
 const SectorsOverview = () => {
   const { t } = useRegionText();
+  const { regionPath } = useRegion();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const next = useCallback(() => {
@@ -106,7 +108,7 @@ const SectorsOverview = () => {
               transition={{ delay: i * 0.15, duration: 0.5, ease: "easeOut" }}
             >
               <Link
-                to={sector.href}
+                to={regionPath(sector.href)}
                 className="group relative flex flex-col overflow-hidden rounded-2xl"
               >
                 <div className="relative aspect-[3/4] w-full overflow-hidden">
