@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
 import hospitalsHero from "@/assets/hospitals-hero.jpg";
 import primaryCareHero from "@/assets/primary-care-hero.jpg";
 import privateHealthcareHero from "@/assets/private-healthcare-hero.jpg";
@@ -14,8 +15,6 @@ const sectors = [
       "End-to-end workforce automation for acute, community and mental health trusts — from internal bank to agency cascade.",
     image: hospitalsHero,
     href: "/sectors/hospitals",
-    span: "lg:col-span-2 lg:row-span-2",
-    imgHeight: "h-72 lg:h-full",
   },
   {
     title: "Primary Care",
@@ -23,8 +22,6 @@ const sectors = [
       "Zero-fee staffing for GP practices with AI-powered matching and compliance built in.",
     image: primaryCareHero,
     href: "/sectors/primary-care",
-    span: "",
-    imgHeight: "h-52",
   },
   {
     title: "Private Healthcare",
@@ -32,8 +29,6 @@ const sectors = [
       "Premium talent pipelines and credential management for independent providers.",
     image: privateHealthcareHero,
     href: "/sectors/private-healthcare",
-    span: "",
-    imgHeight: "h-52",
   },
   {
     title: "Community Pharmacy",
@@ -41,13 +36,30 @@ const sectors = [
       "Rapid locum cover and compliance automation purpose-built for pharmacy.",
     image: pharmacyHero,
     href: "/sectors/pharmacy",
-    span: "lg:col-span-2",
-    imgHeight: "h-52",
   },
 ];
 
 const SectorsOverview = () => {
   const { t } = useRegionText();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const next = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 2) % sectors.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 2 + sectors.length) % sectors.length);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(next, 4000);
+    return () => clearInterval(interval);
+  }, [next]);
+
+  const visibleSectors = [
+    sectors[currentIndex],
+    sectors[(currentIndex + 1) % sectors.length],
+  ];
 
   return (
     <section className="bg-foreground py-28">
@@ -56,31 +68,48 @@ const SectorsOverview = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-14"
+          className="mb-14 flex items-end justify-between"
         >
-          <span className="mb-3 inline-block text-xs font-medium uppercase tracking-widest text-background/40">
-            {t("Sectors We Serve")}
-          </span>
-          <h2 className="max-w-xl font-display text-3xl font-bold text-background md:text-4xl">
-            {t("Built for every corner of healthcare")}
-          </h2>
+          <div>
+            <span className="mb-3 inline-block text-xs font-medium uppercase tracking-widest text-background/40">
+              {t("Sectors We Serve")}
+            </span>
+            <h2 className="max-w-xl font-display text-3xl font-bold text-background md:text-4xl">
+              {t("Built for every corner of healthcare")}
+            </h2>
+          </div>
+          <div className="hidden items-center gap-2 md:flex">
+            <button
+              onClick={prev}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-background/20 text-background/60 transition-colors hover:border-background/40 hover:text-background"
+              aria-label="Previous sectors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={next}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-background/20 text-background/60 transition-colors hover:border-background/40 hover:text-background"
+              aria-label="Next sectors"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </motion.div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
-          {sectors.map((sector, i) => (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {visibleSectors.map((sector, i) => (
             <motion.div
-              key={sector.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className={sector.span}
+              key={`${sector.title}-${currentIndex}`}
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -60 }}
+              transition={{ delay: i * 0.15, duration: 0.5, ease: "easeOut" }}
             >
               <Link
                 to={sector.href}
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl"
+                className="group relative flex flex-col overflow-hidden rounded-2xl"
               >
-                <div className={`relative w-full overflow-hidden ${sector.imgHeight}`}>
+                <div className="relative aspect-[3/4] w-full overflow-hidden">
                   <img
                     src={sector.image}
                     alt={t(sector.title)}
@@ -101,6 +130,22 @@ const SectorsOverview = () => {
                 </div>
               </Link>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Dots */}
+        <div className="mt-6 flex justify-center gap-2">
+          {Array.from({ length: Math.ceil(sectors.length / 2) }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i * 2)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                currentIndex === i * 2
+                  ? "w-6 bg-primary"
+                  : "w-2 bg-background/30"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
           ))}
         </div>
       </div>
