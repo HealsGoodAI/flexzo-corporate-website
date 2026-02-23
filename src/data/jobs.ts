@@ -36,6 +36,7 @@ interface RawJob {
   key_responsibilities?: string[];
   requirements?: string[];
   formatted_description?: string;
+  benefits?: string[];
 }
 
 export function normalizeRawJob(raw: RawJob): Job {
@@ -55,7 +56,7 @@ export function normalizeRawJob(raw: RawJob): Job {
     description: raw.about_the_role ?? "",
     responsibilities: raw.key_responsibilities ?? [],
     requirements: raw.requirements ?? [],
-    benefits: [],
+    benefits: raw.benefits ?? [],
   };
 }
 
