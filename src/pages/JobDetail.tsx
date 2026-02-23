@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { MapPin, Clock, Building2, Briefcase, Calendar, ArrowLeft, ArrowRight, Tag } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { jobs } from "@/data/jobs";
+import { getJobsByRegion } from "@/data/jobs";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 
@@ -18,8 +18,9 @@ const fadeUp = {
 
 const JobDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const { regionPath } = useRegion();
+  const { region, regionPath } = useRegion();
   const { t } = useRegionText();
+  const jobs = getJobsByRegion(region);
   const job = jobs.find((j) => j.id === id);
 
   if (!job) {

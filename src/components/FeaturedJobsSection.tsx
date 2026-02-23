@@ -2,12 +2,15 @@ import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Briefcase, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { jobs } from "@/data/jobs";
+import { getJobsByRegion } from "@/data/jobs";
 import { useRegionText } from "@/lib/regionalize";
+import { useRegion } from "@/hooks/useRegion";
 
 const FeaturedJobsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { t } = useRegionText();
+  const { region } = useRegion();
+  const jobs = getJobsByRegion(region);
 
   useEffect(() => {
     const el = scrollRef.current;

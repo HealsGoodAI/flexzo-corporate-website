@@ -4,7 +4,7 @@ import { Search, MapPin, Briefcase, Clock, Building2, Smartphone, Shield, Zap, G
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { jobs } from "@/data/jobs";
+import { getJobsByRegion } from "@/data/jobs";
 import { useRegionText } from "@/lib/regionalize";
 import { useRegion } from "@/hooks/useRegion";
 
@@ -19,7 +19,8 @@ const whyFlexzo = [
 
 const Jobs = () => {
   const { t } = useRegionText();
-  const { regionPath } = useRegion();
+  const { region, regionPath } = useRegion();
+  const jobs = getJobsByRegion(region);
   const [roleQuery, setRoleQuery] = useState("");
   const [locationQuery, setLocationQuery] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
