@@ -3,7 +3,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import hospitalsHero from "@/assets/hospitals-hero.jpg";
-import primaryCareHero from "@/assets/primary-care-hero.jpg";
+import primaryCareHero from "@/assets/primary-care.jpg";
 import privateHealthcareHero from "@/assets/private-healthcare.jpg";
 import pharmacyHero from "@/assets/community-pharmacy.jpg";
 import { useRegionText } from "@/lib/regionalize";
