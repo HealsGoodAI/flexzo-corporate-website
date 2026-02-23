@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Send, Globe } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useToast } from "@/hooks/use-toast";
+import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 
 const BookDemo = () => {
-  const { toast } = useToast();
+  const navigate = useNavigate();
+  const { regionPath } = useRegion();
   const { t } = useRegionText();
   const [form, setForm] = useState({ name: "", email: "", telephone: "", organisation: "", date: "", time: "" });
   const [submitting, setSubmitting] = useState(false);
@@ -20,9 +22,7 @@ const BookDemo = () => {
     e.preventDefault();
     setSubmitting(true);
     setTimeout(() => {
-      toast({ title: t("Thank you!"), description: t("Your demo request has been sent. We'll be in touch shortly.") });
-      setForm({ name: "", email: "", telephone: "", organisation: "", date: "", time: "" });
-      setSubmitting(false);
+      navigate(regionPath("/book-demo/success"));
     }, 1000);
   };
 

@@ -26,6 +26,7 @@ import About from "./pages/About";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import BookDemo from "./pages/BookDemo";
+import BookDemoSuccess from "./pages/BookDemoSuccess";
 import Contact from "./pages/Contact";
 import PrimaryCare from "./pages/PrimaryCare";
 import Hospitals from "./pages/Hospitals";
@@ -72,6 +73,7 @@ const App = () => (
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="carbon-reduction-plan" element={<CarbonReductionPlan />} />
             <Route path="book-demo" element={<BookDemo />} />
+            <Route path="book-demo/success" element={<BookDemoSuccess />} />
             <Route path="contact" element={<Contact />} />
             <Route path="sectors/primary-care" element={<PrimaryCare />} />
             <Route path="sectors/hospitals" element={<Hospitals />} />
