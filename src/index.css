@@ -61,9 +61,6 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Stack Sans Text', sans-serif;
-    max-width: 1920px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
