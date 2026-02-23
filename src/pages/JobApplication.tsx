@@ -22,6 +22,7 @@ const JobApplication = () => {
   });
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const [agreeShareProfile, setAgreeShareProfile] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -211,6 +212,18 @@ const JobApplication = () => {
                 </span>
               </label>
               {errors.terms && <p className="-mt-2 ml-7 text-xs text-red-500">{errors.terms}</p>}
+
+              <label className="flex cursor-pointer gap-3">
+                <input
+                  type="checkbox"
+                  checked={agreeShareProfile}
+                  onChange={(e) => setAgreeShareProfile(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-border accent-[#0075FF]"
+                />
+                <span className="text-sm text-muted-foreground">
+                  {t("I agree to share my profile with Hospitals & Trusts who are employers on the Flexzo platform")}
+                </span>
+              </label>
             </div>
 
             {/* Submit */}
