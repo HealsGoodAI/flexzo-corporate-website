@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, Calendar, Tag, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
+import { useRegion } from "@/hooks/useRegion";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -16,6 +17,7 @@ const fadeUp = {
 
 const Article = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { regionPath } = useRegion();
   const article = articles.find((a) => a.slug === slug);
 
   if (!article) {
@@ -25,7 +27,7 @@ const Article = () => {
         <div className="flex items-center justify-center pt-40 pb-20">
           <div className="text-center">
             <h1 className="mb-4 text-3xl font-bold text-foreground">Article Not Found</h1>
-            <Link to="/news" className="text-[#0075FF] hover:underline">
+            <Link to={regionPath("/news")} className="text-[#0075FF] hover:underline">
               ← Back to Knowledge Hub
             </Link>
           </div>
@@ -62,7 +64,7 @@ const Article = () => {
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-40">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <Link
-              to="/news"
+              to={regionPath("/news")}
               className="mb-10 inline-flex items-center gap-2 text-sm text-primary-foreground/40 transition-colors hover:text-primary-foreground"
             >
               <ArrowLeft size={14} />
@@ -287,7 +289,7 @@ const Article = () => {
                   variants={fadeUp}
                 >
                   <Link
-                    to={`/news/${rel.slug}`}
+                    to={regionPath(`/news/${rel.slug}`)}
                     className="group block"
                   >
                     <div className="mb-5 aspect-[16/10] overflow-hidden rounded-xl bg-foreground flex items-end p-6 relative">
