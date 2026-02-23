@@ -178,7 +178,7 @@ const LEAD_TEMPLATE = `<!DOCTYPE html>
     .card{width:92%;max-width:680px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
     .header{background:#063165;padding:22px 32px}
     .header img{height:28px;width:auto;display:block}
-    .alert-bar{background:#0075FF;padding:10px 32px;color:#fff;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase}
+    .alert-bar{background:#0075FF;padding:10px 32px;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
     .content{padding:28px 32px 24px}
     .heading{font-size:20px;font-weight:700;color:#063165;margin:0 0 6px;line-height:1.3}
     .sub{font-size:13px;color:#6B7280;margin:0 0 24px}
@@ -206,17 +206,17 @@ const LEAD_TEMPLATE = `<!DOCTYPE html>
     <div class="header">
       <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
     </div>
-    <div class="alert-bar">&#9679;&nbsp; New Job Application Received</div>
+    <div class="alert-bar">New Job Application Received</div>
     <div class="content">
       <p class="heading">A candidate has applied for a position</p>
       <p class="sub">Received on {{current_date}} — please review the applicant details below and follow up accordingly.</p>
-      <div class="job-chip">&#128188;&nbsp; {{jobTitle}}</div>
+      <div class="job-chip">{{jobTitle}}</div>
       <p class="section-label">Applicant Details</p>
       <div class="detail-grid">
         <div class="detail-row"><span class="detail-key">First Name</span><span class="detail-val">{{firstName}}</span></div>
         <div class="detail-row"><span class="detail-key">Last Name</span><span class="detail-val">{{lastName}}</span></div>
         <div class="detail-row"><span class="detail-key">Email</span><span class="detail-val"><a href="mailto:{{email}}" style="color:#0075FF;text-decoration:none;">{{email}}</a></span></div>
-        <div class="detail-row"><span class="detail-key">Job Link</span><span class="detail-val"><a href="{{jobLink}}" style="color:#0075FF;text-decoration:none;">View Listing &#8599;</a></span></div>
+        <div class="detail-row"><span class="detail-key">Job Link</span><span class="detail-val"><a href="{{jobLink}}" style="color:#0075FF;text-decoration:none;">View Listing</a></span></div>
       </div>
       <div class="divider"></div>
       <p class="section-label">CV / Resume</p>
