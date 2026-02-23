@@ -31,6 +31,7 @@ import Hospitals from "./pages/Hospitals";
 import PrivateHealthcare from "./pages/PrivateHealthcare";
 import Pharmacy from "./pages/Pharmacy";
 import Rostering from "./pages/Rostering";
+import CarbonReductionPlan from "./pages/CarbonReductionPlan";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -67,6 +68,7 @@ const App = () => (
             <Route path="about" element={<About />} />
             <Route path="terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="carbon-reduction-plan" element={<CarbonReductionPlan />} />
             <Route path="book-demo" element={<BookDemo />} />
             <Route path="contact" element={<Contact />} />
             <Route path="sectors/primary-care" element={<PrimaryCare />} />
