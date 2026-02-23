@@ -1,3 +1,5 @@
+import ukJobs from "./jobs_uk.json";
+
 export interface Job {
   id: string;
   title: string;
@@ -9,13 +11,15 @@ export interface Job {
   contractType: string;
   workingPattern: string;
   band?: string;
+  speciality?: string;
+  region?: string;
   description: string;
   responsibilities: string[];
   requirements: string[];
   benefits: string[];
 }
 
-export const jobs: Job[] = [
+const staticJobs: Job[] = [
   {
     id: "diabetes-specialist-nurse",
     title: "Nurse / Clinical Practitioner – Diabetes Specialist Nurse",
@@ -361,3 +365,5 @@ export const jobs: Job[] = [
     ],
   },
 ];
+
+export const jobs: Job[] = [...(ukJobs as Job[]), ...staticJobs];

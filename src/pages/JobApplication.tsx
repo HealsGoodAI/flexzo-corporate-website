@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Upload, X, FileText } from "lucide-react";
+import { ArrowLeft, ArrowRight, Upload, X, FileText, AlertCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { jobs } from "@/data/jobs";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
+import { sendApplicationEmails } from "@/lib/emailService";
 
 const JobApplication = () => {
   const { id } = useParams<{ id: string }>();
@@ -68,10 +69,23 @@ const JobApplication = () => {
     if (Object.keys(errs).length > 0) return;
 
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setSubmitting(false);
-
-    navigate(regionPath(`/jobs/${id}/apply/success`), { state: { jobTitle: job?.title } });
+    try {
+      await sendApplicationEmails({
+        firstName: form.firstName,
+        lastName: form.lastName,
+        email: form.email,
+        jobTitle: job!.title,
+        jobId: id!,
+        cvFile: cvFile!,
+      });
+      navigate(regionPath(`/jobs/${id}/apply/success`), { state: { jobTitle: job?.title } });
+    } catch {
+      setErrors((prev) => ({
+        ...prev,
+        submit: "Something went wrong submitting your application. Please try again or email us at applications@flexzo.ai",
+      }));
+      setSubmitting(false);
+    }
   };
 
   if (!job) {
@@ -225,6 +239,13 @@ const JobApplication = () => {
                 </span>
               </label>
             </div>
+
+            {errors.submit && (
+              <div className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/30 dark:text-red-400">
+                <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                <span>{errors.submit}</span>
+              </div>
+            )}
 
             {/* Submit */}
             <button
