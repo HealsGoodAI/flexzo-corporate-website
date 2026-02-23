@@ -5,7 +5,7 @@ import { useEffect, useState, useCallback } from "react";
 import hospitalsHero from "@/assets/hospitals-hero.jpg";
 import primaryCareHero from "@/assets/primary-care-hero.jpg";
 import privateHealthcareHero from "@/assets/private-healthcare-hero.jpg";
-import pharmacyHero from "@/assets/pharmacy-hero.jpg";
+import pharmacyHero from "@/assets/community-pharmacy.jpg";
 import { useRegionText } from "@/lib/regionalize";
 
 const sectors = [
