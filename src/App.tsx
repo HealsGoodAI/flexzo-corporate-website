@@ -28,6 +28,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import BookDemo from "./pages/BookDemo";
 import BookDemoSuccess from "./pages/BookDemoSuccess";
 import Contact from "./pages/Contact";
+import ContactSuccess from "./pages/ContactSuccess";
 import PrimaryCare from "./pages/PrimaryCare";
 import Hospitals from "./pages/Hospitals";
 import PrivateHealthcare from "./pages/PrivateHealthcare";
@@ -75,6 +76,7 @@ const App = () => (
             <Route path="book-demo" element={<BookDemo />} />
             <Route path="book-demo/success" element={<BookDemoSuccess />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="contact/success" element={<ContactSuccess />} />
             <Route path="sectors/primary-care" element={<PrimaryCare />} />
             <Route path="sectors/hospitals" element={<Hospitals />} />
             <Route path="sectors/private-healthcare" element={<PrivateHealthcare />} />
