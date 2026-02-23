@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getJobsByRegion, type Job } from "@/data/jobs";
+import { type Job } from "@/data/jobs";
+import { useJobs } from "@/hooks/useJobs";
 import { Slider } from "@/components/ui/slider";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
@@ -61,9 +62,9 @@ function matchesCategory(job: Job, category: string): boolean {
 /* ── component ─────────────────────────────────────── */
 
 const JobSearchResults = () => {
-  const { region, regionPath } = useRegion();
+  const { regionPath } = useRegion();
   const { t } = useRegionText();
-  const jobs = getJobsByRegion(region);
+  const { jobs } = useJobs();
   const [searchParams] = useSearchParams();
   const initialRole = searchParams.get("role") || "";
   const initialLocation = searchParams.get("location") || "";

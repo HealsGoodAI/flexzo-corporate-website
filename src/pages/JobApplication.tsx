@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Upload, X, FileText, AlertCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getJobsByRegion } from "@/data/jobs";
+import { useJobs } from "@/hooks/useJobs";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 import { sendApplicationEmails } from "@/lib/emailService";
@@ -12,9 +12,9 @@ import { sendApplicationEmails } from "@/lib/emailService";
 const JobApplication = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { region, regionPath } = useRegion();
+  const { regionPath } = useRegion();
   const { t } = useRegionText();
-  const jobs = getJobsByRegion(region);
+  const { jobs } = useJobs();
   const job = jobs.find((j) => j.id === id);
 
   const [form, setForm] = useState({
