@@ -55,7 +55,7 @@ const footerColumns = [
       { label: "Linkedin", href: "https://www.linkedin.com/company/flexzo-ai" },
       { label: "facebook", href: "#" },
       { label: "instagram", href: "https://www.instagram.com/flexzoai/" },
-      { label: "Tiktok", href: "#" },
+      { label: "Tiktok", href: "https://www.tiktok.com/@flexzoai" },
       { label: "X", href: "https://x.com/FlexzoAi" },
     ],
   },
