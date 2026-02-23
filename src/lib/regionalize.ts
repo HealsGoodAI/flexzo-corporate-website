@@ -14,6 +14,12 @@ const domainReplacements: [RegExp, string][] = [
   [/staff banks/gi, "float pools"],
   [/staff bank/gi, "float pool"],
 
+  // Standalone bank/banks (after Staff Bank patterns so those match first)
+  [/\bBanks\b/g, "Float Pools"],
+  [/\bbanks\b/g, "float pools"],
+  [/\bBank\b/g, "Float Pool"],
+  [/\bbank\b/g, "float pool"],
+
   // NHS Trust variations
   [/NHS Trusts/gi, "Healthcare Organizations"],
   [/NHS Trust/gi, "Healthcare Organization"],
