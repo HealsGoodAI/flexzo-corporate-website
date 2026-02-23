@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MapPin, Mail, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 
 const offices = [
@@ -16,12 +18,13 @@ const offices = [
 
 const Contact = () => {
   const { t } = useRegionText();
+  const navigate = useNavigate();
+  const { regionPath } = useRegion();
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    navigate(regionPath("/contact/success"));
   };
 
   return (
@@ -57,23 +60,16 @@ const Contact = () => {
 
           <div>
             <h2 className="mb-8 text-2xl font-bold text-foreground">{t("Send A Message")}</h2>
-            {submitted ? (
-              <div className="rounded-lg border border-border bg-muted/50 p-8 text-center">
-                <p className="text-lg font-semibold text-foreground">{t("Thank you for your message!")}</p>
-                <p className="mt-2 text-muted-foreground">{t("We'll get back to you as soon as possible.")}</p>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Input placeholder={t("Your Name *")} required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                <Input type="email" placeholder={t("Email Address *")} required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                <Input placeholder={t("Phone Number")} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                <Input placeholder={t("Company / Organisation")} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <Input placeholder={t("Your Name *")} required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                  <Input type="email" placeholder={t("Email Address *")} required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-                  <Input placeholder={t("Phone Number")} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-                  <Input placeholder={t("Company / Organisation")} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
-                </div>
-                <Textarea placeholder={t("Your Message *")} required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
-                <Button type="submit" size="lg" className="w-full sm:w-auto">{t("Send Message")}</Button>
-              </form>
-            )}
+              <Textarea placeholder={t("Your Message *")} required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+              <Button type="submit" size="lg" className="w-full sm:w-auto">{t("Send Message")}</Button>
+            </form>
           </div>
         </div>
       </section>
