@@ -15,10 +15,11 @@ const GeoRedirect = () => {
           "Pacific/Honolulu", "America/Detroit", "America/Indiana",
           "America/Boise", "America/Juneau", "America/Nome",
         ];
-        const isUS = usTimezones.some((usTz) => tz.startsWith(usTz.split("/")[0] + "/" + usTz.split("/")[1]) || tz.startsWith("US/"));
+        const isUS = tz.startsWith("America/") || tz.startsWith("US/") || tz.startsWith("Pacific/Honolulu");
 
         navigate(isUS ? "/us" : "/uk", { replace: true });
       } catch {
+        // Default to UK if geo-detection fails
         navigate("/uk", { replace: true });
       }
     };

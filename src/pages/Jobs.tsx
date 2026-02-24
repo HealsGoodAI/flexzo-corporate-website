@@ -39,7 +39,7 @@ const Jobs = () => {
       const matchesLocation = !locationQuery || job.location.toLowerCase().includes(locationQuery.toLowerCase());
       return matchesRole && matchesLocation;
     });
-  }, [roleQuery, locationQuery]);
+  }, [jobs, roleQuery, locationQuery]);
 
   useEffect(() => {
     const el = scrollRef.current;
