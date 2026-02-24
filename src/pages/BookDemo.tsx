@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
+import { sendBookDemoEmail } from "@/lib/emailService";
 
 const BookDemo = () => {
   const navigate = useNavigate();
@@ -13,17 +14,30 @@ const BookDemo = () => {
   const { t } = useRegionText();
   const [form, setForm] = useState({ name: "", email: "", telephone: "", organisation: "", date: "", time: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
+    setError("");
+    try {
+      await sendBookDemoEmail({
+        name: form.name,
+        email: form.email,
+        telephone: form.telephone,
+        organisation: form.organisation,
+        date: form.date,
+        time: form.time,
+      });
       navigate(regionPath("/book-demo/success"));
-    }, 1000);
+    } catch (err) {
+      setError("Something went wrong. Please try again or email us at sales@flexzo.ai");
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -46,6 +60,7 @@ const BookDemo = () => {
                 <input type="text" name="organisation" placeholder={t("NHS Trust / Agency *")} required value={form.organisation} onChange={handleChange} className="w-full rounded-lg border border-border bg-background px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#0075FF]/50" />
                 <input type="text" name="date" placeholder={t("Ideal Date for Demo *")} required value={form.date} onChange={handleChange} className="w-full rounded-lg border border-border bg-background px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#0075FF]/50" />
                 <input type="text" name="time" placeholder={t("Ideal Time for Demo *")} required value={form.time} onChange={handleChange} className="w-full rounded-lg border border-border bg-background px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#0075FF]/50" />
+                {error && <p className="text-sm text-red-500">{error}</p>}
                 <button type="submit" disabled={submitting} className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0075FF] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#0060d0] disabled:opacity-60">
                   {submitting ? t("Sending…") : t("Book now")} <Send size={16} />
                 </button>

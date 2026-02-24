@@ -157,7 +157,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                   : "bg-primary text-primary-foreground hover:bg-[#0075FF] hover:text-white"
               }`}
             >
-              Login
+              Book a demo
             </a>
           </div>
 
@@ -262,7 +262,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 className="mt-10 inline-block rounded-md bg-[#0075FF] px-8 py-4 text-center text-sm font-semibold text-white transition-colors hover:bg-[#0060D0]"
                 onClick={() => setMobileOpen(false)}
               >
-                Login
+                Book a demo
               </motion.a>
             </div>
 
