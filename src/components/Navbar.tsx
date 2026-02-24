@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import flexzoLogo from "@/assets/Flexzo-Logo.svg";
 import flexzoLogoWhite from "@/assets/flexzo-logo-white.png";
 import { useRegion } from "@/hooks/useRegion";
@@ -44,7 +44,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
-  const { regionPath } = useRegion();
+  const { region, regionPath, switchRegion } = useRegion();
   const { t } = useRegionText();
 
   useEffect(() => {
@@ -149,6 +149,18 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 </a>
               );
             })}
+            {/* Region switch */}
+            <button
+              onClick={() => switchRegion(region === "uk" ? "us" : "uk")}
+              className={`flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-all border ${
+                isTransparent
+                  ? "text-white/70 border-white/20 hover:text-white hover:border-white/40"
+                  : "text-muted-foreground border-border hover:text-foreground hover:border-foreground/30"
+              }`}
+            >
+              <Globe size={14} />
+              {region === "uk" ? "UK" : "US"}
+            </button>
             <a
               href={resolveHref("/book-demo")}
               className={`rounded-md px-6 py-2.5 text-sm font-medium transition-all ${
@@ -254,12 +266,27 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 })}
               </nav>
 
+              {/* Mobile region switch */}
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.4 }}
+                onClick={() => {
+                  switchRegion(region === "uk" ? "us" : "uk");
+                  setMobileOpen(false);
+                }}
+                className="mt-8 flex items-center gap-2 text-sm font-semibold text-primary-foreground/60 transition-colors hover:text-[#0075FF]"
+              >
+                <Globe size={16} />
+                Switch to {region === "uk" ? "US" : "UK"}
+              </motion.button>
+
               <motion.a
                 href={resolveHref("/book-demo")}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.4 }}
-                className="mt-10 inline-block rounded-md bg-[#0075FF] px-8 py-4 text-center text-sm font-semibold text-white transition-colors hover:bg-[#0060D0]"
+                className="mt-4 inline-block rounded-md bg-[#0075FF] px-8 py-4 text-center text-sm font-semibold text-white transition-colors hover:bg-[#0060D0]"
                 onClick={() => setMobileOpen(false)}
               >
                 Book a demo
