@@ -342,6 +342,8 @@ const APPLICANT_UK_TEMPLATE = `<!DOCTYPE html>
     .step-body{flex:1}
     .step-title{font-size:13px;font-weight:700;color:#063165;margin:0 0 2px}
     .step-desc{font-size:12px;color:#6B7280;line-height:1.5;margin:0}
+    .compliance-note{background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:14px 18px;margin:20px 0;font-size:12px;color:#92400E;line-height:1.6}
+    .compliance-note strong{color:#78350F}
     .divider{height:1px;background:#E5E7EB;margin:22px 0}
     .cta-section{text-align:center;margin-top:8px}
     .cta-btn{display:inline-block;background:#0075FF;color:#fff;text-decoration:none;font-size:14px;font-weight:700;padding:13px 28px;border-radius:8px}
@@ -366,11 +368,11 @@ const APPLICANT_UK_TEMPLATE = `<!DOCTYPE html>
         </svg>
       </div>
       <p class="hero-title">Application Received</p>
-      <p class="hero-sub">Thank you for applying through Flexzo. We will be in touch soon.</p>
+      <p class="hero-sub">Thank you for applying through Flexzo. We shall be in touch shortly.</p>
     </div>
     <div class="content">
-      <p class="greeting">Hi {{firstName}},</p>
-      <p class="body-text">We are pleased to confirm that we have received your application. Our team will carefully review your CV and experience against the requirements for the role below. If your profile is a strong match, we will be in contact to discuss next steps.</p>
+      <p class="greeting">Dear {{firstName}},</p>
+      <p class="body-text">We are pleased to confirm that we have received your application. Our clinical resourcing team will carefully review your CV and experience against the requirements for the role below. Should your profile be a strong match, we will be in contact to discuss next steps.</p>
       <div class="job-card">
         <p class="job-card-label">You applied for</p>
         <p class="job-card-title">{{jobTitle}}</p>
@@ -378,8 +380,11 @@ const APPLICANT_UK_TEMPLATE = `<!DOCTYPE html>
       <p class="body-text">In the meantime, here is what happens next:</p>
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body"><p class="step-title">Application Review</p><p class="step-desc">Our clinical resourcing team will review your CV and match your experience to the role requirements, typically within 2 working days.</p></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body"><p class="step-title">Initial Contact</p><p class="step-desc">If shortlisted, a Flexzo consultant will reach out by phone or email to discuss the opportunity in detail and answer any questions you may have.</p></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><p class="step-title">Compliance and Credentialling</p><p class="step-desc">We will guide you through our streamlined compliance process, including DBS checks, reference verification, and any role-specific requirements.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><p class="step-title">Initial Contact</p><p class="step-desc">If shortlisted, a Flexzo consultant will reach out by telephone or email to discuss the opportunity in detail and answer any questions you may have.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><p class="step-title">Compliance and Credentialling</p><p class="step-desc">We will guide you through our streamlined compliance process, including enhanced DBS checks, right-to-work verification, professional registration checks, reference verification, and any role-specific requirements.</p></div></div>
+      </div>
+      <div class="compliance-note">
+        <strong>Right to Work:</strong> In accordance with UK immigration law, all candidates must provide evidence of their right to work in the United Kingdom. EU, EEA, and Swiss nationals who arrived after 31 December 2020 are required to hold valid immigration status under the UK points-based system or EU Settlement Scheme. Flexzo will guide you through this process.
       </div>
       <div class="divider"></div>
       <div class="cta-section">
@@ -428,6 +433,8 @@ const APPLICANT_US_TEMPLATE = `<!DOCTYPE html>
     .step-body{flex:1}
     .step-title{font-size:13px;font-weight:700;color:#063165;margin:0 0 2px}
     .step-desc{font-size:12px;color:#6B7280;line-height:1.5;margin:0}
+    .compliance-note{background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:14px 18px;margin:20px 0;font-size:12px;color:#92400E;line-height:1.6}
+    .compliance-note strong{color:#78350F}
     .divider{height:1px;background:#E5E7EB;margin:22px 0}
     .cta-section{text-align:center;margin-top:8px}
     .cta-btn{display:inline-block;background:#0075FF;color:#fff;text-decoration:none;font-size:14px;font-weight:700;padding:13px 28px;border-radius:8px}
@@ -452,20 +459,23 @@ const APPLICANT_US_TEMPLATE = `<!DOCTYPE html>
         </svg>
       </div>
       <p class="hero-title">Application Received</p>
-      <p class="hero-sub">Thank you for applying through Flexzo. We will be in touch soon.</p>
+      <p class="hero-sub">Thank you for applying through Flexzo. We'll be in touch soon.</p>
     </div>
     <div class="content">
       <p class="greeting">Hi {{firstName}},</p>
-      <p class="body-text">We are excited to confirm that we have received your application. Our team will carefully review your resume and experience against the requirements for the role below. If your profile is a strong match, we will reach out to discuss next steps.</p>
+      <p class="body-text">We're excited to confirm that we've received your application. Our clinical staffing team will carefully review your resume and qualifications against the requirements for the role below. If your profile is a strong match, we'll reach out to discuss next steps.</p>
       <div class="job-card">
         <p class="job-card-label">You applied for</p>
         <p class="job-card-title">{{jobTitle}}</p>
       </div>
-      <p class="body-text">In the meantime, here is what happens next:</p>
+      <p class="body-text">Here's what happens next:</p>
       <div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-body"><p class="step-title">Application Review</p><p class="step-desc">Our clinical staffing team will review your resume and match your experience to the role requirements, typically within 2 business days.</p></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body"><p class="step-title">Initial Contact</p><p class="step-desc">If shortlisted, a Flexzo consultant will reach out by phone or email to discuss the opportunity in detail and answer any questions you may have.</p></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><p class="step-title">Compliance and Credentialing</p><p class="step-desc">We will guide you through our streamlined compliance process, including background checks, reference verification, and any role-specific requirements.</p></div></div>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><p class="step-title">Application Review</p><p class="step-desc">Our clinical staffing team will review your resume and match your qualifications to the role requirements, typically within 2 business days.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><p class="step-title">Initial Contact</p><p class="step-desc">If shortlisted, a Flexzo recruiter will reach out by phone or email to discuss the opportunity and answer any questions.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><p class="step-title">Compliance and Credentialing</p><p class="step-desc">We'll guide you through our streamlined compliance process, including background checks, license verification, drug screening, and any role-specific credentialing requirements.</p></div></div>
+      </div>
+      <div class="compliance-note">
+        <strong>Employment Eligibility:</strong> All candidates must be authorized to work in the United States. Flexzo participates in E-Verify and complies with Form I-9 requirements. Flexzo is an Equal Opportunity Employer and does not discriminate on the basis of race, color, religion, sex, national origin, age, disability, or any other protected status.
       </div>
       <div class="divider"></div>
       <div class="cta-section">
