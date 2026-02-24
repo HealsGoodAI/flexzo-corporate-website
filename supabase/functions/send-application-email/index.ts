@@ -9,6 +9,7 @@ const corsHeaders = {
 const GMAIL_USER = "applications@flexzo.ai";
 const SALES_EMAIL = "job.leads@flexzo.ai";
 const DEFAULT_JOBS_URL = "https://flexzo.ai/uk/jobs";
+const LOGO_URL = "https://nlallbutnmsyeqyawzbh.supabase.co/storage/v1/object/public/email-assets/flexzo-logo-white.png";
 
 /* ── UTM tracking ── */
 
@@ -277,7 +278,7 @@ const LEAD_TEMPLATE = `<!DOCTYPE html>
 <div class="wrap">
   <div class="card">
     <div class="header">
-      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+      <img src="${LOGO_URL}" alt="Flexzo"/>
     </div>
     <div class="alert-bar">New Job Application Received</div>
     <div class="content">
@@ -358,7 +359,7 @@ const APPLICANT_UK_TEMPLATE = `<!DOCTYPE html>
 <div class="wrap">
   <div class="card">
     <div class="header">
-      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+      <img src="${LOGO_URL}" alt="Flexzo"/>
     </div>
     <div class="hero">
       <div class="check-circle">
@@ -393,7 +394,7 @@ const APPLICANT_UK_TEMPLATE = `<!DOCTYPE html>
       </div>
     </div>
     <div class="footer">
-      <div class="footer-logo"><img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/></div>
+      <div class="footer-logo"><img src="${LOGO_URL}" alt="Flexzo"/></div>
       <p class="footer-text">
         &copy; 2026 Flexzo. All rights reserved.<br/>
         Flexzo Ltd &middot; <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/uk/terms-and-conditions">Terms and Conditions</a><br/>
@@ -449,7 +450,7 @@ const APPLICANT_US_TEMPLATE = `<!DOCTYPE html>
 <div class="wrap">
   <div class="card">
     <div class="header">
-      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+      <img src="${LOGO_URL}" alt="Flexzo"/>
     </div>
     <div class="hero">
       <div class="check-circle">
@@ -484,7 +485,7 @@ const APPLICANT_US_TEMPLATE = `<!DOCTYPE html>
       </div>
     </div>
     <div class="footer">
-      <div class="footer-logo"><img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/></div>
+      <div class="footer-logo"><img src="${LOGO_URL}" alt="Flexzo"/></div>
       <p class="footer-text">
         &copy; 2026 Flexzo. All rights reserved.<br/>
         Flexzo Inc &middot; <a href="https://flexzo.ai/us/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/us/terms-and-conditions">Terms and Conditions</a><br/>
@@ -529,7 +530,7 @@ const BOOK_DEMO_TEMPLATE = `<!DOCTYPE html>
 <div class="wrap">
   <div class="card">
     <div class="header">
-      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+      <img src="${LOGO_URL}" alt="Flexzo"/>
     </div>
     <div class="alert-bar">New Demo Booking Request</div>
     <div class="content">
@@ -594,7 +595,7 @@ const CONTACT_TEMPLATE = `<!DOCTYPE html>
 <div class="wrap">
   <div class="card">
     <div class="header">
-      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+      <img src="${LOGO_URL}" alt="Flexzo"/>
     </div>
     <div class="alert-bar">New Contact Form Submission</div>
     <div class="content">
@@ -651,7 +652,7 @@ const GENERIC_TEMPLATE = `<!DOCTYPE html>
 <div class="wrap">
   <div class="card">
     <div class="header">
-      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+      <img src="${LOGO_URL}" alt="Flexzo"/>
     </div>
     <div class="content">
       <p class="greeting">{{greeting}}</p>
@@ -663,7 +664,7 @@ const GENERIC_TEMPLATE = `<!DOCTYPE html>
       </div>
     </div>
     <div class="footer">
-      <div class="footer-logo"><img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/></div>
+      <div class="footer-logo"><img src="${LOGO_URL}" alt="Flexzo"/></div>
       <p class="footer-text">
         &copy; 2026 Flexzo. All rights reserved.<br/>
         Flexzo Ltd &middot; <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/uk/terms-and-conditions">Terms and Conditions</a><br/>
