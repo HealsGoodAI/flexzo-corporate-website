@@ -29,7 +29,7 @@ jobs:
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::246483016045:role/gha-s3-website-deploy
+          role-to-assume: arn:aws:iam::246483016045:role/github-actions-bot
           aws-region: eu-west-2
       - name: Sync HTML to S3
         run: |
