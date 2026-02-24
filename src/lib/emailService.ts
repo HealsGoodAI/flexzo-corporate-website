@@ -7,6 +7,24 @@ export interface ApplicationEmailParams {
   jobTitle: string;
   jobId: string;
   cvFile: File;
+  region?: string;
+}
+
+export interface BookDemoEmailParams {
+  name: string;
+  email: string;
+  telephone: string;
+  organisation: string;
+  date: string;
+  time: string;
+}
+
+export interface ContactEmailParams {
+  name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  message: string;
 }
 
 export interface TestEmailResult {
@@ -29,11 +47,16 @@ const buildJobLink = (jobId: string): string => {
   return `${window.location.origin}/${region}/jobs/${jobId}`;
 };
 
+const getRegion = (): string => {
+  return window.location.pathname.split("/")[1] || "uk";
+};
+
 export const sendApplicationEmails = async (params: ApplicationEmailParams): Promise<void> => {
-  const { firstName, lastName, email, jobTitle, jobId, cvFile } = params;
+  const { firstName, lastName, email, jobTitle, jobId, cvFile, region } = params;
 
   const cvBase64 = await fileToBase64(cvFile);
   const jobLink = buildJobLink(jobId);
+  const resolvedRegion = region || getRegion();
 
   const { data, error } = await supabase.functions.invoke("send-application-email", {
     body: {
@@ -44,6 +67,7 @@ export const sendApplicationEmails = async (params: ApplicationEmailParams): Pro
       jobLink,
       cvBase64,
       cvFileName: cvFile.name,
+      region: resolvedRegion,
     },
   });
 
@@ -58,9 +82,46 @@ export const sendApplicationEmails = async (params: ApplicationEmailParams): Pro
   }
 };
 
+export const sendBookDemoEmail = async (params: BookDemoEmailParams): Promise<void> => {
+  const { data, error } = await supabase.functions.invoke("send-application-email", {
+    body: {
+      type: "book_demo",
+      ...params,
+    },
+  });
+
+  if (error) {
+    console.error("Edge function error:", error);
+    throw new Error("Failed to send demo booking email");
+  }
+
+  if (data?.error) {
+    console.error("Email send error:", data.error);
+    throw new Error(data.error);
+  }
+};
+
+export const sendContactEmail = async (params: ContactEmailParams): Promise<void> => {
+  const { data, error } = await supabase.functions.invoke("send-application-email", {
+    body: {
+      type: "contact",
+      ...params,
+    },
+  });
+
+  if (error) {
+    console.error("Edge function error:", error);
+    throw new Error("Failed to send contact email");
+  }
+
+  if (data?.error) {
+    console.error("Email send error:", data.error);
+    throw new Error(data.error);
+  }
+};
+
 /**
  * Preview email templates with test data without actually sending.
- * Returns rendered HTML for both lead and applicant templates.
  */
 export const testEmailTemplates = async (overrides?: Partial<{
   firstName: string;
@@ -68,6 +129,7 @@ export const testEmailTemplates = async (overrides?: Partial<{
   email: string;
   jobTitle: string;
   jobLink: string;
+  region: string;
 }>): Promise<TestEmailResult> => {
   const { data, error } = await supabase.functions.invoke("send-application-email", {
     body: {
@@ -77,6 +139,7 @@ export const testEmailTemplates = async (overrides?: Partial<{
       email: overrides?.email,
       jobTitle: overrides?.jobTitle,
       jobLink: overrides?.jobLink,
+      region: overrides?.region || getRegion(),
     },
   });
 

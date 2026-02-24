@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
+import { sendContactEmail } from "@/lib/emailService";
 
 const offices = [
   { name: "UK Head Office", address: "Noble House, Capital Dr, Milton Keynes, MK14 6QP" },
@@ -21,10 +22,26 @@ const Contact = () => {
   const navigate = useNavigate();
   const { regionPath } = useRegion();
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate(regionPath("/contact/success"));
+    setSubmitting(true);
+    setError("");
+    try {
+      await sendContactEmail({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        company: form.company,
+        message: form.message,
+      });
+      navigate(regionPath("/contact/success"));
+    } catch (err) {
+      setError("Something went wrong. Please try again or email us at sales@flexzo.ai");
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -68,7 +85,10 @@ const Contact = () => {
                 <Input placeholder={t("Company / Organisation")} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
               </div>
               <Textarea placeholder={t("Your Message *")} required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
-              <Button type="submit" size="lg" className="w-full sm:w-auto">{t("Send Message")}</Button>
+              {error && <p className="text-sm text-red-500">{error}</p>}
+              <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
+                {submitting ? t("Sending…") : t("Send Message")}
+              </Button>
             </form>
           </div>
         </div>

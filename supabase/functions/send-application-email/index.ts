@@ -12,7 +12,7 @@ const DEFAULT_JOBS_URL = "https://flexzo.ai/uk/jobs";
 
 /* ── UTM tracking ── */
 
-function addUtmParams(url: string, source: "lead" | "applicant"): string {
+function addUtmParams(url: string, source: string): string {
   if (!url) return url;
   const sep = url.includes("?") ? "&" : "?";
   return `${url}${sep}utm_source=email&utm_medium=application&utm_campaign=${source}_notification&utm_content=job_link`;
@@ -41,6 +41,12 @@ function createSmtpClient(appPassword: string) {
   });
 }
 
+function getCurrentDate(): string {
+  return new Date().toLocaleDateString("en-GB", {
+    day: "numeric", month: "long", year: "numeric",
+  });
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -48,121 +54,188 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { firstName, lastName, email, jobTitle, jobLink, cvBase64, cvFileName, testMode } = body;
-
-    // ── Test mode: render templates and return HTML without sending ──
-    if (testMode) {
-      const currentDate = new Date().toLocaleDateString("en-GB", {
-        day: "numeric", month: "long", year: "numeric",
-      });
-      const safeJobLink = addUtmParams(jobLink || DEFAULT_JOBS_URL, "applicant");
-      const testVars = {
-        firstName: firstName || "Jane",
-        lastName: lastName || "Doe",
-        email: email || "jane.doe@example.com",
-        jobTitle: jobTitle || "Registered Nurse – Test Position",
-        jobLink: safeJobLink,
-        jobLinkLead: addUtmParams(jobLink || DEFAULT_JOBS_URL, "lead"),
-        current_date: currentDate,
-      };
-
-      return new Response(
-        JSON.stringify({
-          success: true,
-          testMode: true,
-          leadEmailHtml: renderTemplate(LEAD_TEMPLATE, { ...testVars, jobLink: testVars.jobLinkLead }),
-          applicantEmailHtml: renderTemplate(APPLICANT_TEMPLATE, testVars),
-          leadSubject: `New Job Application – ${testVars.jobTitle}`,
-          applicantSubject: `Application Received – ${testVars.jobTitle}`,
-        }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
-    }
-
-    // ── Production mode ──
-    if (!firstName || !lastName || !email || !jobTitle) {
-      return new Response(JSON.stringify({ error: "Missing required fields" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const currentDate = new Date().toLocaleDateString("en-GB", {
-      day: "numeric", month: "long", year: "numeric",
-    });
+    const { type } = body;
 
     const appPassword = Deno.env.get("GMAIL_APP_PASSWORD");
-    if (!appPassword) {
+    if (!appPassword && !body.testMode) {
       throw new Error("GMAIL_APP_PASSWORD not configured");
     }
 
-    // Fallback to default listings page if jobLink is missing
-    const safeJobLink = jobLink || DEFAULT_JOBS_URL;
+    const currentDate = getCurrentDate();
 
-    const templateVars = {
-      firstName,
-      lastName,
-      email,
-      jobTitle,
-      jobLink: addUtmParams(safeJobLink, "applicant"),
-      current_date: currentDate,
-    };
-
-    const leadTemplateVars = {
-      ...templateVars,
-      jobLink: addUtmParams(safeJobLink, "lead"),
-    };
-
-    // Build attachments for lead email (CV)
-    const attachments: Array<{ filename: string; content: Uint8Array; contentType: string }> = [];
-    if (cvBase64 && cvFileName) {
-      const binaryStr = atob(cvBase64);
-      const bytes = new Uint8Array(binaryStr.length);
-      for (let i = 0; i < binaryStr.length; i++) {
-        bytes[i] = binaryStr.charCodeAt(i);
-      }
-      attachments.push({
-        filename: cvFileName,
-        content: bytes,
-        contentType: "application/octet-stream",
-      });
+    // ── Route by type ──
+    if (type === "book_demo") {
+      return await handleBookDemo(body, appPassword!, currentDate);
+    }
+    if (type === "contact") {
+      return await handleContact(body, appPassword!, currentDate);
+    }
+    if (type === "generic") {
+      return await handleGeneric(body, appPassword!, currentDate);
     }
 
-    const client = createSmtpClient(appPassword);
-
-    // 1. Send lead notification to sales team
-    await client.send({
-      from: GMAIL_USER,
-      to: SALES_EMAIL,
-      subject: `New Job Application – ${jobTitle}`,
-      html: renderTemplate(LEAD_TEMPLATE, leadTemplateVars),
-      attachments,
-    });
-
-    // 2. Send confirmation to applicant
-    await client.send({
-      from: GMAIL_USER,
-      to: email,
-      subject: `Application Received – ${jobTitle}`,
-      html: renderTemplate(APPLICANT_TEMPLATE, templateVars),
-    });
-
-    await client.close();
-
-    return new Response(JSON.stringify({ success: true }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    // Default: job application (backward compatible)
+    return await handleApplication(body, appPassword!, currentDate);
   } catch (error) {
     console.error("Email send error:", error);
     return new Response(
       JSON.stringify({ error: "Failed to send email", details: String(error) }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      },
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
 });
+
+/* ── Job Application Handler ── */
+
+async function handleApplication(body: Record<string, string>, appPassword: string, currentDate: string) {
+  const { firstName, lastName, email, jobTitle, jobLink, cvBase64, cvFileName, testMode, region } = body;
+
+  const safeJobLink = jobLink || DEFAULT_JOBS_URL;
+
+  if (testMode) {
+    const testVars = {
+      firstName: firstName || "Jane",
+      lastName: lastName || "Doe",
+      email: email || "jane.doe@example.com",
+      jobTitle: jobTitle || "Registered Nurse – Test Position",
+      jobLink: addUtmParams(safeJobLink, "applicant"),
+      jobLinkLead: addUtmParams(safeJobLink, "lead"),
+      current_date: currentDate,
+    };
+    const applicantTemplate = (region === "us") ? APPLICANT_US_TEMPLATE : APPLICANT_UK_TEMPLATE;
+    return new Response(
+      JSON.stringify({
+        success: true,
+        testMode: true,
+        leadEmailHtml: renderTemplate(LEAD_TEMPLATE, { ...testVars, jobLink: testVars.jobLinkLead }),
+        applicantEmailHtml: renderTemplate(applicantTemplate, testVars),
+        leadSubject: `New Job Application – ${testVars.jobTitle}`,
+        applicantSubject: `Application Received – ${testVars.jobTitle}`,
+      }),
+      { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
+  }
+
+  if (!firstName || !lastName || !email || !jobTitle) {
+    return new Response(JSON.stringify({ error: "Missing required fields" }), {
+      status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
+  const templateVars = {
+    firstName, lastName, email, jobTitle,
+    jobLink: addUtmParams(safeJobLink, "applicant"),
+    current_date: currentDate,
+  };
+  const leadTemplateVars = { ...templateVars, jobLink: addUtmParams(safeJobLink, "lead") };
+
+  const attachments: Array<{ filename: string; content: Uint8Array; contentType: string }> = [];
+  if (cvBase64 && cvFileName) {
+    const binaryStr = atob(cvBase64);
+    const bytes = new Uint8Array(binaryStr.length);
+    for (let i = 0; i < binaryStr.length; i++) bytes[i] = binaryStr.charCodeAt(i);
+    attachments.push({ filename: cvFileName, content: bytes, contentType: "application/octet-stream" });
+  }
+
+  const applicantTemplate = (region === "us") ? APPLICANT_US_TEMPLATE : APPLICANT_UK_TEMPLATE;
+  const client = createSmtpClient(appPassword);
+
+  await client.send({
+    from: GMAIL_USER, to: SALES_EMAIL,
+    subject: `New Job Application – ${jobTitle}`,
+    html: renderTemplate(LEAD_TEMPLATE, leadTemplateVars),
+    attachments,
+  });
+
+  await client.send({
+    from: GMAIL_USER, to: email,
+    subject: `Application Received – ${jobTitle}`,
+    html: renderTemplate(applicantTemplate, templateVars),
+  });
+
+  await client.close();
+  return new Response(JSON.stringify({ success: true }), {
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
+/* ── Book Demo Handler ── */
+
+async function handleBookDemo(body: Record<string, string>, appPassword: string, currentDate: string) {
+  const { name, email, telephone, organisation, date, time } = body;
+
+  if (!name || !email) {
+    return new Response(JSON.stringify({ error: "Missing required fields" }), {
+      status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
+  const vars = { name, email, telephone: telephone || "Not provided", organisation: organisation || "Not provided", date: date || "Not specified", time: time || "Not specified", current_date: currentDate };
+
+  const client = createSmtpClient(appPassword);
+  await client.send({
+    from: GMAIL_USER, to: SALES_EMAIL,
+    subject: `New Demo Booking Request – ${name}`,
+    html: renderTemplate(BOOK_DEMO_TEMPLATE, vars),
+  });
+  await client.close();
+
+  return new Response(JSON.stringify({ success: true }), {
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
+/* ── Contact Handler ── */
+
+async function handleContact(body: Record<string, string>, appPassword: string, currentDate: string) {
+  const { name, email, phone, company, message } = body;
+
+  if (!name || !email || !message) {
+    return new Response(JSON.stringify({ error: "Missing required fields" }), {
+      status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
+  const vars = { name, email, phone: phone || "Not provided", company: company || "Not provided", message, current_date: currentDate };
+
+  const client = createSmtpClient(appPassword);
+  await client.send({
+    from: GMAIL_USER, to: SALES_EMAIL,
+    subject: `New Contact Form Submission – ${name}`,
+    html: renderTemplate(CONTACT_TEMPLATE, vars),
+  });
+  await client.close();
+
+  return new Response(JSON.stringify({ success: true }), {
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
+/* ── Generic Handler ── */
+
+async function handleGeneric(body: Record<string, string>, appPassword: string, _currentDate: string) {
+  const { to, subject, greeting, bodyContent, ctaLink, ctaText, note } = body;
+
+  if (!to || !subject || !bodyContent) {
+    return new Response(JSON.stringify({ error: "Missing required fields" }), {
+      status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
+  const vars = { subject, greeting: greeting || "", body: bodyContent, ctaLink: ctaLink || "https://flexzo.ai", ctaText: ctaText || "Visit Flexzo", note: note || "" };
+
+  const client = createSmtpClient(appPassword);
+  await client.send({
+    from: GMAIL_USER, to,
+    subject,
+    html: renderTemplate(GENERIC_TEMPLATE, vars),
+  });
+  await client.close();
+
+  return new Response(JSON.stringify({ success: true }), {
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
 
 /* ── Inline templates ── */
 
@@ -232,15 +305,16 @@ const LEAD_TEMPLATE = `<!DOCTYPE html>
       <div class="cta-row"><a href="mailto:{{email}}" class="cta-btn">Reply to Applicant</a></div>
     </div>
     <div class="footer">
-      <strong>Flexzo Jobs</strong> &nbsp;·&nbsp; {{jobTitle}} &nbsp;·&nbsp; {{current_date}}<br/>
+      <strong>Flexzo Jobs</strong> &nbsp;&middot;&nbsp; {{jobTitle}} &nbsp;&middot;&nbsp; {{current_date}}<br/>
       This is an automated notification from the Flexzo job application system.<br/>
-      <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> · <a href="https://flexzo.ai/uk/terms-and-conditions">Terms &amp; Conditions</a>
+      <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/uk/terms-and-conditions">Terms and Conditions</a>
     </div>
   </div>
 </div>
 </body>
 </html>`;
-const APPLICANT_TEMPLATE = `<!DOCTYPE html>
+
+const APPLICANT_UK_TEMPLATE = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
@@ -291,21 +365,21 @@ const APPLICANT_TEMPLATE = `<!DOCTYPE html>
           <path d="M8 12.5l3 3 5-5.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <p class="hero-title">Application Received!</p>
-      <p class="hero-sub">Thank you for applying through Flexzo. We'll be in touch soon.</p>
+      <p class="hero-title">Application Received</p>
+      <p class="hero-sub">Thank you for applying through Flexzo. We will be in touch soon.</p>
     </div>
     <div class="content">
       <p class="greeting">Hi {{firstName}},</p>
-      <p class="body-text">We're thrilled to have received your application. Our team will carefully review your CV and experience against the requirements for the role below. If your profile is a strong match, we'll be in contact to discuss next steps.</p>
+      <p class="body-text">We are pleased to confirm that we have received your application. Our team will carefully review your CV and experience against the requirements for the role below. If your profile is a strong match, we will be in contact to discuss next steps.</p>
       <div class="job-card">
         <p class="job-card-label">You applied for</p>
         <p class="job-card-title">{{jobTitle}}</p>
       </div>
-      <p class="body-text">In the meantime, here's what happens next:</p>
+      <p class="body-text">In the meantime, here is what happens next:</p>
       <div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-body"><p class="step-title">Application Review</p><p class="step-desc">Our clinical resourcing team will review your CV and match your experience to the role requirements, typically within 2 business days.</p></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body"><p class="step-title">Initial Contact</p><p class="step-desc">If shortlisted, a Flexzo consultant will reach out by phone or email to discuss the opportunity in detail and answer any questions you have.</p></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><p class="step-title">Compliance &amp; Credentialing</p><p class="step-desc">We'll guide you through our streamlined compliance process, including DBS checks, reference verification, and any role-specific requirements.</p></div></div>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><p class="step-title">Application Review</p><p class="step-desc">Our clinical resourcing team will review your CV and match your experience to the role requirements, typically within 2 working days.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><p class="step-title">Initial Contact</p><p class="step-desc">If shortlisted, a Flexzo consultant will reach out by phone or email to discuss the opportunity in detail and answer any questions you may have.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><p class="step-title">Compliance and Credentialling</p><p class="step-desc">We will guide you through our streamlined compliance process, including DBS checks, reference verification, and any role-specific requirements.</p></div></div>
       </div>
       <div class="divider"></div>
       <div class="cta-section">
@@ -317,8 +391,273 @@ const APPLICANT_TEMPLATE = `<!DOCTYPE html>
       <div class="footer-logo"><img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/></div>
       <p class="footer-text">
         &copy; 2026 Flexzo. All rights reserved.<br/>
-        Flexzo Ltd · <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> · <a href="https://flexzo.ai/uk/terms-and-conditions">Terms &amp; Conditions</a><br/>
+        Flexzo Ltd &middot; <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/uk/terms-and-conditions">Terms and Conditions</a><br/>
         This is an automated email sent from <a href="mailto:applications@flexzo.ai">applications@flexzo.ai</a>. Please do not reply.
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>`;
+
+const APPLICANT_US_TEMPLATE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Application Received – {{jobTitle}}</title>
+  <style>
+    body{margin:0;padding:0;background:#F4F5F7;font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;color:#0a2540;-webkit-font-smoothing:antialiased}
+    .wrap{width:100%;padding:32px 0 40px}
+    .card{width:92%;max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+    .header{background:#063165;padding:22px 32px}
+    .header img{height:26px;width:auto;display:block}
+    .hero{background:linear-gradient(135deg,#0075FF 0%,#063165 100%);padding:36px 32px 32px;text-align:center}
+    .check-circle{width:56px;height:56px;background:rgba(255,255,255,0.15);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px}
+    .hero-title{font-size:22px;font-weight:700;color:#fff;margin:0 0 6px;line-height:1.3}
+    .hero-sub{font-size:14px;color:rgba(255,255,255,0.75);margin:0;line-height:1.5}
+    .content{padding:28px 32px}
+    .greeting{font-size:16px;font-weight:600;color:#063165;margin:0 0 12px}
+    .body-text{font-size:14px;line-height:1.65;color:#374151;margin:0 0 16px}
+    .job-card{background:#F9FAFB;border:1px solid #E5E7EB;border-left:4px solid #0075FF;border-radius:8px;padding:14px 18px;margin:20px 0}
+    .job-card-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#9CA3AF;margin:0 0 4px}
+    .job-card-title{font-size:15px;font-weight:700;color:#063165;margin:0}
+    .steps{margin:24px 0}
+    .step{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+    .step-num{width:28px;height:28px;border-radius:50%;background:#EFF6FF;color:#0075FF;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .step-body{flex:1}
+    .step-title{font-size:13px;font-weight:700;color:#063165;margin:0 0 2px}
+    .step-desc{font-size:12px;color:#6B7280;line-height:1.5;margin:0}
+    .divider{height:1px;background:#E5E7EB;margin:22px 0}
+    .cta-section{text-align:center;margin-top:8px}
+    .cta-btn{display:inline-block;background:#0075FF;color:#fff;text-decoration:none;font-size:14px;font-weight:700;padding:13px 28px;border-radius:8px}
+    .cta-note{font-size:12px;color:#9CA3AF;margin-top:10px}
+    .footer{background:#063165;padding:20px 32px;text-align:center}
+    .footer-logo img{height:20px;opacity:0.5;margin-bottom:10px}
+    .footer-text{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6;margin:0}
+    .footer-text a{color:rgba(255,255,255,0.5);text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="header">
+      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+    </div>
+    <div class="hero">
+      <div class="check-circle">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
+          <path d="M8 12.5l3 3 5-5.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="hero-title">Application Received</p>
+      <p class="hero-sub">Thank you for applying through Flexzo. We will be in touch soon.</p>
+    </div>
+    <div class="content">
+      <p class="greeting">Hi {{firstName}},</p>
+      <p class="body-text">We are excited to confirm that we have received your application. Our team will carefully review your resume and experience against the requirements for the role below. If your profile is a strong match, we will reach out to discuss next steps.</p>
+      <div class="job-card">
+        <p class="job-card-label">You applied for</p>
+        <p class="job-card-title">{{jobTitle}}</p>
+      </div>
+      <p class="body-text">In the meantime, here is what happens next:</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><p class="step-title">Application Review</p><p class="step-desc">Our clinical staffing team will review your resume and match your experience to the role requirements, typically within 2 business days.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><p class="step-title">Initial Contact</p><p class="step-desc">If shortlisted, a Flexzo consultant will reach out by phone or email to discuss the opportunity in detail and answer any questions you may have.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><p class="step-title">Compliance and Credentialing</p><p class="step-desc">We will guide you through our streamlined compliance process, including background checks, reference verification, and any role-specific requirements.</p></div></div>
+      </div>
+      <div class="divider"></div>
+      <div class="cta-section">
+        <a href="{{jobLink}}" class="cta-btn">View Job Listing</a>
+        <p class="cta-note">Questions? Email us at <a href="mailto:applications@flexzo.ai" style="color:#0075FF;">applications@flexzo.ai</a></p>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-logo"><img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/></div>
+      <p class="footer-text">
+        &copy; 2026 Flexzo. All rights reserved.<br/>
+        Flexzo Inc &middot; <a href="https://flexzo.ai/us/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/us/terms-and-conditions">Terms and Conditions</a><br/>
+        This is an automated email sent from <a href="mailto:applications@flexzo.ai">applications@flexzo.ai</a>. Please do not reply.
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>`;
+
+const BOOK_DEMO_TEMPLATE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>New Demo Booking Request</title>
+  <style>
+    body{margin:0;padding:0;background:#F4F5F7;font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;color:#0a2540;-webkit-font-smoothing:antialiased}
+    .wrap{width:100%;padding:32px 0 40px}
+    .card{width:92%;max-width:680px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+    .header{background:#063165;padding:22px 32px}
+    .header img{height:28px;width:auto;display:block}
+    .alert-bar{background:#0075FF;padding:10px 32px;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+    .content{padding:28px 32px 24px}
+    .heading{font-size:20px;font-weight:700;color:#063165;margin:0 0 6px;line-height:1.3}
+    .sub{font-size:13px;color:#6B7280;margin:0 0 24px}
+    .divider{height:1px;background:#E5E7EB;margin:20px 0}
+    .section-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#9CA3AF;margin:0 0 10px}
+    .detail-grid{display:table;width:100%;border-collapse:collapse}
+    .detail-row{display:table-row}
+    .detail-key{display:table-cell;padding:7px 16px 7px 0;font-size:13px;color:#6B7280;white-space:nowrap;vertical-align:top;width:140px}
+    .detail-val{display:table-cell;padding:7px 0;font-size:13px;color:#063165;font-weight:600;vertical-align:top}
+    .cta-row{margin-top:24px}
+    .cta-btn{display:inline-block;background:#0075FF;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 22px;border-radius:7px}
+    .footer{background:#063165;padding:20px 32px;font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6}
+    .footer strong{color:rgba(255,255,255,0.7)}
+    .footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="header">
+      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+    </div>
+    <div class="alert-bar">New Demo Booking Request</div>
+    <div class="content">
+      <p class="heading">A new demo has been requested</p>
+      <p class="sub">Received on {{current_date}} — please review the details below and schedule the demo accordingly.</p>
+      <p class="section-label">Contact Details</p>
+      <div class="detail-grid">
+        <div class="detail-row"><span class="detail-key">Name</span><span class="detail-val">{{name}}</span></div>
+        <div class="detail-row"><span class="detail-key">Email</span><span class="detail-val"><a href="mailto:{{email}}" style="color:#0075FF;text-decoration:none;">{{email}}</a></span></div>
+        <div class="detail-row"><span class="detail-key">Telephone</span><span class="detail-val">{{telephone}}</span></div>
+        <div class="detail-row"><span class="detail-key">Organisation</span><span class="detail-val">{{organisation}}</span></div>
+      </div>
+      <div class="divider"></div>
+      <p class="section-label">Preferred Schedule</p>
+      <div class="detail-grid">
+        <div class="detail-row"><span class="detail-key">Preferred Date</span><span class="detail-val">{{date}}</span></div>
+        <div class="detail-row"><span class="detail-key">Preferred Time</span><span class="detail-val">{{time}}</span></div>
+      </div>
+      <div class="cta-row"><a href="mailto:{{email}}" class="cta-btn">Reply to Requester</a></div>
+    </div>
+    <div class="footer">
+      <strong>Flexzo Demo Requests</strong> &nbsp;&middot;&nbsp; {{current_date}}<br/>
+      This is an automated notification from the Flexzo demo booking system.<br/>
+      <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/uk/terms-and-conditions">Terms and Conditions</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>`;
+
+const CONTACT_TEMPLATE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>New Contact Form Submission</title>
+  <style>
+    body{margin:0;padding:0;background:#F4F5F7;font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;color:#0a2540;-webkit-font-smoothing:antialiased}
+    .wrap{width:100%;padding:32px 0 40px}
+    .card{width:92%;max-width:680px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+    .header{background:#063165;padding:22px 32px}
+    .header img{height:28px;width:auto;display:block}
+    .alert-bar{background:#0075FF;padding:10px 32px;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+    .content{padding:28px 32px 24px}
+    .heading{font-size:20px;font-weight:700;color:#063165;margin:0 0 6px;line-height:1.3}
+    .sub{font-size:13px;color:#6B7280;margin:0 0 24px}
+    .divider{height:1px;background:#E5E7EB;margin:20px 0}
+    .section-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#9CA3AF;margin:0 0 10px}
+    .detail-grid{display:table;width:100%;border-collapse:collapse}
+    .detail-row{display:table-row}
+    .detail-key{display:table-cell;padding:7px 16px 7px 0;font-size:13px;color:#6B7280;white-space:nowrap;vertical-align:top;width:140px}
+    .detail-val{display:table-cell;padding:7px 0;font-size:13px;color:#063165;font-weight:600;vertical-align:top}
+    .message-box{background:#F9FAFB;border:1px solid #E5E7EB;border-left:4px solid #0075FF;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:13px;color:#374151;line-height:1.65}
+    .cta-row{margin-top:24px}
+    .cta-btn{display:inline-block;background:#0075FF;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 22px;border-radius:7px}
+    .footer{background:#063165;padding:20px 32px;font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6}
+    .footer strong{color:rgba(255,255,255,0.7)}
+    .footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="header">
+      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+    </div>
+    <div class="alert-bar">New Contact Form Submission</div>
+    <div class="content">
+      <p class="heading">Someone has reached out via the contact form</p>
+      <p class="sub">Received on {{current_date}} — please review the details below and respond accordingly.</p>
+      <p class="section-label">Contact Details</p>
+      <div class="detail-grid">
+        <div class="detail-row"><span class="detail-key">Name</span><span class="detail-val">{{name}}</span></div>
+        <div class="detail-row"><span class="detail-key">Email</span><span class="detail-val"><a href="mailto:{{email}}" style="color:#0075FF;text-decoration:none;">{{email}}</a></span></div>
+        <div class="detail-row"><span class="detail-key">Phone</span><span class="detail-val">{{phone}}</span></div>
+        <div class="detail-row"><span class="detail-key">Company</span><span class="detail-val">{{company}}</span></div>
+      </div>
+      <div class="divider"></div>
+      <p class="section-label">Message</p>
+      <div class="message-box">{{message}}</div>
+      <div class="cta-row"><a href="mailto:{{email}}" class="cta-btn">Reply to Sender</a></div>
+    </div>
+    <div class="footer">
+      <strong>Flexzo Contact</strong> &nbsp;&middot;&nbsp; {{current_date}}<br/>
+      This is an automated notification from the Flexzo contact form.<br/>
+      <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/uk/terms-and-conditions">Terms and Conditions</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>`;
+
+const GENERIC_TEMPLATE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{{subject}}</title>
+  <style>
+    body{margin:0;padding:0;background:#F4F5F7;font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;color:#0a2540;-webkit-font-smoothing:antialiased}
+    .wrap{width:100%;padding:32px 0 40px}
+    .card{width:92%;max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+    .header{background:#063165;padding:22px 32px}
+    .header img{height:26px;width:auto;display:block}
+    .content{padding:28px 32px}
+    .greeting{font-size:16px;font-weight:600;color:#063165;margin:0 0 12px}
+    .body-text{font-size:14px;line-height:1.65;color:#374151;margin:0 0 16px}
+    .divider{height:1px;background:#E5E7EB;margin:22px 0}
+    .cta-section{text-align:center;margin-top:8px}
+    .cta-btn{display:inline-block;background:#0075FF;color:#fff;text-decoration:none;font-size:14px;font-weight:700;padding:13px 28px;border-radius:8px}
+    .cta-note{font-size:12px;color:#9CA3AF;margin-top:10px}
+    .footer{background:#063165;padding:20px 32px;text-align:center}
+    .footer-logo img{height:20px;opacity:0.5;margin-bottom:10px}
+    .footer-text{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6;margin:0}
+    .footer-text a{color:rgba(255,255,255,0.5);text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="header">
+      <img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/>
+    </div>
+    <div class="content">
+      <p class="greeting">{{greeting}}</p>
+      <div class="body-text">{{body}}</div>
+      <div class="divider"></div>
+      <div class="cta-section">
+        <a href="{{ctaLink}}" class="cta-btn">{{ctaText}}</a>
+        <p class="cta-note">{{note}}</p>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-logo"><img src="https://flexzo.ai/flexzo-logo-white.png" alt="Flexzo"/></div>
+      <p class="footer-text">
+        &copy; 2026 Flexzo. All rights reserved.<br/>
+        Flexzo Ltd &middot; <a href="https://flexzo.ai/uk/privacy-policy">Privacy Policy</a> &middot; <a href="https://flexzo.ai/uk/terms-and-conditions">Terms and Conditions</a><br/>
+        This is an automated email from <a href="mailto:applications@flexzo.ai">applications@flexzo.ai</a>. Please do not reply.
       </p>
     </div>
   </div>
