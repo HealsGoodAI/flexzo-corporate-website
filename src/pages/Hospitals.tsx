@@ -4,6 +4,7 @@ import hospitalsHero from "@/assets/hospitals-hero.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
+import RegionLink from "@/components/RegionLink";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -70,77 +71,50 @@ const Hospitals = () => {
               variants={fadeUp}
               className="mt-12 flex flex-wrap gap-4"
             >
-              <a
+              <RegionLink
                 href="/book-demo"
                 className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
               >
                 Book a Demo
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
+              </RegionLink>
+              <RegionLink
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:border-primary-foreground/40"
               >
                 Contact Sales
-              </a>
+              </RegionLink>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* ── OVERVIEW ── Instrument-style bold editorial */}
+      {/* ── OVERVIEW ── */}
       <section className="py-32 lg:py-44">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeUp}
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">
-                Overview
-              </p>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0075FF]">Overview</p>
               <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-              {t("AI-powered staffing for")}{" "}
+                {t("AI-powered staffing for")}{" "}
                 <span className="text-[#0075FF]">{t("NHS Trusts")}</span>
               </h2>
             </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              custom={1}
-              variants={fadeUp}
-              className="space-y-6 text-lg leading-relaxed text-muted-foreground"
-            >
-              <p>
-                {t("Flexzo.ai is an AI-powered NHS staffing platform designed to help NHS Trusts reduce agency reliance, improve workforce planning, and access compliant healthcare professionals faster.")}
-              </p>
-              <p>
-                {t("With NHS waiting lists under continued pressure, Trusts need smarter systems to manage staffing gaps, deliver additional clinics, and maintain safe services without escalating costs.")}
-              </p>
-              <p>
-                {t("Flexzo.ai supports NHS Trusts with a modern solution for insourcing, recruitment, and temporary workforce management.")}
-              </p>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} custom={1} variants={fadeUp} className="space-y-6 text-lg leading-relaxed text-muted-foreground">
+              <p>{t("Flexzo.ai is an AI-powered NHS staffing platform designed to help NHS Trusts reduce agency reliance, improve workforce planning, and access compliant healthcare professionals faster.")}</p>
+              <p>{t("With NHS waiting lists under continued pressure, Trusts need smarter systems to manage staffing gaps, deliver additional clinics, and maintain safe services without escalating costs.")}</p>
+              <p>{t("Flexzo.ai supports NHS Trusts with a modern solution for insourcing, recruitment, and temporary workforce management.")}</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── SOLVE STAFFING SHORTAGES ── Split with checklist */}
+      {/* ── SOLVE STAFFING SHORTAGES ── */}
       <section className="bg-foreground py-28 lg:py-36">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-2">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeUp}
-            >
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#0CE3FF]">
-                Workforce Challenges
-              </p>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#0CE3FF]">Workforce Challenges</p>
               <h2 className="text-3xl font-bold leading-tight tracking-tight text-primary-foreground md:text-5xl">
                 {t("Solve NHS Staffing Shortages")}{" "}
                 <span className="text-[#0075FF]">{t("Faster")}</span>
@@ -149,28 +123,11 @@ const Hospitals = () => {
                 {t("NHS Trusts are facing ongoing workforce challenges, including rota gaps, recruitment delays, and limited visibility of available staff.")}
               </p>
             </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              custom={1}
-              variants={fadeUp}
-            >
-              <p className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-primary-foreground/40">
-                {t("Flexzo.ai helps Trusts")}
-              </p>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} custom={1} variants={fadeUp}>
+              <p className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-primary-foreground/40">{t("Flexzo.ai helps Trusts")}</p>
               <ul className="space-y-5">
                 {trustBenefits.map((item, i) => (
-                  <motion.li
-                    key={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    custom={i + 2}
-                    variants={fadeUp}
-                    className="flex items-start gap-4"
-                  >
+                  <motion.li key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i + 2} variants={fadeUp} className="flex items-start gap-4">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#0075FF]" />
                     <span className="text-lg text-primary-foreground">{t(item)}</span>
                   </motion.li>
@@ -181,16 +138,10 @@ const Hospitals = () => {
         </div>
       </section>
 
-      {/* ── REDUCE AGENCY SPEND ── Bold editorial text */}
+      {/* ── REDUCE AGENCY SPEND ── */}
       <section className="py-32 lg:py-44">
         <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-            className="max-w-5xl"
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="max-w-5xl">
             <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-foreground md:text-6xl lg:text-7xl">
               {t("Reduce NHS")}{" "}
               <span className="text-[#0075FF]">{t("Agency Spend")}</span>
@@ -205,38 +156,20 @@ const Hospitals = () => {
         </div>
       </section>
 
-      {/* ── AI MATCHING & COMPLIANCE ── Two-column feature blocks */}
+      {/* ── AI MATCHING & COMPLIANCE ── */}
       <section className="border-t border-border bg-muted/30 py-28 lg:py-36">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-2">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeUp}
-              className="group rounded-2xl border border-border bg-background p-12 transition-all hover:border-[#0075FF]/20 hover:shadow-lg"
-            >
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="group rounded-2xl border border-border bg-background p-12 transition-all hover:border-[#0075FF]/20 hover:shadow-lg">
               <Brain className="mb-6 h-10 w-10 text-[#0075FF]" />
-              <h3 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
-                AI-Powered Shift Matching & Recruitment
-              </h3>
+              <h3 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">AI-Powered Shift Matching & Recruitment</h3>
               <p className="text-lg leading-relaxed text-muted-foreground">
                 {t("Flexzo.ai uses AI-driven technology to match the right professionals to the right shifts quickly. Our platform supports smarter recruitment workflows, improved candidate matching, and faster shift booking — helping NHS teams spend less time on admin and more time on patient care.")}
               </p>
             </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              custom={1}
-              variants={fadeUp}
-              className="group rounded-2xl border border-border bg-background p-12 transition-all hover:border-[#0075FF]/20 hover:shadow-lg"
-            >
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} custom={1} variants={fadeUp} className="group rounded-2xl border border-border bg-background p-12 transition-all hover:border-[#0075FF]/20 hover:shadow-lg">
               <Shield className="mb-6 h-10 w-10 text-[#0075FF]" />
-              <h3 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
-                Compliance-Ready Healthcare Professionals
-              </h3>
+              <h3 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">Compliance-Ready Healthcare Professionals</h3>
               <p className="text-lg leading-relaxed text-muted-foreground">
                 {t("Flexzo.ai supports safer staffing by providing access to vetted professionals with compliance monitoring and automated document tracking. Trusts benefit from improved governance, audit readiness, and reduced compliance workload.")}
               </p>
@@ -245,43 +178,23 @@ const Hospitals = () => {
         </div>
       </section>
 
-      {/* ── WHY TRUSTS CHOOSE ── Quote-style dark block */}
+      {/* ── WHY TRUSTS CHOOSE ── */}
       <section className="relative bg-foreground py-32 lg:py-40">
         <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: "radial-gradient(circle at 30% 50%, hsl(210 100% 45% / 0.3) 0%, transparent 60%)"
         }} />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-2">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeUp}
-            >
-            <h2 className="text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <h2 className="text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
                 {t("Why NHS Trusts choose")}{" "}
                 <span className="text-[#0075FF]">Flexzo.ai</span>
               </h2>
             </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              custom={1}
-              variants={fadeUp}
-            >
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} custom={1} variants={fadeUp}>
               <ul className="space-y-5">
                 {whyChoose.map((item, i) => (
-                  <motion.li
-                    key={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    custom={i + 2}
-                    variants={fadeUp}
-                    className="flex items-start gap-4"
-                  >
+                  <motion.li key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i + 2} variants={fadeUp} className="flex items-start gap-4">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#0075FF]" />
                     <span className="text-lg text-primary-foreground">{t(item)}</span>
                   </motion.li>
@@ -295,12 +208,7 @@ const Hospitals = () => {
       {/* ── BOOK A DEMO CTA ── */}
       <section className="border-t border-border bg-muted/30 py-28 lg:py-36">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <Sparkles className="mx-auto mb-6 h-10 w-10 text-[#0075FF]" />
             <h2 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
               Book a <span className="text-[#0075FF]">Demo</span>
@@ -309,19 +217,19 @@ const Hospitals = () => {
               {t("Looking for a smarter way to manage NHS staffing and workforce planning? Book a demo today and discover how Flexzo.ai can help your Trust reduce agency spend, improve shift coverage, and deliver services more efficiently.")}
             </p>
             <div className="mt-12 flex flex-wrap justify-center gap-4">
-              <a
+              <RegionLink
                 href="/book-demo"
                 className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
               >
                 Book a Demo
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
+              </RegionLink>
+              <RegionLink
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-md border border-border px-8 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
                 Contact Sales
-              </a>
+              </RegionLink>
             </div>
           </motion.div>
         </div>

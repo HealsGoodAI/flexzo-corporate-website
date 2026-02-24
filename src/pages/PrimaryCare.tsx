@@ -5,6 +5,7 @@ import primaryCarePractice from "@/assets/primary-care-practice.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
+import RegionLink from "@/components/RegionLink";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -65,7 +66,7 @@ const PrimaryCare = () => {
     <div className="min-h-screen bg-background">
       <Navbar transparent />
 
-      {/* ── HERO ── Instrument-inspired: full-bleed editorial text over muted image */}
+      {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-foreground">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -99,25 +100,25 @@ const PrimaryCare = () => {
               variants={fadeUp}
               className="mt-12 flex flex-wrap gap-4"
             >
-              <a
+              <RegionLink
                 href="/book-demo"
                 className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
               >
                 Book a Demo
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
+              </RegionLink>
+              <RegionLink
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:border-primary-foreground/40"
               >
                 Contact Sales
-              </a>
+              </RegionLink>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* ── ZERO FEES STATEMENT ── Instrument-style bold editorial text block */}
+      {/* ── ZERO FEES STATEMENT ── */}
       <section className="py-32 lg:py-44">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
@@ -137,7 +138,7 @@ const PrimaryCare = () => {
         </div>
       </section>
 
-      {/* ── BUILT FOR PRIMARY CARE ── Split editorial + image */}
+      {/* ── BUILT FOR PRIMARY CARE ── */}
       <section className="pb-32 lg:pb-44">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-16 lg:grid-cols-2">
@@ -171,7 +172,7 @@ const PrimaryCare = () => {
         </div>
       </section>
 
-      {/* ── FEATURES ── Dark section with feature grid */}
+      {/* ── FEATURES ── */}
       <section className="bg-foreground py-28 lg:py-36">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
@@ -184,7 +185,7 @@ const PrimaryCare = () => {
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0CE3FF]">
               Workforce Management, Simplified
             </p>
-            <h2 className="mt-4 text-4xl font-bold tracking-tight text-primary-foreground md:text-5xl">
+            <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
               Flexzo AI puts primary care teams{" "}
               <span className="text-[#0075FF]">in control</span>
             </h2>
@@ -214,7 +215,7 @@ const PrimaryCare = () => {
         </div>
       </section>
 
-      {/* ── NATIONAL CLINICAL BANK ── Instrument-style large editorial */}
+      {/* ── NATIONAL CLINICAL BANK ── */}
       <section className="py-32 lg:py-44">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">
@@ -253,7 +254,7 @@ const PrimaryCare = () => {
         </div>
       </section>
 
-      {/* ── DITCH THE AGENCY ── Bold quote-style block */}
+      {/* ── DITCH THE AGENCY ── */}
       <section className="relative bg-foreground py-32 lg:py-40">
         <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: "radial-gradient(circle at 30% 50%, hsl(210 100% 45% / 0.3) 0%, transparent 60%)"
@@ -275,19 +276,19 @@ const PrimaryCare = () => {
               staffing, compliance, and re-engagement of trusted clinicians.
             </p>
             <div className="mt-12">
-              <a
+              <RegionLink
                 href="/book-demo"
                 className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
               >
                 Book a Demo
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
+              </RegionLink>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ── PILOT PROGRAMME ── Light section with checklist */}
+      {/* ── PILOT PROGRAMME ── */}
       <section className="py-32 lg:py-44">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-2">
@@ -310,13 +311,13 @@ const PrimaryCare = () => {
                 through a low-risk, fully subsidised pilot.
               </p>
               <div className="mt-10">
-                <a
+                <RegionLink
                   href="/book-demo"
                   className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
                 >
                   Book a Demo
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </a>
+                </RegionLink>
               </div>
             </motion.div>
 
@@ -386,19 +387,19 @@ const PrimaryCare = () => {
             </ul>
 
             <div className="mt-12 flex flex-wrap justify-center gap-4">
-              <a
+              <RegionLink
                 href="/book-demo"
                 className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
               >
                 Book a Demo
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
+              </RegionLink>
+              <RegionLink
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-md border border-border px-8 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
                 Contact Sales
-              </a>
+              </RegionLink>
             </div>
           </motion.div>
         </div>

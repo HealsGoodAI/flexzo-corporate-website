@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
+import RegionLink from "@/components/RegionLink";
 import { Users, CalendarCheck, ShieldCheck, DollarSign, Zap, MapPin, BarChart3, Brain, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const fadeUp = {
@@ -44,8 +45,8 @@ const PlatformFeatures = () => {
                 {t("Flexzo AI is designed to revolutionise healthcare staffing, providing candidates with flexibility and control over their careers while offering NHS Trusts a seamless, cost-effective solution for workforce management.")}
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <a href="/book-demo" className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]">{t("Book a Demo")} <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></a>
-                <a href="/contact" className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:border-primary-foreground/40">{t("Contact Sales")}</a>
+                <RegionLink href="/book-demo" className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]">{t("Book a Demo")} <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></RegionLink>
+                <RegionLink href="/contact" className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:border-primary-foreground/40">{t("Contact Sales")}</RegionLink>
               </div>
             </motion.div>
             <motion.div initial="hidden" animate="visible" custom={2} variants={fadeUp} className="hidden lg:flex items-center justify-center">
@@ -95,7 +96,7 @@ const PlatformFeatures = () => {
               ))}
             </div>
             <div className="mt-10">
-              <a href="/book-demo" className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-10 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]">{t("Book a Demo")} <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></a>
+              <RegionLink href="/book-demo" className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-10 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]">{t("Book a Demo")} <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></RegionLink>
               <p className="mt-4 text-sm text-primary-foreground/30">* {t("No credit card required")}</p>
             </div>
           </motion.div>

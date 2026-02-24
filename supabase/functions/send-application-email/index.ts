@@ -130,12 +130,12 @@ async function handleApplication(body: Record<string, string>, appPassword: stri
   };
   const leadTemplateVars = { ...templateVars, jobLink: addUtmParams(safeJobLink, "lead") };
 
-  const attachments: Array<{ filename: string; content: Uint8Array; contentType: string }> = [];
+  const attachments: Array<{ filename: string; content: Uint8Array; contentType: string; encoding: string }> = [];
   if (cvBase64 && cvFileName) {
     const binaryStr = atob(cvBase64);
     const bytes = new Uint8Array(binaryStr.length);
     for (let i = 0; i < binaryStr.length; i++) bytes[i] = binaryStr.charCodeAt(i);
-    attachments.push({ filename: cvFileName, content: bytes, contentType: "application/octet-stream" });
+    attachments.push({ filename: cvFileName, content: bytes, contentType: "application/octet-stream", encoding: "binary" });
   }
 
   const applicantTemplate = (region === "us") ? APPLICANT_US_TEMPLATE : APPLICANT_UK_TEMPLATE;
