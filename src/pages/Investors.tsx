@@ -3,6 +3,7 @@ import { ArrowRight, ExternalLink, TrendingUp, Shield, Globe } from "lucide-reac
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
+import RegionLink from "@/components/RegionLink";
 
 const highlights = [
   { label: "Seed Funding Raised", value: "£4m", description: "Enabling NHS rollout and USA explorations" },
@@ -104,9 +105,9 @@ const Investors = () => {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="mb-4 text-3xl font-bold text-primary-foreground md:text-4xl">{t("One platform, endless staffing solutions")}</h2>
           <p className="mb-8 text-primary-foreground/70">{t("Join the UK's largest collaborative staff bank for healthcare providers. With Flexzo AI, you'll have access to locum, short term cover and permanent staff recruitment.")}</p>
-          <a href="/book-demo" className="inline-flex items-center gap-2 rounded-lg bg-[#0075FF] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#0060d0]">
+          <RegionLink href="/book-demo" className="inline-flex items-center gap-2 rounded-lg bg-[#0075FF] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#0060d0]">
             {t("Book a Demo")} <ArrowRight size={16} />
-          </a>
+          </RegionLink>
         </div>
       </section>
       <Footer />

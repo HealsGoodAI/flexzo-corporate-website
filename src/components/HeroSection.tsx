@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AgentNetwork from "./AgentNetwork";
 import { useRegionText } from "@/lib/regionalize";
+import RegionLink from "./RegionLink";
 
 const sectors_uk = ["NHS Trusts", "Primary Care", "Community Pharmacy", "Mental Health"];
 
@@ -66,12 +67,12 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
-          <a
+          <RegionLink
             href="/book-demo"
             className="rounded-md bg-primary px-8 py-3.5 font-display text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white"
           >
             {t("Book a Demo")}
-          </a>
+          </RegionLink>
           <a
             href="#features"
             className="rounded-md border border-border bg-background/80 backdrop-blur-sm px-8 py-3.5 font-display text-sm font-semibold text-foreground transition-all hover:bg-[#0075FF] hover:text-white hover:border-[#0075FF]"

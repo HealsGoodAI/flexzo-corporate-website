@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
+import RegionLink from "@/components/RegionLink";
 import {
   ShieldCheck,
   Scale,
@@ -130,19 +131,19 @@ const CollaborativeStaffBank = () => {
                 {t("A governance-first platform that enables partner healthcare organisations to share qualified clinical staff across sites and systems — preserving credentialing, pay rules and local governance.")}
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <a
+                <RegionLink
                   href="/book-demo"
                   className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]"
                 >
                   {t("Book a Demo")}
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </a>
-                <a
+                </RegionLink>
+                <RegionLink
                   href="/contact"
                   className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:border-primary-foreground/40"
                 >
                   {t("Contact Sales")}
-                </a>
+                </RegionLink>
               </div>
             </motion.div>
 
@@ -407,19 +408,19 @@ const CollaborativeStaffBank = () => {
               {t("Book a demo and discover how Flexzo Collaborative Staff Bank can transform fragmented local pools into governed regional resilience.")}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a
+              <RegionLink
                 href="/book-demo"
                 className="group inline-flex items-center gap-2 rounded-md bg-primary px-10 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-[#0075FF] hover:text-white"
               >
                 {t("Book a Demo")}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
+              </RegionLink>
+              <RegionLink
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-md border border-border px-10 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
                 {t("Contact Us")}
-              </a>
+              </RegionLink>
             </div>
           </motion.div>
         </div>
