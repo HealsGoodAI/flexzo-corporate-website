@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import octopusTeam from "@/assets/octopus-ventures-team.jpg";
 import { useRegionText } from "@/lib/regionalize";
+import octopusLogo from "@/assets/octopus-ventures-logo.png";
 import RegionLink from "@/components/RegionLink";
 
 const highlights = [
@@ -75,6 +76,7 @@ const Investors = () => {
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="order-2 overflow-hidden rounded-2xl border border-border bg-card lg:order-1">
               <img src={octopusTeam} alt="Octopus Ventures team" className="h-56 w-full object-cover" />
               <div className="p-10">
+                <img src={octopusLogo} alt="Octopus Ventures" className="mb-5 h-8 object-contain" />
                 <h3 className="mb-3 text-xl font-bold text-foreground">{t("About Octopus Ventures")}</h3>
                 <p className="leading-relaxed text-muted-foreground">{t("Octopus Ventures, part of Octopus Investments, is one of the largest and most active venture capital investors in Europe. Their mission is simple — to invest in the people, ideas and industries that will change the world. They focus on building a more sustainable planet, empowering people and revitalising healthcare.")}</p>
               </div>
