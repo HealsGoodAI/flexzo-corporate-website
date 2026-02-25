@@ -8,6 +8,7 @@ import primaryCareHero from "@/assets/primary-care.jpg";
 import privateHealthcareHero from "@/assets/private-healthcare.jpg";
 import pharmacyHero from "@/assets/community-pharmacy.jpg";
 import { useRegionText } from "@/lib/regionalize";
+import ScrollReveal from "./ScrollReveal";
 
 const sectors = [
   {
@@ -66,20 +67,15 @@ const SectorsOverview = () => {
   return (
     <section className="bg-foreground py-28">
       <div className="mx-auto max-w-7xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-14 flex items-end justify-between"
-        >
-          <div>
+        <div className="mb-14 flex items-end justify-between">
+          <ScrollReveal animation="fade-right">
             <span className="mb-3 inline-block text-xs font-medium uppercase tracking-widest text-background/40">
               {t("Sectors We Serve")}
             </span>
             <h2 className="max-w-xl font-display text-3xl font-bold text-background md:text-4xl">
               {t("Built for every corner of healthcare")}
             </h2>
-          </div>
+          </ScrollReveal>
           <div className="hidden items-center gap-2 md:flex">
             <button
               onClick={prev}
@@ -96,7 +92,7 @@ const SectorsOverview = () => {
               <ChevronRight size={20} />
             </button>
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {visibleSectors.map((sector, i) => (
