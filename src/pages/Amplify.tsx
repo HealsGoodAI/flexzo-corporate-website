@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
 import RegionLink from "@/components/RegionLink";
+import amplifyPartners from "@/assets/amplify-partners.png";
 import {
   Megaphone,
   Radio,
@@ -100,6 +101,9 @@ const Amplify = () => {
               <p>{t("New candidates flow directly back into your CRM, growing your database and improving future matching accuracy. Integrated, auditable and governed for healthcare.")}</p>
             </motion.div>
           </div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} custom={2} variants={fadeUp} className="mt-16">
+            <img src={amplifyPartners} alt="Amplify partner platforms including Google Ads, Meta, LinkedIn Ads, TikTok Ads, Monster, ZipRecruiter, Reed, Adzuna, Joblift, Heyjobs and JobGet" className="w-full" />
+          </motion.div>
         </div>
       </section>
 
