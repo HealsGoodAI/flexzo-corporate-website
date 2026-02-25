@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import employeeAppMockup from "@/assets/employee-app-mockup.jpg";
 import employeeAppStep1 from "@/assets/employee-app-step-1.jpg";
+import employeeAppStep2 from "@/assets/employee-app-step-2.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -288,7 +289,7 @@ const EmployeeApp = () => {
                 title: "Accept & Book",
                 text: "One-tap booking with conditional offers and provisional acceptance flows that respect local operational rules. Clear pay and entitlement information before you commit.",
                 icon: Smartphone,
-                img: undefined as string | undefined,
+                img: employeeAppStep2,
               },
               {
                 step: "03",
