@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, TrendingUp, Shield, Globe } from "lucide-react";
+import { ArrowRight, ExternalLink, TrendingUp, Shield } from "lucide-react";
+import awsLogo from "@/assets/aws-logo.png";
+import googleCloudLogo from "@/assets/google-cloud-logo.webp";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
@@ -94,8 +96,8 @@ const Investors = () => {
             <h2 className="mb-6 text-3xl font-bold text-foreground md:text-4xl">{t("Supported by AWS & Google Cloud")}</h2>
             <p className="mx-auto mb-10 max-w-3xl leading-relaxed text-muted-foreground">{t("Flexzo AI leverages the robust infrastructure of Google Cloud and Amazon Web Services (AWS) to ensure our platform is secure, scalable, and reliable. These partnerships enable us to process complex data efficiently, provide real-time analytics, and deliver seamless experiences to our users.")}</p>
             <div className="flex items-center justify-center gap-12">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-border bg-card"><Globe className="text-[#0075FF]" size={32} /></div>
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-border bg-card"><Shield className="text-[#0CE3FF]" size={32} /></div>
+              <div className="flex h-20 items-center justify-center rounded-xl border border-border bg-card px-6"><img src={awsLogo} alt="AWS" className="h-10 object-contain" /></div>
+              <div className="flex h-20 items-center justify-center rounded-xl border border-border bg-card px-6"><img src={googleCloudLogo} alt="Google Cloud" className="h-10 object-contain" /></div>
             </div>
           </motion.div>
         </div>
