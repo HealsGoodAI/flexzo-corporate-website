@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -33,7 +34,7 @@ const ChatIcon = () => (
 );
 
 const TestimonialCard = ({ quote, name, role }: { quote: string; name: string; role: string }) => (
-  <div className="flex w-[calc(25%-15px)] min-w-[260px] shrink-0 flex-col gap-4 rounded-xl border border-border bg-background p-6">
+  <div className="flex h-full flex-col gap-4 rounded-xl border border-border bg-background p-6">
     <ChatIcon />
     <p className="text-lg leading-relaxed text-foreground">"{quote}"</p>
     <div className="mt-auto">
@@ -44,39 +45,19 @@ const TestimonialCard = ({ quote, name, role }: { quote: string; name: string; r
 );
 
 const TestimonialsSection = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  // Each "page" shows 2 cards; total pages = ceil(testimonials.length / 2)
+  const totalPages = Math.ceil(testimonials.length / 2);
+  const [page, setPage] = useState(0);
+
+  const next = useCallback(() => setPage((p) => (p + 1) % totalPages), [totalPages]);
+  const prev = useCallback(() => setPage((p) => (p - 1 + totalPages) % totalPages), [totalPages]);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
+    const id = setInterval(next, 8000);
+    return () => clearInterval(id);
+  }, [next]);
 
-    let animationId: number;
-    let scrollPos = 0;
-    const speed = 0.5;
-
-    const animate = () => {
-      scrollPos += speed;
-      if (scrollPos >= el.scrollWidth / 2) {
-        scrollPos = 0;
-      }
-      el.scrollLeft = scrollPos;
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-
-    const pause = () => cancelAnimationFrame(animationId);
-    const resume = () => { animationId = requestAnimationFrame(animate); };
-
-    el.addEventListener("mouseenter", pause);
-    el.addEventListener("mouseleave", resume);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      el.removeEventListener("mouseenter", pause);
-      el.removeEventListener("mouseleave", resume);
-    };
-  }, []);
+  const pair = testimonials.slice(page * 2, page * 2 + 2);
 
   return (
     <section className="py-20">
@@ -90,15 +71,41 @@ const TestimonialsSection = () => {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
-        <div
-          ref={scrollRef}
-          className="flex gap-5 overflow-hidden"
-      >
-        {[...testimonials, ...testimonials].map((t, i) => (
-          <TestimonialCard key={i} {...t} />
-        ))}
+        {/* Arrows */}
+        <button
+          onClick={prev}
+          className="absolute -left-1 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-background p-2 shadow-sm transition-colors hover:bg-muted md:left-0"
+          aria-label="Previous testimonials"
+        >
+          <ChevronLeft size={20} className="text-foreground" />
+        </button>
+        <button
+          onClick={next}
+          className="absolute -right-1 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-background p-2 shadow-sm transition-colors hover:bg-muted md:right-0"
+          aria-label="Next testimonials"
+        >
+          <ChevronRight size={20} className="text-foreground" />
+        </button>
+
+        {/* Cards */}
+        <div className="grid gap-5 px-8 md:grid-cols-2 transition-opacity duration-500" key={page}>
+          {pair.map((t) => (
+            <TestimonialCard key={t.name} {...t} />
+          ))}
+        </div>
+
+        {/* Dots */}
+        <div className="mt-6 flex justify-center gap-2">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === page ? "w-6 bg-[#0075FF]" : "w-2 bg-border"
+              }`}
+              aria-label={`Go to page ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
