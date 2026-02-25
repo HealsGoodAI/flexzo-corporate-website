@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import octopusTeam from "@/assets/octopus-ventures-team.jpg";
 import { useRegionText } from "@/lib/regionalize";
 import octopusLogo from "@/assets/octopus-ventures-logo.png";
+import fuelLogo from "@/assets/fuel-ventures-logo.png";
 import RegionLink from "@/components/RegionLink";
 
 const highlights = [
@@ -53,6 +54,7 @@ const Investors = () => {
         <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <img src={fuelLogo} alt="Fuel Ventures" className="mb-5 h-16 object-contain" />
               <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-[#0075FF]">{t("Fueling the growth of ambitious tech companies")}</p>
               <h2 className="mb-6 text-3xl font-bold text-foreground">{t("Proudly Backed by Fuel Ventures")}</h2>
               <p className="mb-6 leading-relaxed text-muted-foreground">{t("Flexzo AI is proud to be backed by Fuel Ventures, a leading UK early-stage venture capital firm known for supporting high-growth technology companies. In March 2025, Fuel Ventures led a £1.5 million funding round for our parent company, Healsgood, to accelerate the adoption of Flexzo AI across NHS Trusts nationwide.")}</p>
