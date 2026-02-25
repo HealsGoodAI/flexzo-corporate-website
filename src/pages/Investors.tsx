@@ -8,6 +8,7 @@ import octopusTeam from "@/assets/octopus-ventures-team.jpg";
 import { useRegionText } from "@/lib/regionalize";
 import octopusLogo from "@/assets/octopus-ventures-logo.png";
 import fuelLogo from "@/assets/fuel-ventures-logo.png";
+import fuelTeam from "@/assets/fuel-ventures-team.jpg";
 import RegionLink from "@/components/RegionLink";
 
 const highlights = [
@@ -63,10 +64,12 @@ const Investors = () => {
                 {t("Read more about Fuel Ventures")} <ExternalLink size={14} />
               </a>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-2xl border border-border bg-card p-10">
-              <TrendingUp className="mb-4 text-[#0075FF]" size={40} />
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="overflow-hidden rounded-2xl border border-border bg-card">
+              <img src={fuelTeam} alt="Fuel Ventures team" className="h-56 w-full object-cover" />
+              <div className="p-10">
               <h3 className="mb-3 text-xl font-bold text-foreground">{t("About Fuel Ventures")}</h3>
               <p className="leading-relaxed text-muted-foreground">{t("Fuel Ventures specialises in investing in early-stage technology businesses with high growth potential. Their portfolio includes some of the UK's most successful startups, and they provide not only capital but also strategic support to help companies scale. Fuel Ventures' investment in Healsgood underscores their confidence in our vision to transform NHS staffing through innovative AI solutions.")}</p>
+              </div>
             </motion.div>
           </div>
         </div>
