@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import AiSourcing from "./pages/AiSourcing";
 import InternalStaffBank from "./pages/InternalStaffBank";
 import CollaborativeStaffBank from "./pages/CollaborativeStaffBank";
+import NationalStaffBank from "./pages/NationalStaffBank";
 import ClinicalServicesPlanner from "./pages/ClinicalServicesPlanner";
 import Amplify from "./pages/Amplify";
 import EmployeeApp from "./pages/EmployeeApp";
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="products/ai-sourcing" element={<AiSourcing />} />
             <Route path="products/internal-staff-bank" element={<InternalStaffBank />} />
             <Route path="products/collaborative-staff-bank" element={<CollaborativeStaffBank />} />
+            <Route path="products/national-staff-bank" element={<NationalStaffBank />} />
             <Route path="products/clinical-services-planner" element={<ClinicalServicesPlanner />} />
             <Route path="products/amplify" element={<Amplify />} />
             <Route path="products/employee-app" element={<EmployeeApp />} />
