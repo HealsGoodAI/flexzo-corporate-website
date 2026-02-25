@@ -4,6 +4,10 @@ import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
 import RegionLink from "@/components/RegionLink";
 import amplifyPartners from "@/assets/amplify-partners.png";
+import amplifyStep1 from "@/assets/amplify-step-1.jpg";
+import amplifyStep2 from "@/assets/amplify-step-2.jpg";
+import amplifyStep3 from "@/assets/amplify-step-3.jpg";
+import amplifyStep4 from "@/assets/amplify-step-4.jpg";
 import {
   Megaphone,
   Radio,
@@ -133,10 +137,10 @@ const Amplify = () => {
           </motion.div>
           <div className="space-y-24">
             {[
-              { step: "01", title: "Identify Gaps", text: "The platform automatically identifies jobs with no matching candidates in your existing database, flagging roles that need external sourcing.", icon: Eye },
-              { step: "02", title: "Launch Campaigns", text: "Roles are sent to the advertising engine for external promotion. Campaigns are optimised for reach and cost-per-application across trusted job engines, aggregators and media channels.", icon: Megaphone },
-              { step: "03", title: "Attract & Capture", text: "New candidates flow directly back into your CRM, growing your database and improving future matching accuracy. Omnichannel nudges keep candidates engaged.", icon: Users },
-              { step: "04", title: "Measure & Optimise", text: "Campaign attribution, uplift measurement and incentive ROI calculators tie engagement spend to agency replacement and cost savings. Continuous optimisation improves results over time.", icon: BarChart3 },
+              { step: "01", title: "Identify Gaps", text: "The platform automatically identifies jobs with no matching candidates in your existing database, flagging roles that need external sourcing.", img: amplifyStep1 },
+              { step: "02", title: "Launch Campaigns", text: "Roles are sent to the advertising engine for external promotion. Campaigns are optimised for reach and cost-per-application across trusted job engines, aggregators and media channels.", img: amplifyStep2 },
+              { step: "03", title: "Attract & Capture", text: "New candidates flow directly back into your CRM, growing your database and improving future matching accuracy. Omnichannel nudges keep candidates engaged.", img: amplifyStep3 },
+              { step: "04", title: "Measure & Optimise", text: "Campaign attribution, uplift measurement and incentive ROI calculators tie engagement spend to agency replacement and cost savings. Continuous optimisation improves results over time.", img: amplifyStep4 },
             ].map((item, i) => (
               <motion.div key={item.step} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} custom={0} variants={fadeUp} className={`grid items-center gap-12 lg:grid-cols-2 ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}>
                 <div className={i % 2 === 1 ? "lg:order-2" : ""}>
@@ -144,10 +148,8 @@ const Amplify = () => {
                   <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{t(item.title)}</h3>
                   <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
-                <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="flex h-full items-center justify-center">
-                    <div className="h-24 w-24 rounded-2xl bg-[#0075FF]/10 flex items-center justify-center"><item.icon className="h-12 w-12 text-[#0075FF]" /></div>
-                  </div>
+                <div className={`aspect-[4/3] overflow-hidden rounded-2xl ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <img src={item.img} alt={item.title} className="h-full w-full object-cover" />
                 </div>
               </motion.div>
             ))}
