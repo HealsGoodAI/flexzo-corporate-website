@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 import { sendBookDemoEmail } from "@/lib/emailService";
+import bookDemoHero from "@/assets/book-demo-hero.jpg";
 
 const BookDemo = () => {
   const navigate = useNavigate();
@@ -68,7 +69,9 @@ const BookDemo = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="hidden lg:block">
-              <div className="rounded-2xl border border-border bg-muted/50 p-10">
+              <div className="overflow-hidden rounded-2xl border border-border bg-muted/50">
+                <img src={bookDemoHero} alt="Healthcare professional" className="h-56 w-full object-cover" />
+                <div className="p-10">
                 <Globe className="mb-6 text-[#0075FF]" size={48} />
                 <h2 className="mb-4 text-2xl font-bold text-foreground">{t("Access a world of healthcare talent")}</h2>
                 <p className="mb-8 leading-relaxed text-muted-foreground">
@@ -86,6 +89,7 @@ const BookDemo = () => {
                       <span className="text-sm text-muted-foreground">{t(item)}</span>
                     </div>
                   ))}
+                </div>
                 </div>
               </div>
             </motion.div>
