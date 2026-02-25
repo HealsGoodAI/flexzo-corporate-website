@@ -20,6 +20,7 @@ import employeeAppMockup from "@/assets/employee-app-mockup.jpg";
 import employeeAppStep1 from "@/assets/employee-app-step-1.jpg";
 import employeeAppStep2 from "@/assets/employee-app-step-2.png";
 import employeeAppStep3 from "@/assets/employee-app-step-3.png";
+import employeeAppStep4 from "@/assets/employee-app-step-4.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -303,7 +304,7 @@ const EmployeeApp = () => {
                 step: "04",
                 title: "Work & Get Paid",
                 text: "Transparent pay rates, travel allowances and expected earnings. Seamless integration with payroll for accurate, timely reconciliation after every shift.",
-                img: undefined as string | undefined,
+                img: employeeAppStep4,
                 icon: Zap,
               },
             ].map((item, i) => (
