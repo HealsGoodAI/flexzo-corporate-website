@@ -42,8 +42,8 @@ const Investors = () => {
         </motion.div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {highlights.map((item, i) => (
-            <motion.div key={item.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-border bg-card p-8 text-center">
-              {item.logo && <img src={item.logo} alt={item.value} className="mx-auto mb-4 h-10 object-contain" />}
+            <motion.div key={item.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-border bg-white p-8 text-center">
+              {item.logo && <img src={item.logo} alt={item.value} className={`mx-auto mb-4 object-contain ${item.value === "Octopus Ventures" ? "h-20" : "h-10"}`} />}
               <p className="mb-2 text-4xl font-bold text-[#0075FF]">{item.value}</p>
               <p className="mb-1 text-sm font-semibold text-foreground">{t(item.label)}</p>
               <p className="text-sm text-muted-foreground">{t(item.description)}</p>
