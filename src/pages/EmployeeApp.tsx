@@ -19,6 +19,7 @@ import {
 import employeeAppMockup from "@/assets/employee-app-mockup.jpg";
 import employeeAppStep1 from "@/assets/employee-app-step-1.jpg";
 import employeeAppStep2 from "@/assets/employee-app-step-2.png";
+import employeeAppStep3 from "@/assets/employee-app-step-3.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -296,7 +297,7 @@ const EmployeeApp = () => {
                 title: "Verify & Comply",
                 text: "In-app credential checks, mandatory training alerts and secure document upload ensure you're authorised before deployment. Reduces late-stage rejection.",
                 icon: ShieldCheck,
-                img: undefined as string | undefined,
+                img: employeeAppStep3,
               },
               {
                 step: "04",
