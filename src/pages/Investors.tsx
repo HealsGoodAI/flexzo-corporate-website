@@ -25,10 +25,10 @@ const Investors = () => {
       <Navbar transparent />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[#0a2540] pt-32 pb-20">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-6 text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#0CE3FF]">{t("Backed by Leading Investors")}</p>
           <h1 className="mb-6 text-4xl font-bold text-primary-foreground md:text-5xl lg:text-6xl">{t("Investors")}</h1>
-          <p className="max-w-2xl text-lg leading-relaxed text-primary-foreground/70">
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-primary-foreground/70">
             {t("Flexzo, developed by Healsgood, is proud to be backed by prominent investors who share our vision of transforming NHS service delivery through cutting-edge AI technology. In 2025, Healsgood successfully secured £1.5 million in funding, led by leading venture capital firm Fuel Ventures.")}
           </p>
         </div>
