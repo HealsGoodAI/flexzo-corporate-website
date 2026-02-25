@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import collaborativeBankMockup from "@/assets/collaborative-bank-mockup.png";
+import nsbStep1 from "@/assets/nsb-step-1.jpg";
+import nsbStep2 from "@/assets/nsb-step-2.jpg";
+import nsbStep3 from "@/assets/nsb-step-3.jpg";
+import nsbStep4 from "@/assets/nsb-step-4.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
@@ -303,24 +307,28 @@ const NationalStaffBank = () => {
                 title: "Govern & Configure",
                 text: "National governance workshops define rulesets, pay harmonisation and escalation policies. Trust agreements are encoded into the platform with pilot validation across initial partner organisations.",
                 icon: Settings,
+                img: nsbStep1,
               },
               {
                 step: "02",
                 title: "Connect & Integrate",
                 text: "Integration with local rostering, payroll and HR systems across all partner organisations creates a unified national supply picture, letting planners locate available clinicians and initiate transfers with minimal manual work.",
                 icon: Network,
+                img: nsbStep2,
               },
               {
                 step: "03",
                 title: "Mobilise & Deploy",
                 text: "Targeted national mobilisation campaigns and incentive mechanics activate clinicians across regions when demand spikes, improving responsiveness without undermining local staff pools or creating inequitable competition.",
                 icon: Handshake,
+                img: nsbStep3,
               },
               {
                 step: "04",
                 title: "Measure & Refine",
                 text: "National dashboards show utilisation heatmaps, cross-trust fill rates, credential gaps and audit trails. Continuous measurement refines priority logic, mobilisation strategies and clinician incentives at scale.",
                 icon: BarChart3,
+                img: nsbStep4,
               },
             ].map((item, i) => (
               <motion.div
@@ -340,11 +348,11 @@ const NationalStaffBank = () => {
                   <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
                 <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="flex h-full items-center justify-center">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-[#0075FF]/10">
-                      <item.icon className="h-12 w-12 text-[#0075FF]" />
-                    </div>
-                  </div>
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
               </motion.div>
             ))}
