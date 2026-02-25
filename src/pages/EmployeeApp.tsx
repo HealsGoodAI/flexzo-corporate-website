@@ -16,7 +16,7 @@ import {
   WifiOff,
   ArrowRight,
 } from "lucide-react";
-import employeeAppMockup from "@/assets/employee-app-mockup.png";
+import employeeAppMockup from "@/assets/employee-app-mockup.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
