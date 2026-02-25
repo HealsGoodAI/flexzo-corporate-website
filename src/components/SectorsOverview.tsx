@@ -7,6 +7,7 @@ import hospitalsHero from "@/assets/hospitals-hero.jpg";
 import primaryCareHero from "@/assets/primary-care.jpg";
 import privateHealthcareHero from "@/assets/private-healthcare.jpg";
 import pharmacyHero from "@/assets/community-pharmacy.jpg";
+import socialCareHero from "@/assets/social-care-hero.jpg";
 import { useRegionText } from "@/lib/regionalize";
 import ScrollReveal from "./ScrollReveal";
 
@@ -38,6 +39,13 @@ const sectors = [
       "Rapid locum cover and compliance automation purpose-built for pharmacy.",
     image: pharmacyHero,
     href: "/sectors/pharmacy",
+  },
+  {
+    title: "Social Care",
+    description:
+      "AI-powered workforce automation for care homes — reducing agency costs, improving fill rates, and giving managers back their time.",
+    image: socialCareHero,
+    href: "/sectors/social-care",
   },
 ];
 

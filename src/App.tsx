@@ -34,6 +34,7 @@ import PrimaryCare from "./pages/PrimaryCare";
 import Hospitals from "./pages/Hospitals";
 import PrivateHealthcare from "./pages/PrivateHealthcare";
 import Pharmacy from "./pages/Pharmacy";
+import SocialCare from "./pages/SocialCare";
 import Rostering from "./pages/Rostering";
 import CarbonReductionPlan from "./pages/CarbonReductionPlan";
 import EmailTemplateTest from "./pages/EmailTemplateTest";
@@ -84,6 +85,7 @@ const App = () => (
             <Route path="sectors/hospitals" element={<Hospitals />} />
             <Route path="sectors/private-healthcare" element={<PrivateHealthcare />} />
             <Route path="sectors/pharmacy" element={<Pharmacy />} />
+            <Route path="sectors/social-care" element={<SocialCare />} />
             <Route path="internal/email-test" element={<EmailTemplateTest />} />
             <Route path="*" element={<NotFound />} />
           </Route>
