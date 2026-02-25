@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Zap, MapPin, Clock, Building2, ArrowRight } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import candidateStephanie from "@/assets/candidate-stephanie.png";
 import candidateJeremy from "@/assets/candidate-jeremy.png";
 import candidateKevin from "@/assets/candidate-kevin.png";
@@ -48,21 +49,20 @@ const MatchingSection = () => {
     <section id="staff-bank" className="relative overflow-hidden py-32 bg-surface">
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20 text-center"
-        >
-          <span className="mb-4 inline-block text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            AI-Powered Matching
-          </span>
-          <h2 className="font-display text-4xl font-bold text-foreground md:text-5xl">
-            Watch our agents
-            <br />
-            <span className="text-muted-foreground">match in real-time</span>
-          </h2>
-        </motion.div>
+        <div className="mb-20 text-center">
+          <ScrollReveal animation="fade-up">
+            <span className="mb-4 inline-block text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              AI-Powered Matching
+            </span>
+          </ScrollReveal>
+          <ScrollReveal animation="blur" delay={0.1}>
+            <h2 className="font-display text-4xl font-bold text-foreground md:text-5xl">
+              Watch our agents
+              <br />
+              <span className="text-muted-foreground">match in real-time</span>
+            </h2>
+          </ScrollReveal>
+        </div>
 
         {/* Matching visualization */}
         <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto_1fr]">

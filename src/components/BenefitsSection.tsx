@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { TrendingDown, Zap, ShieldCheck, Users, BarChart3 } from "lucide-react";
 import { useRegionText } from "@/lib/regionalize";
+import ScrollReveal from "./ScrollReveal";
 
 const benefits = [
   {
@@ -41,16 +42,11 @@ const BenefitsSection = () => {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 max-w-2xl"
-        >
+         <ScrollReveal animation="split" className="mb-16 max-w-2xl">
           <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             {t("Why teams choose")} <span className="text-[#0075FF]">Flexzo</span>
           </h2>
-        </motion.div>
+        </ScrollReveal>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit, i) => (

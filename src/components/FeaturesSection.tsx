@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Zap, Shield, Users, Brain, Clock, Globe } from "lucide-react";
 import { useRegionText } from "@/lib/regionalize";
+import ScrollReveal from "./ScrollReveal";
 
 const features = [
   {
@@ -41,12 +42,7 @@ const FeaturesSection = () => {
   return (
     <section id="features" className="relative py-32">
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <ScrollReveal animation="fade-left" className="mb-16">
           <span className="mb-4 inline-block text-xs font-medium uppercase tracking-widest text-muted-foreground">
             {t("Workforce Management, Simplified")}
           </span>
@@ -55,7 +51,7 @@ const FeaturesSection = () => {
             <br />
             <span className="text-[#0075FF]">{t("in control")}</span>
           </h2>
-        </motion.div>
+        </ScrollReveal>
 
         <div className="grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3 rounded-2xl overflow-hidden border border-border">
           {features.map((f, i) => (

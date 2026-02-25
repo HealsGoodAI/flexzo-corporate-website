@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const testimonials = [
   {
@@ -62,12 +63,16 @@ const TestimonialsSection = () => {
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-6 mb-12">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-          What our partners say
-        </h2>
-        <p className="mt-3 max-w-xl text-base text-muted-foreground">
-          Trusted by NHS Trusts and healthcare organisations across the UK.
-        </p>
+        <ScrollReveal animation="split">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            What our partners say
+          </h2>
+        </ScrollReveal>
+        <ScrollReveal animation="fade-up" delay={0.15}>
+          <p className="mt-3 max-w-xl text-base text-muted-foreground">
+            Trusted by NHS Trusts and healthcare organisations across the UK.
+          </p>
+        </ScrollReveal>
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">

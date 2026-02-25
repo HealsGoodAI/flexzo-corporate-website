@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import AgentNetwork from "./AgentNetwork";
 import { useRegionText } from "@/lib/regionalize";
 import RegionLink from "./RegionLink";
+import ScrollReveal from "./ScrollReveal";
 
 const sectors_uk = ["NHS Trusts", "Primary Care", "Community Pharmacy", "Mental Health"];
 
@@ -24,12 +25,7 @@ const HeroSection = () => {
       <AgentNetwork />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-7xl"
-        >
+         <ScrollReveal animation="blur" duration={0.9} className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-7xl">
           {t("An Agentic AI")}
           <br />
           {t("Workforce System")}
@@ -49,7 +45,7 @@ const HeroSection = () => {
               </motion.span>
             </AnimatePresence>
           </span>
-        </motion.h1>
+        </ScrollReveal>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
