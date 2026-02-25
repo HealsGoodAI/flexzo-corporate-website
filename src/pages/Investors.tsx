@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, TrendingUp, Shield } from "lucide-react";
+import { ArrowRight, ExternalLink, TrendingUp, Shield, PoundSterling } from "lucide-react";
 import awsLogo from "@/assets/aws-logo.png";
 import googleCloudLogo from "@/assets/google-cloud-logo.webp";
 import Navbar from "@/components/Navbar";
@@ -12,7 +12,7 @@ import fuelTeam from "@/assets/fuel-ventures-team.jpg";
 import RegionLink from "@/components/RegionLink";
 
 const highlights = [
-  { label: "Seed Funding Raised", value: "£4m", description: "Enabling NHS rollout and USA explorations" },
+  { label: "Seed Funding Raised", value: "£4m", description: "Enabling NHS rollout and USA explorations", icon: PoundSterling },
   { label: "Lead Investor", value: "Fuel Ventures", description: "Leading UK early-stage VC firm", logo: fuelLogo },
   { label: "Strategic Backer", value: "Octopus Ventures", description: "One of Europe's largest VC investors", logo: octopusLogo },
 ];
@@ -43,6 +43,7 @@ const Investors = () => {
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {highlights.map((item, i) => (
             <motion.div key={item.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-border bg-white p-8 text-center">
+              {item.icon && <item.icon className="mx-auto mb-4 text-[#0075FF]" size={40} />}
               {item.logo && <img src={item.logo} alt={item.value} className={`mx-auto mb-4 object-contain ${item.value === "Octopus Ventures" ? "h-20" : "h-10"}`} />}
               <p className="mb-2 text-4xl font-bold text-[#0075FF]">{item.value}</p>
               <p className="mb-1 text-sm font-semibold text-foreground">{t(item.label)}</p>
