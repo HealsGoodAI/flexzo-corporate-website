@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import RegionFlag from "@/components/RegionFlag";
 import flexzoLogo from "@/assets/Flexzo-Logo.svg";
 import flexzoLogoWhite from "@/assets/flexzo-logo-white.png";
 import { useRegion } from "@/hooks/useRegion";
@@ -43,6 +44,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [regionDropdownOpen, setRegionDropdownOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const { region, regionPath, switchRegion } = useRegion();
   const { t } = useRegionText();
@@ -51,6 +53,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
     const handleClickOutside = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setOpenDropdown(null);
+        setRegionDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -149,18 +152,6 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 </a>
               );
             })}
-            {/* Region switch */}
-            <button
-              onClick={() => switchRegion(region === "uk" ? "us" : "uk")}
-              className={`flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-all border ${
-                isTransparent
-                  ? "text-white/70 border-white/20 hover:text-white hover:border-white/40"
-                  : "text-muted-foreground border-border hover:text-foreground hover:border-foreground/30"
-              }`}
-            >
-              <Globe size={14} />
-              {region === "uk" ? "UK" : "US"}
-            </button>
             <a
               href={resolveHref("/book-demo")}
               className={`rounded-md px-6 py-2.5 text-sm font-medium transition-all ${
@@ -171,6 +162,40 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             >
               Book a demo
             </a>
+            {/* Region dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setRegionDropdownOpen(!regionDropdownOpen)}
+                className={`flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium transition-all border ${
+                  isTransparent
+                    ? "text-white/70 border-white/20 hover:text-white hover:border-white/40"
+                    : "text-muted-foreground border-border hover:text-foreground hover:border-foreground/30"
+                }`}
+              >
+                <RegionFlag region={region} />
+                {region.toUpperCase()}
+                <ChevronDown size={14} className={`transition-transform ${regionDropdownOpen ? "rotate-180" : ""}`} />
+              </button>
+              {regionDropdownOpen && (
+                <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-md border border-border bg-background py-1 shadow-lg">
+                  {(["uk", "us"] as const).map((r) => (
+                    <button
+                      key={r}
+                      onClick={() => {
+                        switchRegion(r);
+                        setRegionDropdownOpen(false);
+                      }}
+                      className={`flex w-full items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-muted ${
+                        r === region ? "text-foreground font-medium" : "text-muted-foreground"
+                      }`}
+                    >
+                      <RegionFlag region={r} />
+                      {r === "uk" ? "United Kingdom" : "United States"}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Mobile toggle */}
@@ -275,10 +300,10 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                   switchRegion(region === "uk" ? "us" : "uk");
                   setMobileOpen(false);
                 }}
-                className="mt-8 flex items-center gap-2 text-sm font-semibold text-primary-foreground/60 transition-colors hover:text-[#0075FF]"
+                className="mt-8 flex items-center gap-3 text-sm font-semibold text-primary-foreground/60 transition-colors hover:text-[#0075FF]"
               >
-                <Globe size={16} />
-                Switch to {region === "uk" ? "US" : "UK"}
+                <RegionFlag region={region === "uk" ? "us" : "uk"} />
+                Switch to {region === "uk" ? "United States" : "United Kingdom"}
               </motion.button>
 
               <motion.a

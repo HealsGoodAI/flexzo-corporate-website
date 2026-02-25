@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import RegionFlag from "@/components/RegionFlag";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 
@@ -88,7 +89,10 @@ const Footer = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex w-full max-w-[220px] items-center justify-between rounded-lg border border-primary-foreground/20 px-4 py-3 text-sm text-primary-foreground"
               >
-                {regionLabels[region]}
+                <span className="flex items-center gap-2.5">
+                  <RegionFlag region={region} />
+                  {regionLabels[region]}
+                </span>
                 <ChevronDown size={16} className="ml-2 opacity-60" />
               </button>
               {dropdownOpen && (
@@ -100,12 +104,13 @@ const Footer = () => {
                         switchRegion(r);
                         setDropdownOpen(false);
                       }}
-                      className={`block w-full px-4 py-2.5 text-left text-sm transition-colors ${
+                      className={`flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-sm transition-colors ${
                         r === region
                           ? "text-primary-foreground font-medium"
                           : "text-primary-foreground/60 hover:text-primary-foreground"
                       }`}
                     >
+                      <RegionFlag region={r} />
                       {regionLabels[r]}
                     </button>
                   ))}
