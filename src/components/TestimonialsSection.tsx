@@ -2,34 +2,24 @@ import { useEffect, useRef } from "react";
 
 const testimonials = [
   {
-    quote: "Flexzo has transformed how we manage temporary staffing. The AI matching is incredibly accurate and saves us hours every week.",
-    name: "Dr. Sarah Mitchell",
-    role: "Clinical Director, NHS Trust",
+    quote: "The team found me a locum quickly and they have worked a number of sessions for me. The team are professional and forward thinking, and I am really happy with the service.",
+    name: "Julian Saul",
+    role: "Practice Business Manager, Wrekenton GP Practice",
   },
   {
-    quote: "We reduced agency spend by 35% in the first quarter. The platform pays for itself many times over.",
-    name: "James Henderson",
-    role: "Workforce Manager, Royal Infirmary",
+    quote: "We have been exceptionally impressed with Flexzo as a locum platform. It is a refined, intelligent, and forward-looking service that adds genuine value beyond simple rota fulfilment.",
+    name: "Karla Pooja",
+    role: "Managing Director, St Martins Medical Centre",
   },
   {
-    quote: "The compliance checking alone is worth it. Every candidate is validated in real time — no more manual chasing.",
-    name: "Emma Clarke",
-    role: "HR Lead, Community Health Services",
+    quote: "The onboarding process was straight forward and made very easy and comfortable with the team. Would certainly recommend for anyone wanting to work in a locum setting without agency involvement.",
+    name: "Dr Kamran Shafiq",
+    role: "GP, Doctors.org",
   },
   {
-    quote: "Shift fill rates went from 72% to 94%. The agentic system just works, even for hard-to-fill roles.",
-    name: "Mark Thompson",
-    role: "Operations Director, Primary Care Network",
-  },
-  {
-    quote: "Our staff love the app. It's intuitive, fast, and they can pick up shifts in seconds.",
-    name: "Rachel Adams",
-    role: "Nursing Manager, Mental Health Trust",
-  },
-  {
-    quote: "Finally a platform that understands NHS workforce challenges. Flexzo is a genuine game-changer.",
-    name: "David Okonkwo",
-    role: "Chief People Officer, Regional Trust",
+    quote: "Flexzo continues to manage the service externally on behalf of the trust, providing a seamless process for managing vacancies while ensuring that workers are engaged directly through the Trust Bank. This model has delivered both efficiency and consistency, aligning fully with CNWL's strategic workforce objectives.",
+    name: "Shreene Swann",
+    role: "Assistant Director of People, Central & North West London NHS Trust",
   },
 ];
 
