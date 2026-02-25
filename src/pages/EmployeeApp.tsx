@@ -17,6 +17,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import employeeAppMockup from "@/assets/employee-app-mockup.jpg";
+import employeeAppStep1 from "@/assets/employee-app-step-1.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -280,23 +281,27 @@ const EmployeeApp = () => {
                 title: "Discover & Match",
                 text: "Real-time notifications surface shifts matched to your credentials, preferences and proximity. Intelligent prioritisation ensures the best-fit opportunities appear first.",
                 icon: Bell,
+                img: employeeAppStep1,
               },
               {
                 step: "02",
                 title: "Accept & Book",
                 text: "One-tap booking with conditional offers and provisional acceptance flows that respect local operational rules. Clear pay and entitlement information before you commit.",
                 icon: Smartphone,
+                img: undefined as string | undefined,
               },
               {
                 step: "03",
                 title: "Verify & Comply",
                 text: "In-app credential checks, mandatory training alerts and secure document upload ensure you're authorised before deployment. Reduces late-stage rejection.",
                 icon: ShieldCheck,
+                img: undefined as string | undefined,
               },
               {
                 step: "04",
                 title: "Work & Get Paid",
                 text: "Transparent pay rates, travel allowances and expected earnings. Seamless integration with payroll for accurate, timely reconciliation after every shift.",
+                img: undefined as string | undefined,
                 icon: Zap,
               },
             ].map((item, i) => (
@@ -316,12 +321,16 @@ const EmployeeApp = () => {
                   <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{t(item.title)}</h3>
                   <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
-                <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="flex h-full items-center justify-center">
-                    <div className="h-24 w-24 rounded-2xl bg-[#0075FF]/10 flex items-center justify-center">
-                      <item.icon className="h-12 w-12 text-[#0075FF]" />
+                <div className={`aspect-[4/3] overflow-hidden rounded-2xl ${item.img ? "" : "bg-muted"} ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                  {item.img ? (
+                    <img src={item.img} alt={item.title} className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center">
+                      <div className="h-24 w-24 rounded-2xl bg-[#0075FF]/10 flex items-center justify-center">
+                        <item.icon className="h-12 w-12 text-[#0075FF]" />
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </motion.div>
             ))}
