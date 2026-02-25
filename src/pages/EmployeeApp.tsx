@@ -16,6 +16,7 @@ import {
   WifiOff,
   ArrowRight,
 } from "lucide-react";
+import employeeAppMockup from "@/assets/employee-app-mockup.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -164,7 +165,7 @@ const EmployeeApp = () => {
       </section>
 
       {/* ── OVERVIEW ── */}
-      <section className="py-28 lg:py-36">
+      <section className="pt-28 pb-0 lg:pt-36">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">
             <motion.div
@@ -196,6 +197,20 @@ const EmployeeApp = () => {
             </motion.div>
           </div>
         </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          custom={2}
+          variants={fadeUp}
+          className="mt-20"
+        >
+          <img
+            src={employeeAppMockup}
+            alt="Employee App dashboard mockup"
+            className="w-full block"
+          />
+        </motion.div>
       </section>
 
       {/* ── FEATURES ── */}
