@@ -65,7 +65,7 @@ const Investors = () => {
               </a>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="overflow-hidden rounded-2xl border border-border bg-card">
-              <img src={fuelTeam} alt="Fuel Ventures team" className="h-56 w-full object-cover" />
+              <img src={fuelTeam} alt="Fuel Ventures team" className="h-56 w-full object-cover object-top" />
               <div className="p-10">
               <h3 className="mb-3 text-xl font-bold text-foreground">{t("About Fuel Ventures")}</h3>
               <p className="leading-relaxed text-muted-foreground">{t("Fuel Ventures specialises in investing in early-stage technology businesses with high growth potential. Their portfolio includes some of the UK's most successful startups, and they provide not only capital but also strategic support to help companies scale. Fuel Ventures' investment in Healsgood underscores their confidence in our vision to transform NHS staffing through innovative AI solutions.")}</p>
