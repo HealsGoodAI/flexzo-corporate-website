@@ -23,6 +23,7 @@ const dropdownMenus: Record<string, { label: string; href: string }[]> = {
     { label: "Hospitals", href: "/sectors/hospitals" },
     { label: "Private Healthcare", href: "/sectors/private-healthcare" },
     { label: "Pharmacy", href: "/sectors/pharmacy" },
+    { label: "Social Care", href: "/sectors/social-care" },
   ],
 };
 

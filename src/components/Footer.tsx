@@ -24,6 +24,7 @@ const footerColumns = [
       { label: "Hospitals", href: "/sectors/hospitals" },
       { label: "Private Healthcare", href: "/sectors/private-healthcare" },
       { label: "Pharmacy", href: "/sectors/pharmacy" },
+      { label: "Social Care", href: "/sectors/social-care" },
     ],
     subsection: {
       title: "Company",
