@@ -97,7 +97,7 @@ const PlatformFeatures = () => {
             </div>
             <div className="mt-10">
               <RegionLink href="/book-demo" className="group inline-flex items-center gap-2 rounded-md bg-[#0075FF] px-10 py-4 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]">{t("Book a Demo")} <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></RegionLink>
-              <p className="mt-4 text-sm text-primary-foreground/30">* {t("No credit card required")}</p>
+              
             </div>
           </motion.div>
         </div>
