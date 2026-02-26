@@ -65,7 +65,7 @@ const About = () => {
               </p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="overflow-hidden rounded-2xl border border-border bg-card">
-              <img src={jackHenderson} alt="Jack Henderson, Founder" className="h-72 w-full object-cover object-top" />
+              <img src={jackHenderson} alt="Jack Henderson, Founder" className="h-96 w-full object-cover object-top" />
               <div className="p-10">
                 <h3 className="mb-4 text-xl font-bold text-foreground">{t("Our Story")}</h3>
                 <p className="mb-4 leading-relaxed text-muted-foreground">
