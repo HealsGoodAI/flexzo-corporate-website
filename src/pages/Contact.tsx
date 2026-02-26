@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 import { sendContactEmail } from "@/lib/emailService";
+import ReCaptcha from "@/components/ReCaptcha";
 
 const offices = [
   { name: "UK Head Office", address: "Noble House, Capital Dr, Milton Keynes, MK14 6QP" },
@@ -24,11 +25,17 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     setError("");
+    if (!recaptchaToken) {
+      setError("Please complete the reCAPTCHA verification.");
+      setSubmitting(false);
+      return;
+    }
     try {
       await sendContactEmail({
         name: form.name,
@@ -36,6 +43,7 @@ const Contact = () => {
         phone: form.phone,
         company: form.company,
         message: form.message,
+        recaptchaToken,
       });
       navigate(regionPath("/contact/success"));
     } catch (err) {
@@ -85,8 +93,9 @@ const Contact = () => {
                 <Input placeholder={t("Company / Organisation")} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
               </div>
               <Textarea placeholder={t("Your Message *")} required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+              <ReCaptcha onVerify={setRecaptchaToken} onExpire={() => setRecaptchaToken("")} />
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
+              <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting || !recaptchaToken}>
                 {submitting ? t("Sending…") : t("Send Message")}
               </Button>
             </form>

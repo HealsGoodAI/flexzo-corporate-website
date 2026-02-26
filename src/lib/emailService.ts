@@ -51,8 +51,8 @@ const getRegion = (): string => {
   return window.location.pathname.split("/")[1] || "uk";
 };
 
-export const sendApplicationEmails = async (params: ApplicationEmailParams): Promise<void> => {
-  const { firstName, lastName, email, jobTitle, jobId, cvFile, region } = params;
+export const sendApplicationEmails = async (params: ApplicationEmailParams & { recaptchaToken: string }): Promise<void> => {
+  const { firstName, lastName, email, jobTitle, jobId, cvFile, region, recaptchaToken } = params;
 
   const cvBase64 = await fileToBase64(cvFile);
   const jobLink = buildJobLink(jobId);
@@ -68,6 +68,7 @@ export const sendApplicationEmails = async (params: ApplicationEmailParams): Pro
       cvBase64,
       cvFileName: cvFile.name,
       region: resolvedRegion,
+      recaptchaToken,
     },
   });
 
@@ -82,11 +83,13 @@ export const sendApplicationEmails = async (params: ApplicationEmailParams): Pro
   }
 };
 
-export const sendBookDemoEmail = async (params: BookDemoEmailParams): Promise<void> => {
+export const sendBookDemoEmail = async (params: BookDemoEmailParams & { recaptchaToken: string }): Promise<void> => {
+  const { recaptchaToken, ...rest } = params;
   const { data, error } = await supabase.functions.invoke("send-application-email", {
     body: {
       type: "book_demo",
-      ...params,
+      ...rest,
+      recaptchaToken,
     },
   });
 
@@ -101,11 +104,13 @@ export const sendBookDemoEmail = async (params: BookDemoEmailParams): Promise<vo
   }
 };
 
-export const sendContactEmail = async (params: ContactEmailParams): Promise<void> => {
+export const sendContactEmail = async (params: ContactEmailParams & { recaptchaToken: string }): Promise<void> => {
+  const { recaptchaToken, ...rest } = params;
   const { data, error } = await supabase.functions.invoke("send-application-email", {
     body: {
       type: "contact",
-      ...params,
+      ...rest,
+      recaptchaToken,
     },
   });
 

@@ -8,6 +8,7 @@ import { useJobs } from "@/hooks/useJobs";
 import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 import { sendApplicationEmails } from "@/lib/emailService";
+import ReCaptcha from "@/components/ReCaptcha";
 
 const JobApplication = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,6 +28,7 @@ const JobApplication = () => {
   const [agreeShareProfile, setAgreeShareProfile] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -60,6 +62,7 @@ const JobApplication = () => {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Enter a valid email";
     if (!cvFile) errs.cv = "Please upload your CV/resume";
     if (!agreeTerms) errs.terms = "You must agree to the terms and conditions";
+    if (!recaptchaToken) errs.recaptcha = "Please complete the reCAPTCHA verification";
     return errs;
   };
 
@@ -78,6 +81,7 @@ const JobApplication = () => {
         jobTitle: job!.title,
         jobId: id!,
         cvFile: cvFile!,
+        recaptchaToken,
       });
       navigate(regionPath(`/jobs/${id}/apply/success`), { state: { jobTitle: job?.title } });
     } catch {
@@ -239,6 +243,12 @@ const JobApplication = () => {
                   {t("I agree to share my profile with Hospitals & Trusts who are employers on the Flexzo platform")}
                 </span>
               </label>
+            </div>
+
+            {/* reCAPTCHA */}
+            <div>
+              <ReCaptcha onVerify={setRecaptchaToken} onExpire={() => setRecaptchaToken("")} />
+              {errors.recaptcha && <p className="text-xs text-red-500">{errors.recaptcha}</p>}
             </div>
 
             {errors.submit && (
