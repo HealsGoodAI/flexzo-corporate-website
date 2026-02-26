@@ -6,6 +6,8 @@ import { useRegionText } from "@/lib/regionalize";
 import aboutVision from "@/assets/about-vision.jpg";
 import aboutMission from "@/assets/about-mission.jpg";
 
+import jackHenderson from "@/assets/jack-henderson.jpg";
+
 const About = () => {
   const { t } = useRegionText();
 
@@ -62,14 +64,17 @@ const About = () => {
                 {t("Flexzo AI is proudly owned by HealsGood, a global leader in healthcare innovation. As part of the Healsgood family, Flexzo benefits from a strong foundation of expertise in healthcare technology, recruitment, and compliance. Together with sister platforms like Careo, we're driving forward a new era of smarter, more efficient healthcare staffing solutions that prioritise both patient care and workforce empowerment.")}
               </p>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-2xl border border-border bg-card p-10">
-              <h3 className="mb-4 text-xl font-bold text-foreground">{t("Our Story")}</h3>
-              <p className="mb-4 leading-relaxed text-muted-foreground">
-                {t("Flexzo AI was founded by Jack Henderson, a visionary entrepreneur with deep roots in the healthcare sector. Starting his career as a medical recruiter, Jack gained firsthand experience with the challenges and inefficiencies plaguing traditional recruitment processes.")}
-              </p>
-              <p className="leading-relaxed text-muted-foreground">
-                {t("He went on to establish one of the UK's largest clinical insourcing companies, transforming how NHS Trusts manage staffing. Recognising a greater opportunity to disrupt the industry, Jack launched Flexzo AI – an intelligent, collaborative platform designed to eliminate agency barriers, streamline compliance, and empower both healthcare providers and professionals.")}
-              </p>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="overflow-hidden rounded-2xl border border-border bg-card">
+              <img src={jackHenderson} alt="Jack Henderson, Founder" className="h-52 w-full object-cover object-top" />
+              <div className="p-10">
+                <h3 className="mb-4 text-xl font-bold text-foreground">{t("Our Story")}</h3>
+                <p className="mb-4 leading-relaxed text-muted-foreground">
+                  {t("Flexzo AI was founded by Jack Henderson, a visionary entrepreneur with deep roots in the healthcare sector. Starting his career as a medical recruiter, Jack gained firsthand experience with the challenges and inefficiencies plaguing traditional recruitment processes.")}
+                </p>
+                <p className="leading-relaxed text-muted-foreground">
+                  {t("He went on to establish one of the UK's largest clinical insourcing companies, transforming how NHS Trusts manage staffing. Recognising a greater opportunity to disrupt the industry, Jack launched Flexzo AI – an intelligent, collaborative platform designed to eliminate agency barriers, streamline compliance, and empower both healthcare providers and professionals.")}
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
