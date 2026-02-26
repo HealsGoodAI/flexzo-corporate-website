@@ -3,6 +3,7 @@ import { ArrowRight, Target, Eye, Users, Globe } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
+import RegionLink from "@/components/RegionLink";
 import aboutVision from "@/assets/about-vision.jpg";
 import aboutMission from "@/assets/about-mission.jpg";
 
@@ -27,6 +28,9 @@ const About = () => {
           <p className="max-w-2xl text-lg leading-relaxed text-primary-foreground/70">
             {t("At Flexzo AI, we're redefining healthcare recruitment through intelligent, AI-powered solutions that connect NHS Trusts directly with compliance-ready healthcare professionals – without the hassle of traditional agencies.")}
           </p>
+          <RegionLink href="/contact" className="mt-8 inline-block rounded-md bg-[#0075FF] px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-[#0060D0]">
+            {t("Contact Us")}
+          </RegionLink>
         </div>
       </section>
 
