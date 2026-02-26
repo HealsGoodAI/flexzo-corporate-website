@@ -55,11 +55,36 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { type } = body;
+    const { type, recaptchaToken } = body;
 
     const appPassword = Deno.env.get("GMAIL_APP_PASSWORD");
     if (!appPassword && !body.testMode) {
       throw new Error("GMAIL_APP_PASSWORD not configured");
+    }
+
+    // ── reCAPTCHA verification (skip for testMode and generic internal emails) ──
+    if (!body.testMode && type !== "generic") {
+      if (!recaptchaToken) {
+        return new Response(JSON.stringify({ error: "reCAPTCHA verification required" }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const recaptchaSecret = Deno.env.get("RECAPTCHA_SECRET_KEY");
+      if (!recaptchaSecret) {
+        throw new Error("RECAPTCHA_SECRET_KEY not configured");
+      }
+      const verifyRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${encodeURIComponent(recaptchaSecret)}&response=${encodeURIComponent(recaptchaToken)}`,
+      });
+      const verifyData = await verifyRes.json();
+      if (!verifyData.success) {
+        console.error("reCAPTCHA failed:", verifyData);
+        return new Response(JSON.stringify({ error: "reCAPTCHA verification failed" }), {
+          status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
     }
 
     const currentDate = getCurrentDate();
