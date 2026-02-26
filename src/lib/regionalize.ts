@@ -34,8 +34,11 @@ const domainReplacements: [RegExp, string][] = [
   [/Regional Trust/g, "Regional Health System"],
   [/partner\s+trusts/gi, "partner organizations"],
   [/Trusts/g, "Health Systems"],
-];
 
+  // UK-specific references
+  [/NHS Trust looking/gi, "healthcare organization looking"],
+  [/an NHS Trust/gi, "a healthcare organization"],
+];
 // British → American spelling replacements
 const spellingReplacements: [RegExp, string][] = [
   // -ise/-isation → -ize/-ization
