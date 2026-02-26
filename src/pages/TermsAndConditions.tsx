@@ -113,7 +113,7 @@ const sections = [
 const TermsAndConditions = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+      <Navbar transparent />
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[#0a2540] pt-32 pb-16">
