@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from "react";
 
-const SITE_KEY = "6Le-RngsAAAAAMk88tko5b6dkb8nF1jES38VwkTJ";
+const SITE_KEY = "6LefSngsAAAAABzyZ46TVseQ7_SJpFY34gQYLBkg";
 
 interface ReCaptchaProps {
   onVerify: (token: string) => void;
