@@ -15,7 +15,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+      <Navbar transparent />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[#0a2540] pt-32 pb-20">
         <div className="mx-auto max-w-7xl px-6">
