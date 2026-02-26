@@ -219,8 +219,39 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             transition={{ type: "tween", duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             className="fixed inset-0 z-[55] flex flex-col bg-foreground lg:hidden"
           >
-            <div className="flex items-center px-8 pt-6">
+            <div className="flex items-center justify-between px-8 pt-6">
               <a href={regionPath("/")} onClick={() => setMobileOpen(false)} className="h-8 w-8 rounded-full bg-[#0CE3FF] block" />
+
+              {/* Mobile region dropdown – matches desktop style */}
+              <div className="relative">
+                <button
+                  onClick={() => setRegionDropdownOpen(!regionDropdownOpen)}
+                  className="flex items-center gap-2 rounded-md border border-primary-foreground/20 px-3 py-2 text-sm font-medium text-primary-foreground/70 transition-all hover:text-primary-foreground hover:border-primary-foreground/40"
+                >
+                  <RegionFlag region={region} />
+                  {region.toUpperCase()}
+                  <ChevronDown size={14} className={`transition-transform ${regionDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+                {regionDropdownOpen && (
+                  <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-md border border-border bg-background py-1 shadow-lg">
+                    {(["uk", "us"] as const).map((r) => (
+                      <button
+                        key={r}
+                        onClick={() => {
+                          switchRegion(r);
+                          setRegionDropdownOpen(false);
+                        }}
+                        className={`flex w-full items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-muted ${
+                          r === region ? "text-foreground font-medium" : "text-muted-foreground"
+                        }`}
+                      >
+                        <RegionFlag region={r} />
+                        {r === "uk" ? "United Kingdom" : "United States"}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="flex flex-1 flex-col justify-center px-8">
@@ -292,27 +323,12 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 })}
               </nav>
 
-              {/* Mobile region switch */}
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.4 }}
-                onClick={() => {
-                  switchRegion(region === "uk" ? "us" : "uk");
-                  setMobileOpen(false);
-                }}
-                className="mt-8 flex items-center gap-3 text-sm font-semibold text-primary-foreground/60 transition-colors hover:text-[#0075FF]"
-              >
-                <RegionFlag region={region === "uk" ? "us" : "uk"} />
-                Switch to {region === "uk" ? "United States" : "United Kingdom"}
-              </motion.button>
-
               <motion.a
                 href={resolveHref("/book-demo")}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.4 }}
-                className="mt-4 inline-block rounded-md bg-[#0075FF] px-8 py-4 text-center text-sm font-semibold text-white transition-colors hover:bg-[#0060D0]"
+                className="mt-8 inline-block rounded-md bg-[#0075FF] px-8 py-4 text-center text-sm font-semibold text-white transition-colors hover:bg-[#0060D0]"
                 onClick={() => setMobileOpen(false)}
               >
                 Book a demo
