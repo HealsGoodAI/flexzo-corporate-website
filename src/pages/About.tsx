@@ -3,6 +3,8 @@ import { ArrowRight, Target, Eye, Users, Globe } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
+import aboutVision from "@/assets/about-vision.jpg";
+import aboutMission from "@/assets/about-mission.jpg";
 
 const About = () => {
   const { t } = useRegionText();
@@ -27,19 +29,25 @@ const About = () => {
 
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-10 md:grid-cols-2">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-2xl border border-border bg-card p-10">
-            <Eye className="mb-4 text-[#0075FF]" size={36} />
-            <h2 className="mb-4 text-2xl font-bold text-foreground">{t("Our Vision")}</h2>
-            <p className="leading-relaxed text-muted-foreground">
-              {t("Our vision is to become the UK's leading collaborative staff bank, empowering healthcare professionals and NHS Trusts to connect directly through a fair, transparent, and efficient platform. We aim to eliminate unnecessary agency fees, reduce recruitment times, and ensure seamless compliance – improving patient care while cutting costs for healthcare providers.")}
-            </p>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="overflow-hidden rounded-2xl border border-border bg-card">
+            <img src={aboutVision} alt="Team collaboration" className="h-48 w-full object-cover" />
+            <div className="p-10">
+              <Eye className="mb-4 text-[#0075FF]" size={36} />
+              <h2 className="mb-4 text-2xl font-bold text-foreground">{t("Our Vision")}</h2>
+              <p className="leading-relaxed text-muted-foreground">
+                {t("Our vision is to become the UK's leading collaborative staff bank, empowering healthcare professionals and NHS Trusts to connect directly through a fair, transparent, and efficient platform. We aim to eliminate unnecessary agency fees, reduce recruitment times, and ensure seamless compliance – improving patient care while cutting costs for healthcare providers.")}
+              </p>
+            </div>
           </motion.div>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="rounded-2xl border border-border bg-card p-10">
-            <Target className="mb-4 text-[#0CE3FF]" size={36} />
-            <h2 className="mb-4 text-2xl font-bold text-foreground">{t("Our Mission")}</h2>
-            <p className="leading-relaxed text-muted-foreground">
-              {t("At Flexzo AI, our mission is to revolutionise healthcare staffing by providing an innovative, AI-powered platform that connects NHS Trusts directly with a nationwide pool of compliance-ready healthcare professionals. We aim to eliminate the inefficiencies of traditional recruitment processes, reduce costs by cutting out agency fees, and streamline compliance management.")}
-            </p>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="overflow-hidden rounded-2xl border border-border bg-card">
+            <img src={aboutMission} alt="Healthcare professional" className="h-48 w-full object-cover" />
+            <div className="p-10">
+              <Target className="mb-4 text-[#0CE3FF]" size={36} />
+              <h2 className="mb-4 text-2xl font-bold text-foreground">{t("Our Mission")}</h2>
+              <p className="leading-relaxed text-muted-foreground">
+                {t("At Flexzo AI, our mission is to revolutionise healthcare staffing by providing an innovative, AI-powered platform that connects NHS Trusts directly with a nationwide pool of compliance-ready healthcare professionals. We aim to eliminate the inefficiencies of traditional recruitment processes, reduce costs by cutting out agency fees, and streamline compliance management.")}
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
