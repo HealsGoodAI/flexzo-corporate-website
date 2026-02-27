@@ -20,8 +20,8 @@ const footerColumns = [
   {
     title: "Sectors",
     links: [
-      { label: "Primary Care", href: "/sectors/primary-care" },
       { label: "Hospitals", href: "/sectors/hospitals" },
+      { label: "Primary Care", href: "/sectors/primary-care" },
       { label: "Private Healthcare", href: "/sectors/private-healthcare" },
       { label: "Pharmacy", href: "/sectors/pharmacy" },
       { label: "Social Care", href: "/sectors/social-care" },
