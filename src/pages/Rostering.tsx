@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import rosteringHero from "@/assets/rostering-hero.jpg";
+import rosteringStep1 from "@/assets/rostering-step-1.jpg";
+import rosteringStep2 from "@/assets/rostering-step-2.jpg";
+import rosteringStep3 from "@/assets/rostering-step-3.jpg";
+import rosteringStep4 from "@/assets/rostering-step-4.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
@@ -40,10 +44,10 @@ const features = [
 ];
 
 const howItWorks = [
-  { step: "01", title: "Define Care Demand", text: "Model staffing requirements by service, location, shift type and grade. Understand patient acuity and clinical activity to build rosters around care needs, not just headcounts." },
-  { step: "02", title: "Build & Optimise Rosters", text: "Our AI engine creates fair, efficient rosters that balance staff preferences, compliance rules, budget constraints and clinical safety. Multi-professional and cross-site scheduling handled automatically." },
-  { step: "03", title: "Deploy & Monitor", text: "Publish rosters to staff via the mobile app. Monitor real-time staffing against demand with live dashboards. Automatically escalate gaps through internal bank before agency." },
-  { step: "04", title: "Adapt & Improve", text: "Dynamic rostering responds to real-time changes. Predictive AI learns from patterns to improve future rosters, reduce costs and ensure safer staffing outcomes continuously." },
+  { step: "01", title: "Define Care Demand", text: "Model staffing requirements by service, location, shift type and grade. Understand patient acuity and clinical activity to build rosters around care needs, not just headcounts.", image: rosteringStep1 },
+  { step: "02", title: "Build & Optimise Rosters", text: "Our AI engine creates fair, efficient rosters that balance staff preferences, compliance rules, budget constraints and clinical safety. Multi-professional and cross-site scheduling handled automatically.", image: rosteringStep2 },
+  { step: "03", title: "Deploy & Monitor", text: "Publish rosters to staff via the mobile app. Monitor real-time staffing against demand with live dashboards. Automatically escalate gaps through internal bank before agency.", image: rosteringStep3 },
+  { step: "04", title: "Adapt & Improve", text: "Dynamic rostering responds to real-time changes. Predictive AI learns from patterns to improve future rosters, reduce costs and ensure safer staffing outcomes continuously.", image: rosteringStep4 },
 ];
 
 const Rostering = () => {
@@ -137,14 +141,7 @@ const Rostering = () => {
                   <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
                 <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="flex h-full items-center justify-center">
-                    <div className="h-24 w-24 rounded-2xl bg-[#0075FF]/10 flex items-center justify-center">
-                      {i === 0 && <BarChart3 className="h-12 w-12 text-[#0075FF]" />}
-                      {i === 1 && <UserCheck className="h-12 w-12 text-[#0075FF]" />}
-                      {i === 2 && <Smartphone className="h-12 w-12 text-[#0075FF]" />}
-                      {i === 3 && <Brain className="h-12 w-12 text-[#0075FF]" />}
-                    </div>
-                  </div>
+                  <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
                 </div>
               </motion.div>
             ))}
