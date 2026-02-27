@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, Shield, Users, Brain, Clock, TrendingDown, CheckCircle2, Sparkles, BarChart3, ClipboardCheck } from "lucide-react";
 import hospitalsHero from "@/assets/hospitals-hero.jpg";
+import hospitalsBanner from "@/assets/hospitals-banner.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
@@ -108,6 +109,11 @@ const Hospitals = () => {
           </div>
         </div>
       </section>
+
+      {/* ── FULL-WIDTH BANNER IMAGE ── */}
+      <div className="w-full">
+        <img src={hospitalsBanner} alt="Hospital clinical staff" className="h-[400px] w-full object-cover lg:h-[500px]" />
+      </div>
 
       {/* ── SOLVE STAFFING SHORTAGES ── */}
       <section className="bg-foreground py-28 lg:py-36">
