@@ -112,7 +112,7 @@ const Hospitals = () => {
 
       {/* ── FULL-WIDTH BANNER IMAGE ── */}
       <div className="w-full">
-        <img src={hospitalsBanner} alt="Hospital clinical staff" className="h-[400px] w-full object-cover lg:h-[500px]" />
+        <img src={hospitalsBanner} alt="Hospital clinical staff" className="h-[500px] w-full object-cover lg:h-[650px]" />
       </div>
 
       {/* ── SOLVE STAFFING SHORTAGES ── */}
