@@ -62,6 +62,12 @@ const features = [
     description:
       "Targeted campaigns, priority sequences and incentive mechanics that activate clinicians across partners without undermining local pools.",
   },
+  {
+    icon: Settings,
+    title: "E-Recruitment & Advertising",
+    description:
+      "Back up your collaborative bank with integrated e-recruitment and job advertising options to attract, screen and onboard new candidates when internal supply falls short.",
+  },
 ];
 
 const benefits = [
