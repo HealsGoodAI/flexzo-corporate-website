@@ -17,6 +17,11 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import cspStep1 from "@/assets/csp-step-1.jpg";
+import cspStep2 from "@/assets/csp-step-2.jpg";
+import cspStep3 from "@/assets/csp-step-3.jpg";
+import cspStep4 from "@/assets/csp-step-4.jpg";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number = 0) => ({
@@ -279,26 +284,30 @@ const ClinicalServicesPlanner = () => {
           </motion.div>
 
           <div className="space-y-24">
-            {[
+          {[
               {
                 step: "01",
                 title: "Model Demand",
                 text: "Demand is modelled at the service, clinic and session level using historical activity, referral patterns and pathway timings. Clinically informed rules capture supervision ratios, procedural skill requirements and training protections.",
+                image: cspStep1,
               },
               {
                 step: "02",
                 title: "Simulate & Compare",
                 text: "Scenario modelling supports 'what if' analysis that quantifies trade-offs — the cost and continuity implications of consolidating sessions, changing clinic templates or protecting trainee opportunities across services.",
+                image: cspStep2,
               },
               {
                 step: "03",
                 title: "Plan to Roster",
                 text: "Validated service plans hand over directly into rostering and Flexzo AI forecasting, converting planning outputs into executable rotas without rework. Operational rosters reflect the exact assumptions used in planning.",
+                image: cspStep3,
               },
               {
                 step: "04",
                 title: "Measure & Refine",
                 text: "Analytics highlight bottlenecks, utilisation and clinic productivity. Reports track cancelled clinics, throughput, cost-per-session and waiting time reduction. The Planner learns from realised activity and refines forecasts continuously.",
+                image: cspStep4,
               },
             ].map((item, i) => (
               <motion.div
@@ -318,14 +327,7 @@ const ClinicalServicesPlanner = () => {
                   <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{item.text}</p>
                 </div>
                 <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="flex h-full items-center justify-center">
-                    <div className="h-24 w-24 rounded-2xl bg-[#0075FF]/10 flex items-center justify-center">
-                      {i === 0 && <BarChart3 className="h-12 w-12 text-[#0075FF]" />}
-                      {i === 1 && <FlaskConical className="h-12 w-12 text-[#0075FF]" />}
-                      {i === 2 && <ArrowRightLeft className="h-12 w-12 text-[#0075FF]" />}
-                      {i === 3 && <LineChart className="h-12 w-12 text-[#0075FF]" />}
-                    </div>
-                  </div>
+                  <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
                 </div>
               </motion.div>
             ))}
