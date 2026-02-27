@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import collaborativeBankMockup from "@/assets/collaborative-bank-mockup.png";
+import collabStep1Img from "@/assets/collab-step-1.jpg";
+import collabStep2Img from "@/assets/collab-step-2.jpg";
+import collabStep3Img from "@/assets/collab-step-3.jpg";
+import collabStep4Img from "@/assets/collab-step-4.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRegionText } from "@/lib/regionalize";
@@ -300,25 +304,25 @@ const CollaborativeStaffBank = () => {
                 step: "01",
                 title: "Govern & Configure",
                 text: "Implementation starts with governance workshops, mapped rulesets and a pilot to validate eligibility, approvals and payroll flows. Trust agreements, pay harmonies and escalation policies are encoded into the platform.",
-                icon: Settings,
+                image: collabStep1Img,
               },
               {
                 step: "02",
                 title: "Connect & Integrate",
                 text: "Integration with local rostering, payroll and HR systems creates a near-real-time supply picture, letting planners locate available clinicians, evaluate fit and initiate transfers with minimal manual work.",
-                icon: Network,
+                image: collabStep2Img,
               },
               {
                 step: "03",
                 title: "Share & Mobilise",
                 text: "Targeted mobilisation campaigns and incentive mechanics activate clinicians across partners when demand spikes, improving responsiveness without undermining local staff pools.",
-                icon: Handshake,
+                image: collabStep3Img,
               },
               {
                 step: "04",
                 title: "Measure & Refine",
                 text: "Operational dashboards show utilisation heatmaps, cross-trust fill rates, credential gaps and audit trails. Continuous measurement refines priority logic and clinician incentives.",
-                icon: BarChart3,
+                image: collabStep4Img,
               },
             ].map((item, i) => (
               <motion.div
@@ -338,11 +342,7 @@ const CollaborativeStaffBank = () => {
                   <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </div>
                 <div className={`aspect-[4/3] overflow-hidden rounded-2xl bg-muted ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="flex h-full items-center justify-center">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-[#0075FF]/10">
-                      <item.icon className="h-12 w-12 text-[#0075FF]" />
-                    </div>
-                  </div>
+                  <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
                 </div>
               </motion.div>
             ))}
