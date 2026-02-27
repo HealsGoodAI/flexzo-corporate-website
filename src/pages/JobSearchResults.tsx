@@ -71,16 +71,21 @@ const JobSearchResults = () => {
 
   const [roleQuery, setRoleQuery] = useState(initialRole);
   const [locationQuery, setLocationQuery] = useState(initialLocation);
-  const [category, setCategory] = useState("All");
+const [category, setCategory] = useState("All");
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [salaryRange, setSalaryRange] = useState<[number, number]>([0, 100000]);
   const [maxDistance, setMaxDistance] = useState(100);
   const [sortBy, setSortBy] = useState<SortOption>("relevance");
   const [showFilters, setShowFilters] = useState(true);
   const [sortOpen, setSortOpen] = useState(false);
 
+  const uniqueLocations = useMemo(() => {
+    const locs = new Set(jobs.map((j) => j.location).filter(Boolean));
+    return Array.from(locs).sort();
+  }, [jobs]);
+
   const filteredJobs = useMemo(() => {
     let results = jobs.filter((job) => {
-      // text search
       const matchesRole =
         !roleQuery ||
         job.title.toLowerCase().includes(roleQuery.toLowerCase()) ||
@@ -90,10 +95,11 @@ const JobSearchResults = () => {
         !locationQuery ||
         job.location.toLowerCase().includes(locationQuery.toLowerCase());
 
-      // category
       if (!matchesCategory(job, category)) return false;
 
-      // salary range
+      // location filter
+      if (selectedLocations.length > 0 && !selectedLocations.includes(job.location)) return false;
+
       const sal = parseSalaryMin(job.salary);
       if (sal !== null && (sal < salaryRange[0] || sal > salaryRange[1])) return false;
 
@@ -129,10 +135,11 @@ const JobSearchResults = () => {
     });
 
     return results;
-  }, [roleQuery, locationQuery, category, salaryRange, sortBy]);
+  }, [roleQuery, locationQuery, category, selectedLocations, salaryRange, sortBy]);
 
   const clearFilters = useCallback(() => {
     setCategory("All");
+    setSelectedLocations([]);
     setSalaryRange([0, 100000]);
     setMaxDistance(100);
     setSortBy("relevance");
@@ -140,6 +147,7 @@ const JobSearchResults = () => {
 
   const activeFilterCount = [
     category !== "All",
+    selectedLocations.length > 0,
     salaryRange[0] > 0 || salaryRange[1] < 100000,
     maxDistance < 100,
   ].filter(Boolean).length;
@@ -289,6 +297,35 @@ const JobSearchResults = () => {
                         >
                           {cat}
                         </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      Location
+                    </p>
+                    <div className="max-h-40 space-y-1.5 overflow-y-auto pr-1">
+                      {uniqueLocations.map((loc) => (
+                        <label
+                          key={loc}
+                          className="flex cursor-pointer items-center gap-2 rounded px-1 py-0.5 text-xs text-foreground hover:bg-muted"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedLocations.includes(loc)}
+                            onChange={() =>
+                              setSelectedLocations((prev) =>
+                                prev.includes(loc)
+                                  ? prev.filter((l) => l !== loc)
+                                  : [...prev, loc]
+                              )
+                            }
+                            className="h-3.5 w-3.5 rounded border-border accent-accent"
+                          />
+                          {loc}
+                        </label>
                       ))}
                     </div>
                   </div>
