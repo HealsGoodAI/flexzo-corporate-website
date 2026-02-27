@@ -66,6 +66,12 @@ const features = [
     description:
       "Configurable eligibility, priority sequences, escalation paths plus dashboards for utilisation, fill-times and agency replacement metrics.",
   },
+  {
+    icon: RefreshCw,
+    title: "E-Recruitment & Advertising",
+    description:
+      "Back up your bank with integrated e-recruitment and job advertising options to attract, screen and onboard new candidates when internal supply falls short.",
+  },
 ];
 
 const benefits = [
