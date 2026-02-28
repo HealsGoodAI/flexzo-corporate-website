@@ -77,9 +77,94 @@ function getCurrentDate(): string {
   });
 }
 
+/* ── Allowed origins ── */
+const ALLOWED_ORIGINS = [
+  "https://flexzo.ai",
+  "https://www.flexzo.ai",
+  "https://id-preview--619f4086-4b06-4f96-83a0-3895208dee1c.lovable.app",
+];
+
+/* ── Allowed reCAPTCHA hostnames ── */
+const ALLOWED_RECAPTCHA_HOSTNAMES = [
+  "flexzo.ai",
+  "www.flexzo.ai",
+  "id-preview--619f4086-4b06-4f96-83a0-3895208dee1c.lovable.app",
+];
+
+/* ── Content validation helpers ── */
+
+const MIN_SUBMISSION_TIME_MS = 2500; // 2.5 seconds minimum
+
+function isGibberish(text: string): boolean {
+  if (!text || text.length < 3) return false;
+  // No spaces in a message longer than 20 chars
+  if (text.length > 20 && !text.includes(" ")) return true;
+  // High ratio of non-alpha characters
+  const alphaCount = (text.match(/[a-zA-Z\s]/g) || []).length;
+  if (text.length > 10 && alphaCount / text.length < 0.5) return true;
+  // Entropy check: same char repeated excessively
+  const charFreq = new Map<string, number>();
+  for (const c of text) charFreq.set(c, (charFreq.get(c) || 0) + 1);
+  const maxFreq = Math.max(...charFreq.values());
+  if (text.length > 10 && maxFreq / text.length > 0.5) return true;
+  return false;
+}
+
+function validateContent(body: Record<string, unknown>): string | null {
+  const { type } = body;
+
+  // Honeypot check — if the hidden field has any value, it's a bot
+  if (body._hp_field && String(body._hp_field).trim() !== "") {
+    return "Submission rejected";
+  }
+
+  // Minimum submission time check
+  if (body._form_loaded_at) {
+    const loadedAt = Number(body._form_loaded_at);
+    if (!isNaN(loadedAt) && Date.now() - loadedAt < MIN_SUBMISSION_TIME_MS) {
+      return "Submission too fast. Please try again.";
+    }
+  }
+
+  // Content-specific checks
+  if (type === "contact") {
+    const message = String(body.message || "");
+    if (message.trim().length < 10) return "Message is too short";
+    if (isGibberish(message)) return "Message content appears invalid";
+    const name = String(body.name || "");
+    if (name.trim().length < 2) return "Name is too short";
+    if (isGibberish(name)) return "Name appears invalid";
+  }
+
+  if (type === "book_demo") {
+    const name = String(body.name || "");
+    if (name.trim().length < 2) return "Name is too short";
+    if (isGibberish(name)) return "Name appears invalid";
+  }
+
+  // For applications: check name fields
+  if (!type || type === "application") {
+    const firstName = String(body.firstName || "");
+    const lastName = String(body.lastName || "");
+    if (firstName.trim().length < 2) return "First name is too short";
+    if (lastName.trim().length < 2) return "Last name is too short";
+    if (isGibberish(firstName) || isGibberish(lastName)) return "Name appears invalid";
+  }
+
+  return null;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // ── Origin validation ──
+  const origin = req.headers.get("origin");
+  if (origin && !ALLOWED_ORIGINS.some((o) => origin.startsWith(o))) {
+    return new Response(JSON.stringify({ error: "Forbidden origin" }), {
+      status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 
   // Rate limiting
@@ -122,6 +207,23 @@ Deno.serve(async (req) => {
         console.error("reCAPTCHA failed:", verifyData);
         return new Response(JSON.stringify({ error: "reCAPTCHA verification failed" }), {
           status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      // ── Hostname validation ──
+      if (verifyData.hostname && !ALLOWED_RECAPTCHA_HOSTNAMES.includes(verifyData.hostname)) {
+        console.error("reCAPTCHA hostname mismatch:", verifyData.hostname);
+        return new Response(JSON.stringify({ error: "reCAPTCHA hostname mismatch" }), {
+          status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
+    // ── Honeypot, timing, and content validation (skip for testMode and generic) ──
+    if (!body.testMode && type !== "generic") {
+      const contentError = validateContent(body);
+      if (contentError) {
+        return new Response(JSON.stringify({ error: contentError }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
     }

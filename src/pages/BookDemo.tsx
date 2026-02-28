@@ -15,6 +15,8 @@ const BookDemo = () => {
   const { regionPath } = useRegion();
   const { t } = useRegionText();
   const [form, setForm] = useState({ name: "", email: "", telephone: "", organisation: "", date: "", time: "" });
+  const [honeypot, setHoneypot] = useState("");
+  const [formLoadedAt] = useState(() => Date.now());
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [recaptchaToken, setRecaptchaToken] = useState("");
@@ -41,6 +43,8 @@ const BookDemo = () => {
         date: form.date,
         time: form.time,
         recaptchaToken,
+        _hp_field: honeypot,
+        _form_loaded_at: formLoadedAt,
       });
       navigate(regionPath("/book-demo/success"));
     } catch (err) {
@@ -70,6 +74,17 @@ const BookDemo = () => {
                 <input type="text" name="date" placeholder={t("Ideal Date for Demo *")} required value={form.date} onChange={handleChange} className="w-full rounded-lg border border-border bg-background px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#0075FF]/50" />
                 <input type="text" name="time" placeholder={t("Ideal Time for Demo *")} required value={form.time} onChange={handleChange} className="w-full rounded-lg border border-border bg-background px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#0075FF]/50" />
                 {error && <p className="text-sm text-red-500">{error}</p>}
+                {/* Honeypot field — hidden from real users */}
+                <input
+                  type="text"
+                  name="website_url"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }}
+                />
                 <ReCaptcha onVerify={setRecaptchaToken} onExpire={() => setRecaptchaToken("")} />
                 <button type="submit" disabled={submitting || !recaptchaToken} className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0075FF] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#0060d0] disabled:opacity-60">
                   {submitting ? t("Sending…") : t("Book now")} <Send size={16} />

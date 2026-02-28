@@ -30,6 +30,8 @@ const Contact = () => {
   const navigate = useNavigate();
   const { regionPath, region } = useRegion();
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", message: "" });
+  const [honeypot, setHoneypot] = useState("");
+  const [formLoadedAt] = useState(() => Date.now());
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [recaptchaToken, setRecaptchaToken] = useState("");
@@ -51,6 +53,8 @@ const Contact = () => {
         company: form.company,
         message: form.message,
         recaptchaToken,
+        _hp_field: honeypot,
+        _form_loaded_at: formLoadedAt,
       });
       navigate(regionPath("/contact/success"));
     } catch (err) {
@@ -100,6 +104,17 @@ const Contact = () => {
                 <Input placeholder={t("Company / Organisation")} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
               </div>
               <Textarea placeholder={t("Your Message *")} required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+              {/* Honeypot field — hidden from real users */}
+              <input
+                type="text"
+                name="website_url"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }}
+              />
               <ReCaptcha onVerify={setRecaptchaToken} onExpire={() => setRecaptchaToken("")} />
               {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting || !recaptchaToken}>
