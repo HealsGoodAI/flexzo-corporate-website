@@ -24,6 +24,8 @@ const JobApplication = () => {
     email: "",
   });
   const [cvFile, setCvFile] = useState<File | null>(null);
+  const [honeypot, setHoneypot] = useState("");
+  const [formLoadedAt] = useState(() => Date.now());
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [agreeShareProfile, setAgreeShareProfile] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -82,6 +84,8 @@ const JobApplication = () => {
         jobId: id!,
         cvFile: cvFile!,
         recaptchaToken,
+        _hp_field: honeypot,
+        _form_loaded_at: formLoadedAt,
       });
       navigate(regionPath(`/jobs/${id}/apply/success`), { state: { jobTitle: job?.title } });
     } catch {
@@ -244,6 +248,18 @@ const JobApplication = () => {
                 </span>
               </label>
             </div>
+
+            {/* Honeypot field — hidden from real users */}
+            <input
+              type="text"
+              name="website_url"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }}
+            />
 
             {/* reCAPTCHA */}
             <div>

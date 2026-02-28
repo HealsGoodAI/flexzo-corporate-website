@@ -51,8 +51,8 @@ const getRegion = (): string => {
   return window.location.pathname.split("/")[1] || "uk";
 };
 
-export const sendApplicationEmails = async (params: ApplicationEmailParams & { recaptchaToken: string }): Promise<void> => {
-  const { firstName, lastName, email, jobTitle, jobId, cvFile, region, recaptchaToken } = params;
+export const sendApplicationEmails = async (params: ApplicationEmailParams & { recaptchaToken: string; _hp_field?: string; _form_loaded_at?: number }): Promise<void> => {
+  const { firstName, lastName, email, jobTitle, jobId, cvFile, region, recaptchaToken, _hp_field, _form_loaded_at } = params;
 
   const cvBase64 = await fileToBase64(cvFile);
   const jobLink = buildJobLink(jobId);
@@ -69,6 +69,8 @@ export const sendApplicationEmails = async (params: ApplicationEmailParams & { r
       cvFileName: cvFile.name,
       region: resolvedRegion,
       recaptchaToken,
+      _hp_field,
+      _form_loaded_at,
     },
   });
 
@@ -83,13 +85,15 @@ export const sendApplicationEmails = async (params: ApplicationEmailParams & { r
   }
 };
 
-export const sendBookDemoEmail = async (params: BookDemoEmailParams & { recaptchaToken: string }): Promise<void> => {
-  const { recaptchaToken, ...rest } = params;
+export const sendBookDemoEmail = async (params: BookDemoEmailParams & { recaptchaToken: string; _hp_field?: string; _form_loaded_at?: number }): Promise<void> => {
+  const { recaptchaToken, _hp_field, _form_loaded_at, ...rest } = params;
   const { data, error } = await supabase.functions.invoke("send-application-email", {
     body: {
       type: "book_demo",
       ...rest,
       recaptchaToken,
+      _hp_field,
+      _form_loaded_at,
     },
   });
 
@@ -104,13 +108,15 @@ export const sendBookDemoEmail = async (params: BookDemoEmailParams & { recaptch
   }
 };
 
-export const sendContactEmail = async (params: ContactEmailParams & { recaptchaToken: string }): Promise<void> => {
-  const { recaptchaToken, ...rest } = params;
+export const sendContactEmail = async (params: ContactEmailParams & { recaptchaToken: string; _hp_field?: string; _form_loaded_at?: number }): Promise<void> => {
+  const { recaptchaToken, _hp_field, _form_loaded_at, ...rest } = params;
   const { data, error } = await supabase.functions.invoke("send-application-email", {
     body: {
       type: "contact",
       ...rest,
       recaptchaToken,
+      _hp_field,
+      _form_loaded_at,
     },
   });
 
