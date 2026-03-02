@@ -4,10 +4,12 @@ import { MapPin, Briefcase, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useJobs } from "@/hooks/useJobs";
 import { useRegionText } from "@/lib/regionalize";
+import { useRegion } from "@/hooks/useRegion";
 
 const FeaturedJobsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { t } = useRegionText();
+  const { regionPath } = useRegion();
   const { jobs } = useJobs();
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const FeaturedJobsSection = () => {
             </h2>
           </div>
           <Link
-            to="/jobs"
+            to={regionPath("/jobs")}
             className="hidden items-center gap-1 text-sm font-semibold text-accent transition-colors hover:text-accent/80 sm:flex"
           >
             {t("View all roles")} <ArrowRight size={14} />
@@ -83,7 +85,7 @@ const FeaturedJobsSection = () => {
             className="shrink-0"
           >
             <Link
-              to={`/jobs/${job.id}`}
+              to={regionPath(`/jobs/${job.id}`)}
               className="group flex h-full w-[320px] flex-col justify-between rounded-xl border border-border bg-background p-6 transition-all hover:shadow-lg hover:border-accent/30"
             >
               <div>
@@ -123,7 +125,7 @@ const FeaturedJobsSection = () => {
 
       <div className="mt-6 text-center sm:hidden">
         <Link
-          to="/jobs"
+          to={regionPath("/jobs")}
           className="inline-flex items-center gap-1 text-sm font-semibold text-accent"
         >
           {t("View all roles")} <ArrowRight size={14} />
