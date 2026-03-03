@@ -100,8 +100,8 @@ const FeaturedJobsSection = () => {
                     <span />
                   )}
                   {job.posted && job.posted !== "Open" && job.closing && job.closing !== "Open" ? (
-                    <span className="shrink-0 text-xs text-muted-foreground">
-                      {job.posted} – {job.closing}
+                    <span className="shrink-0 text-xs text-right text-muted-foreground leading-tight">
+                      {job.posted}<br />{job.closing}
                     </span>
                   ) : job.posted && job.posted !== "Open" ? (
                     <span className="shrink-0 text-xs text-muted-foreground">
