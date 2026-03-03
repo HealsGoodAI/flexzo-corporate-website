@@ -86,12 +86,10 @@ const JobDetail = () => {
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted-foreground">
               {job.posted && job.posted !== "Open" && (
                 <span className="flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5" /> Posted: {job.posted}
-                </span>
-              )}
-              {job.closing && job.closing !== "Open" && (
-                <span className="flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5" /> Closing: {job.closing}
+                  <Calendar className="h-3.5 w-3.5" />
+                  {job.closing && job.closing !== "Open"
+                    ? `${job.posted} – ${job.closing}`
+                    : job.posted}
                 </span>
               )}
             </div>
