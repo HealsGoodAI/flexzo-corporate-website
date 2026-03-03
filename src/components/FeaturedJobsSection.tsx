@@ -10,7 +10,7 @@ const FeaturedJobsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { t } = useRegionText();
   const { regionPath } = useRegion();
-  const { jobs } = useJobs();
+  const { jobs, loading } = useJobs();
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -43,6 +43,8 @@ const FeaturedJobsSection = () => {
       el.removeEventListener("mouseleave", resume);
     };
   }, []);
+
+  if (!loading && jobs.length === 0) return null;
 
   return (
     <section className="py-24 bg-surface">
