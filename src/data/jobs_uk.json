@@ -17,8 +17,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant General Surgeon (Consultant) to support clinical delivery within General Surgeon / Colorectal services. You will work with a multidisciplinary team at Queen Elizabeth University Hospital, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -66,8 +72,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Orthopaedic Consultant (Consultant) to support clinical delivery within Orthopaedics / Knee services. You will work with a multidisciplinary team at Queen Elizabeth University Hospital, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -115,8 +127,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Orthopaedic Consultant (Consultant) to support clinical delivery within Orthopaedics / Hips services. You will work with a multidisciplinary team at Queen Elizabeth University Hospital, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -164,8 +182,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Urologist (Consultant) to support clinical delivery within Urology services. You will work with a multidisciplinary team at Queen Elizabeth University Hospital, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -213,8 +237,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Gynaecologist (Consultant) to support clinical delivery within Gynaecology / Uro-Gynae services. You will work with a multidisciplinary team at Queen Elizabeth University Hospital, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -262,8 +292,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a ENT Consultant (Consultant) to support clinical delivery within ENT / Paediatrics services. You will work with a multidisciplinary team at Queen Elizabeth University Hospital, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -311,8 +347,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Ophthalmologist (Consultant) to support clinical delivery within Opthalmology / Paediatrics services. You will work with a multidisciplinary team at Queen Elizabeth University Hospital, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -360,8 +402,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Occupational Therapist (Band 7) to support clinical delivery within AHP / Occupational Therapy services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -409,8 +457,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Occupational Therapist (Band 7) to support clinical delivery within AHP / Occupational Therapy services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -458,8 +512,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Occupational Therapist (Band 7) to support clinical delivery within AHP / Occupational Therapy services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -507,8 +567,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Occupational Therapist (Band 7) to support clinical delivery within AHP / Occupational Therapy services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -556,8 +622,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Occupational Therapist (Band 7) to support clinical delivery within AHP / Occupational Therapy services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -605,8 +677,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Occupational Therapist (Band 7) to support clinical delivery within AHP / Occupational Therapy services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -654,8 +732,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Audiologist (Band 6) to support clinical delivery within AHP / Audiologist services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -703,8 +787,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Speech and Language Therapist (Band 7) to support clinical delivery within AHP / Speech and Language Therapy services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -752,8 +842,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Pharmacist (Band 5) to support clinical delivery within AHP / Pharmacy services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -801,8 +897,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered General Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -850,8 +952,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -899,8 +1007,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered General Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -948,8 +1062,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -997,8 +1117,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1046,8 +1172,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1095,8 +1227,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1144,8 +1282,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered General Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1193,8 +1337,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1242,8 +1392,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered General Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1291,8 +1447,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1340,8 +1502,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1389,8 +1557,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1438,8 +1612,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / Prison Mental Health Nurse services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1487,8 +1667,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 7) to support clinical delivery within Mental Health / Adult Mental Health services. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1536,8 +1722,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Specialty Doctor (Specialty Doctor) to support clinical delivery. You will work with a multidisciplinary team at Central and North West London NHS Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1585,8 +1777,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Scrub Nurse (Band 5) to support clinical delivery within General / Orthopaedics services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1634,8 +1832,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Scrub Nurse (Band 5) to support clinical delivery within General / Oncology & Haematology services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1683,8 +1887,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Nurse (Band 5) to support clinical delivery within General / General Paediatrics services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1732,8 +1942,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a SPR - Cardiothoracic Surgery (ST8) to support clinical delivery within Cardiothoracic Surgery services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1781,8 +1997,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Pharmacist (Band 8a) to support clinical delivery within Pharmacy / Pharmacist services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1830,8 +2052,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Therapeutic Radiographer (Band 7) to support clinical delivery within Oncology / AHP services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1879,8 +2107,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Paediatric Critical Care (Band 5) to support clinical delivery within General / Critical Care services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1928,8 +2162,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Nurse (Band 5) to support clinical delivery within General / Neonatal Unit services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -1977,8 +2217,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Nurse (Band 5) to support clinical delivery within General / Emergency Department services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2026,8 +2272,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Cardiac Physiologist to support clinical delivery within Cardiac Physiologist services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2075,8 +2327,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Cardiac Perfusionist to support clinical delivery within Cardiac Perfusionist services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2124,8 +2382,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Paediatric General Nurse (Band 5) to support clinical delivery within General / Paediatric General Nurse services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2173,8 +2437,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Oncologist (Consultant) to support clinical delivery within Oncology / Clinical services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2222,8 +2492,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Surgical Care Practitioner to support clinical delivery within Surgical Care Practioner services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2271,8 +2547,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Therapeutic Radiographer (Band 6) to support clinical delivery within Radiography / Theraputic Radiographer services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2320,8 +2602,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Therapeutic Radiographer (Band 7) to support clinical delivery within Radiography / Theraputic Radiographer services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2369,8 +2657,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Physiotherapist (Band 6) to support clinical delivery within AHP / Physiotherapist services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2418,8 +2712,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Nurse Consultant (Band 8) to support clinical delivery within Nurse Consultant services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2466,8 +2766,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Advanced Nurse Practitioner (Band 8a) to support clinical delivery within Advance Nurse Practioner services. You will work with a multidisciplinary team at Oxford University Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2514,8 +2820,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Pharmacist (Band 8a) to support clinical delivery within AHP / Pharmacist services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2563,8 +2875,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Physiotherapist (Band 6) to support clinical delivery within AHP / Physiotherapy services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2612,8 +2930,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Occupational Therapist (Band 6) to support clinical delivery within AHP / Occupational Therapy services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2661,8 +2985,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a ICU Nurse (Band 5) to support clinical delivery within General / ICU services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2710,8 +3040,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a SACT Chemo Nurse (Band 5) to support clinical delivery within General / Chemotherapy services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2759,8 +3095,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Accountable Pharmacist (Band 8d) to support clinical delivery within AHP / Pharmacist services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2808,8 +3150,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Peadiatric Nurse (Band 5) to support clinical delivery within Medical / Peadiatrics services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2856,8 +3204,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Respiratory Consultant (Consultant) to support clinical delivery within Medical / Respitratory services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2904,8 +3258,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Dermatologist (Consultant) to support clinical delivery within Medical / Dermatology services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -2952,8 +3312,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Rheumatologist (Consultant) to support clinical delivery within Medical / Rheumatology services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3000,8 +3366,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Urologist (Consultant) to support clinical delivery within Surgical / Urology services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3048,8 +3420,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Gynaecologist (Consultant) to support clinical delivery within Surgical / Gynaecology services. You will work with a multidisciplinary team at Salisbury Foundation Trust, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3096,8 +3474,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Haematologist (Consultant) to support clinical delivery within Medical / Haematology services. You will work with a multidisciplinary team at Royal United Bath, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3145,8 +3529,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Dermatologist (Consultant) to support clinical delivery within Medical / Dermatology services. You will work with a multidisciplinary team at Royal United Bath, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3194,8 +3584,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Oncologist (Consultant) to support clinical delivery within Medical / Oncology services. You will work with a multidisciplinary team at Royal United Bath, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3243,8 +3639,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a A&E Nurse (Band 5) to support clinical delivery within Medical / Emergency services. You will work with a multidisciplinary team at Royal United Bath, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3291,8 +3693,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Medical Typist (Band 3) to support clinical delivery within Medical Typist services. You will work with a multidisciplinary team at Royal United Bath, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3339,8 +3747,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Sonographer (Band 6) to support clinical delivery within AHP / Diagnostic & Therapuetic Radiography services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3388,8 +3802,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Sonographer (Band 6) to support clinical delivery within AHP / Diagnostic & Therapuetic Radiography services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3437,8 +3857,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Sonographer (Band 6) to support clinical delivery within AHP / Diagnostic & Therapuetic Radiography services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3486,8 +3912,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Acute Medicine Consultant (Consultant) to support clinical delivery within Medical / Acute Medicine services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3535,8 +3967,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Microbiology Consultant (Consultant) to support clinical delivery within Medical / Microbiology services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3584,8 +4022,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Breast Radiologist (Consultant) to support clinical delivery within Medical / Breast Radiology services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3633,8 +4077,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Stroke Consultant (Consultant) to support clinical delivery within Medical / Stroke services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3682,8 +4132,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Specialist Registrar (ST3) to support clinical delivery within General / Emergency Department services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3731,8 +4187,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Nurse (Band 5) to support clinical delivery within General / Emergency Department services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3780,8 +4242,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Mental Health Nurse (Band 6) to support clinical delivery within Mental Health / General Mental Health services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3829,8 +4297,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Nurse (Band 5) to support clinical delivery within General / Neo-Natal services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3878,8 +4352,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Staff Nurse (Band 5) to support clinical delivery within General / Emergency Department services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3927,8 +4407,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Registered Nurse (Band 6) to support clinical delivery within General / Neo-Natal Intensive Care Unit services. You will work with a multidisciplinary team at Great Western Hospitals, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -3976,8 +4462,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Psychiatrist (Consultant) to support clinical delivery within Psychiatry services. You will work with a multidisciplinary team at Betsi Cadwaladr University Health Board, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -4025,8 +4517,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Psychiatrist - Home Treatment & PICU (Consultant) to support clinical delivery within Psychiatry / Home Treatement services. You will work with a multidisciplinary team at Betsi Cadwaladr University Health Board, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -4074,8 +4572,14 @@
       "unit": null
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Psychiatrist - Forensic (Consultant) to support clinical delivery within Psychiatry / Forensic services. You will work with a multidisciplinary team at Betsi Cadwaladr University Health Board, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -4123,8 +4627,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Consultant Breast Radiologist (Consultant) to support clinical delivery within Medical / Breast Radiology services. You will work with a multidisciplinary team at University Hospitals Dorset, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -4172,8 +4682,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Midwife (Band 6) to support clinical delivery within Midwife services. You will work with a multidisciplinary team at University Hospitals Dorset, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
@@ -4221,8 +4737,14 @@
       "unit": "hour"
     },
     "dates": {
-      "start": null,
-      "end": null
+      "start": {
+        "text": null,
+        "date": null
+      },
+      "end": {
+        "text": null,
+        "date": null
+      }
     },
     "employment_type": "Not specified",
     "about_the_role": "An opportunity has arisen for a Mammographer (Band 7) to support clinical delivery within Medical / Radiography services. You will work with a multidisciplinary team at University Hospitals Dorset, using modern clinical systems and digital tools to provide safe, effective care and excellent patient outcomes in UK.",
