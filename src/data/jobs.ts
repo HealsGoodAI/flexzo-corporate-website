@@ -19,19 +19,25 @@ export interface Job {
   benefits: string[];
 }
 
+interface RawDateValue {
+  text?: string | null;
+  date?: string | null;
+}
+
 interface RawJob {
   id: string;
   country?: string;
   job_title: string;
   organisation: string;
+  location?: string;
   job_manager?: string;
   job_role?: string;
   grade?: string;
   specialism?: string;
   sub_specialism?: string;
   shift?: string;
-  pay?: { text?: string; currency?: string; amount?: number; unit?: string } | string;
-  dates?: { start?: string | null; end?: string | null };
+  pay?: { text?: string | null; currency?: string; amount?: number | null; unit?: string | null } | string;
+  dates?: { start?: string | RawDateValue | null; end?: string | RawDateValue | null };
   employment_type?: string;
   // Legacy flat fields
   core_rate?: string;
@@ -45,7 +51,12 @@ interface RawJob {
 }
 
 export function normalizeRawJob(raw: RawJob): Job {
-  const fmt = (d?: string | null) => (!d || d === "NaT" ? "Open" : d);
+  const fmtDate = (d?: string | RawDateValue | null): string => {
+    if (!d || d === "NaT") return "Open";
+    if (typeof d === "string") return d;
+    // Object form: { text, date }
+    return d.date ?? d.text ?? "Open";
+  };
 
   // Handle pay: could be an object { text, amount, unit } or a legacy string
   let salary = "Competitive";
@@ -59,7 +70,7 @@ export function normalizeRawJob(raw: RawJob): Job {
     salary = raw.core_rate;
   }
 
-  // Handle dates: could be nested object or legacy flat fields
+  // Handle dates: could be nested object, string, or legacy flat fields
   const startDate = raw.dates?.start ?? raw.start_date;
   const endDate = raw.dates?.end ?? raw.end_date;
 
@@ -67,10 +78,10 @@ export function normalizeRawJob(raw: RawJob): Job {
     id: raw.id,
     title: raw.job_title,
     organisation: raw.organisation,
-    location: raw.sub_specialism ?? raw.specialism ?? "",
+    location: raw.location ?? raw.sub_specialism ?? raw.specialism ?? "",
     salary,
-    posted: fmt(startDate),
-    closing: fmt(endDate),
+    posted: fmtDate(startDate),
+    closing: fmtDate(endDate),
     contractType: raw.employment_type && raw.employment_type !== "Not specified"
       ? raw.employment_type
       : raw.shift ?? "",
