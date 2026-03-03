@@ -99,11 +99,13 @@ const Jobs = () => {
                   <div>
                     <div className="mb-4 flex items-start justify-between gap-2">
                       {job.contractType ? (
-                        <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">{job.contractType}</span>
+                        <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">Shift: {job.contractType}</span>
                       ) : <span />}
-                      {job.closing && job.closing !== "Open" && (
-                        <span className="shrink-0 text-xs text-muted-foreground">{t("Closes")} {job.closing}</span>
-                      )}
+                      {job.posted && job.posted !== "Open" && job.closing && job.closing !== "Open" ? (
+                        <span className="shrink-0 text-xs text-muted-foreground">{job.posted} – {job.closing}</span>
+                      ) : job.posted && job.posted !== "Open" ? (
+                        <span className="shrink-0 text-xs text-muted-foreground">{job.posted}</span>
+                      ) : null}
                     </div>
                     <h3 className="mb-1 font-display text-base font-semibold text-foreground group-hover:text-accent transition-colors line-clamp-2">{job.title}</h3>
                     <p className="mb-4 text-sm text-muted-foreground">{job.organisation}</p>
