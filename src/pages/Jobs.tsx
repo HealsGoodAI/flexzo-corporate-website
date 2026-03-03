@@ -98,16 +98,24 @@ const Jobs = () => {
                 <Link to={regionPath(`/jobs/${job.id}`)} className="group flex h-full w-[340px] flex-col justify-between rounded-xl border border-border bg-background p-6 transition-all hover:shadow-lg hover:border-accent/30">
                   <div>
                     <div className="mb-4 flex items-start justify-between gap-2">
-                      <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">{job.contractType}</span>
-                      <span className="shrink-0 text-xs text-muted-foreground">{t("Closes")} {job.closing}</span>
+                      {job.contractType ? (
+                        <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">{job.contractType}</span>
+                      ) : <span />}
+                      {job.closing && job.closing !== "Open" && (
+                        <span className="shrink-0 text-xs text-muted-foreground">{t("Closes")} {job.closing}</span>
+                      )}
                     </div>
                     <h3 className="mb-1 font-display text-base font-semibold text-foreground group-hover:text-accent transition-colors line-clamp-2">{job.title}</h3>
                     <p className="mb-4 text-sm text-muted-foreground">{job.organisation}</p>
                   </div>
                   <div className="flex flex-col gap-2 border-t border-border pt-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 shrink-0" />{job.location}</span>
+                    {job.location && (
+                      <span className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 shrink-0" />{job.location}</span>
+                    )}
                     <span className="flex items-center gap-2"><Briefcase className="h-3.5 w-3.5 shrink-0" />{job.salary}</span>
-                    <span className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" />{job.workingPattern}</span>
+                    {job.workingPattern && (
+                      <span className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 shrink-0" />{job.workingPattern}</span>
+                    )}
                   </div>
                 </Link>
               </motion.div>
