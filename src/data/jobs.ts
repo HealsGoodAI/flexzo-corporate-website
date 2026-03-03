@@ -51,11 +51,23 @@ interface RawJob {
 }
 
 export function normalizeRawJob(raw: RawJob): Job {
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const ordinal = (n: number) => {
+    const s = ["th","st","nd","rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
+  const prettyDate = (iso: string): string => {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    return `${ordinal(d.getDate())} ${MONTHS[d.getMonth()]}`;
+  };
   const fmtDate = (d?: string | RawDateValue | null): string => {
     if (!d || d === "NaT") return "Open";
-    if (typeof d === "string") return d;
-    // Object form: { text, date }
-    return d.date ?? d.text ?? "Open";
+    if (typeof d === "string") return prettyDate(d);
+    const raw_val = d.date ?? d.text ?? null;
+    if (!raw_val) return "Open";
+    return prettyDate(raw_val);
   };
 
   // Handle pay: could be an object { text, amount, unit } or a legacy string
