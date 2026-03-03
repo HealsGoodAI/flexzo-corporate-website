@@ -73,7 +73,7 @@ const JobDetail = () => {
               )}
               {job.contractType && (
                 <span className="flex items-center gap-1.5">
-                  <Building2 className="h-4 w-4 text-[#0075FF]" /> {job.contractType}
+                  <Building2 className="h-4 w-4 text-[#0075FF]" /> Shift: {job.contractType}
                 </span>
               )}
               {job.band && (
