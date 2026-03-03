@@ -115,7 +115,7 @@ const spellingReplacements: [RegExp, string][] = [
  * Returns original text if region is "uk".
  */
 export function regionalize(text: string, region: "uk" | "us"): string {
-  if (region === "uk") return text;
+  if (!text || region === "uk") return text ?? "";
 
   let result = text;
 
