@@ -67,12 +67,14 @@ export function normalizeRawJob(raw: RawJob): Job {
     id: raw.id,
     title: raw.job_title,
     organisation: raw.organisation,
-    location: "Not specified",
+    location: raw.sub_specialism ?? raw.specialism ?? "",
     salary,
     posted: fmt(startDate),
     closing: fmt(endDate),
-    contractType: raw.employment_type ?? raw.shift ?? "Not specified",
-    workingPattern: raw.shift ?? "Not specified",
+    contractType: raw.employment_type && raw.employment_type !== "Not specified"
+      ? raw.employment_type
+      : raw.shift ?? "",
+    workingPattern: raw.shift ?? "",
     band: raw.grade,
     speciality: raw.specialism,
     region: raw.country,

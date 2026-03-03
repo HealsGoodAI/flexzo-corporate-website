@@ -58,18 +58,24 @@ const JobDetail = () => {
             <p className="mb-6 text-lg text-muted-foreground">{job.organisation}</p>
 
             <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="h-4 w-4 text-[#0075FF]" /> {job.location}
-              </span>
+              {job.location && (
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="h-4 w-4 text-[#0075FF]" /> {job.location}
+                </span>
+              )}
               <span className="flex items-center gap-1.5">
                 <Briefcase className="h-4 w-4 text-[#0075FF]" /> {job.salary}
               </span>
-              <span className="flex items-center gap-1.5">
-                <Clock className="h-4 w-4 text-[#0075FF]" /> {job.workingPattern}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Building2 className="h-4 w-4 text-[#0075FF]" /> {job.contractType}
-              </span>
+              {job.workingPattern && (
+                <span className="flex items-center gap-1.5">
+                  <Clock className="h-4 w-4 text-[#0075FF]" /> {job.workingPattern}
+                </span>
+              )}
+              {job.contractType && (
+                <span className="flex items-center gap-1.5">
+                  <Building2 className="h-4 w-4 text-[#0075FF]" /> {job.contractType}
+                </span>
+              )}
               {job.band && (
                 <span className="flex items-center gap-1.5">
                   <Tag className="h-4 w-4 text-[#0075FF]" /> {job.band}
@@ -78,12 +84,16 @@ const JobDetail = () => {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <Calendar className="h-3.5 w-3.5" /> Posted: {job.posted}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Calendar className="h-3.5 w-3.5" /> Closing: {job.closing}
-              </span>
+              {job.posted && job.posted !== "Open" && (
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="h-3.5 w-3.5" /> Posted: {job.posted}
+                </span>
+              )}
+              {job.closing && job.closing !== "Open" && (
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="h-3.5 w-3.5" /> Closing: {job.closing}
+                </span>
+              )}
             </div>
           </motion.div>
         </div>
