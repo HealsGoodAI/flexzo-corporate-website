@@ -94,16 +94,20 @@ const FeaturedJobsSection = () => {
                 <div className="mb-4 flex items-start justify-between gap-2">
                   {job.contractType ? (
                     <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                      {job.contractType}
+                      Shift: {job.contractType}
                     </span>
                   ) : (
                     <span />
                   )}
-                  {job.closing && job.closing !== "Open" && (
+                  {job.posted && job.posted !== "Open" && job.closing && job.closing !== "Open" ? (
                     <span className="shrink-0 text-xs text-muted-foreground">
-                      Closes {job.closing}
+                      {job.posted} – {job.closing}
                     </span>
-                  )}
+                  ) : job.posted && job.posted !== "Open" ? (
+                    <span className="shrink-0 text-xs text-muted-foreground">
+                      {job.posted}
+                    </span>
+                  ) : null}
                 </div>
                 <h3 className="mb-1 font-display text-base font-semibold text-foreground group-hover:text-accent transition-colors line-clamp-2">
                   {t(job.title)}
