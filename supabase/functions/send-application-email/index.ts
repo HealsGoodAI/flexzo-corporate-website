@@ -301,7 +301,7 @@ async function handleApplication(body: Record<string, string>, appPassword: stri
     const binaryStr = atob(cvBase64);
     const bytes = new Uint8Array(binaryStr.length);
     for (let i = 0; i < binaryStr.length; i++) bytes[i] = binaryStr.charCodeAt(i);
-    attachments.push({ filename: cvFileName, content: bytes, contentType: "application/octet-stream", encoding: "binary" });
+    attachments.push({ filename: cvFileName, content: bytes, contentType: "application/octet-stream", encoding: "binary" as const });
   }
 
   const applicantTemplate = (region === "us") ? APPLICANT_US_TEMPLATE : APPLICANT_UK_TEMPLATE;
