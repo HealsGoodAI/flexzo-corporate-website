@@ -21,6 +21,7 @@ export interface Job {
 
 interface RawJob {
   id: string;
+  country?: string;
   job_title: string;
   organisation: string;
   job_manager?: string;
@@ -29,6 +30,10 @@ interface RawJob {
   specialism?: string;
   sub_specialism?: string;
   shift?: string;
+  pay?: { text?: string; currency?: string; amount?: number; unit?: string } | string;
+  dates?: { start?: string | null; end?: string | null };
+  employment_type?: string;
+  // Legacy flat fields
   core_rate?: string;
   start_date?: string;
   end_date?: string;
@@ -40,19 +45,37 @@ interface RawJob {
 }
 
 export function normalizeRawJob(raw: RawJob): Job {
-  const fmt = (d?: string) => (!d || d === "NaT" ? "Open" : d);
+  const fmt = (d?: string | null) => (!d || d === "NaT" ? "Open" : d);
+
+  // Handle pay: could be an object { text, amount, unit } or a legacy string
+  let salary = "Competitive";
+  if (raw.pay) {
+    if (typeof raw.pay === "string") {
+      salary = raw.pay;
+    } else if (raw.pay.text) {
+      salary = raw.pay.unit ? `${raw.pay.text}/${raw.pay.unit}` : raw.pay.text;
+    }
+  } else if (raw.core_rate) {
+    salary = raw.core_rate;
+  }
+
+  // Handle dates: could be nested object or legacy flat fields
+  const startDate = raw.dates?.start ?? raw.start_date;
+  const endDate = raw.dates?.end ?? raw.end_date;
+
   return {
     id: raw.id,
     title: raw.job_title,
     organisation: raw.organisation,
     location: "Not specified",
-    salary: raw.core_rate ?? "Competitive",
-    posted: fmt(raw.start_date),
-    closing: fmt(raw.end_date),
-    contractType: raw.shift ?? "Not specified",
+    salary,
+    posted: fmt(startDate),
+    closing: fmt(endDate),
+    contractType: raw.employment_type ?? raw.shift ?? "Not specified",
     workingPattern: raw.shift ?? "Not specified",
     band: raw.grade,
     speciality: raw.specialism,
+    region: raw.country,
     description: raw.about_the_role ?? "",
     responsibilities: raw.key_responsibilities ?? [],
     requirements: raw.requirements ?? [],
