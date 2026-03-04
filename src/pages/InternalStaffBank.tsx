@@ -109,7 +109,7 @@ const benefits = [
 
 const stats = [
   { value: "60%", label: "Internal fill rate uplift" },
-  { value: "2x", label: "Faster shift fill" },
+  { value: "lightning", label: "Faster shift fill", isIcon: true },
   { value: "100%", label: "Compliance audit trail" },
   { value: "35%", label: "Reduction in agency spend" },
 ];
@@ -176,7 +176,11 @@ const InternalStaffBank = () => {
                   variants={fadeUp}
                   className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-8 backdrop-blur-sm"
                 >
-                  <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
+                  {"isIcon" in stat && stat.isIcon ? (
+                    <Zap className="h-10 w-10 text-[#0075FF] md:h-12 md:w-12" />
+                  ) : (
+                    <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
+                  )}
                   <p className="mt-2 text-sm text-primary-foreground/50">{stat.label}</p>
                 </motion.div>
               ))}
