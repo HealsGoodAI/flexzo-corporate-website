@@ -64,6 +64,12 @@ const features = [
     description:
       '"What-if" scenarios and KPIs (fill rate, agency reliance, roster compliance) for decision support.',
   },
+  {
+    icon: Target,
+    title: "AI Agentic Outreach",
+    description:
+      "Autonomous agents proactively contact matched clinicians via preferred channels, negotiate availability and confirm bookings — reducing manual coordination to near zero.",
+  },
 ];
 
 const benefits = [
