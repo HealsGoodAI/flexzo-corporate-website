@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
 import { useRegion } from "@/hooks/useRegion";
-import newsFeaturedImg from "@/assets/news-featured.jpg";
+
 
 const categories = ["All", ...Array.from(new Set(articles.map((a) => a.category)))];
 
@@ -113,7 +113,7 @@ const News = () => {
               >
                 {/* Left: large color block with category */}
                 <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-foreground flex flex-col justify-end lg:aspect-[4/3]">
-                  <img src={newsFeaturedImg} alt="Healthcare professional" className="absolute inset-0 h-full w-full object-cover opacity-40" />
+                  <img src={featured.image} alt={featured.title} className="absolute inset-0 h-full w-full object-cover opacity-40" />
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/60 to-transparent" />
                   <div className="relative z-10 p-10">
                     <span className="mb-4 inline-block rounded-full bg-[#0075FF] px-4 py-1.5 text-xs font-semibold text-white">
@@ -176,14 +176,14 @@ const News = () => {
                     to={regionPath(`/news/${article.slug}`)}
                     className="group block"
                   >
-                    {/* Color accent bar */}
-                    <div className={`mb-6 overflow-hidden rounded-xl bg-foreground ${isWide ? "aspect-[21/9]" : "aspect-[16/10]"} flex items-end p-6 relative`}>
-                      <div className="absolute inset-0 opacity-[0.05]" style={{
-                        backgroundImage: `radial-gradient(circle at ${30 + (i * 17) % 60}% ${20 + (i * 23) % 50}%, hsl(210 100% 45% / 0.3) 0%, transparent 60%)`
-                      }} />
-                      <span className="relative z-10 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-medium text-primary-foreground/70 backdrop-blur-sm">
-                        {article.category}
-                      </span>
+                    <div className={`mb-6 overflow-hidden rounded-xl bg-foreground ${isWide ? "aspect-[21/9]" : "aspect-[16/10]"} relative`}>
+                      <img src={article.image} alt={article.title} className="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
+                      <div className="absolute bottom-0 left-0 p-6">
+                        <span className="relative z-10 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-medium text-primary-foreground/70 backdrop-blur-sm">
+                          {article.category}
+                        </span>
+                      </div>
                     </div>
 
                     <h3 className={`font-bold leading-snug text-foreground transition-colors group-hover:text-[#0075FF] ${isWide ? "text-2xl md:text-3xl" : "text-lg"}`}>

@@ -1,3 +1,30 @@
+import hospitalsBanner from "@/assets/hospitals-banner.jpg";
+import hospitalsHero from "@/assets/hospitals-hero.jpg";
+import primaryCareHero from "@/assets/primary-care-hero.jpg";
+import primaryCare from "@/assets/primary-care.jpg";
+import primaryCarePractice from "@/assets/primary-care-practice.jpg";
+import privateHealthcareHero from "@/assets/private-healthcare-hero.jpg";
+import privateHealthcare from "@/assets/private-healthcare.jpg";
+import pharmacyHero from "@/assets/pharmacy-hero.jpg";
+import socialCareHero from "@/assets/social-care-hero.jpg";
+import communityPharmacy from "@/assets/community-pharmacy.jpg";
+import nhsBadge from "@/assets/nhs-badge.jpg";
+import aiSourcingHero from "@/assets/ai-sourcing-hero.jpg";
+import aiSourcingFill from "@/assets/ai-sourcing-fill.jpg";
+import aiSourcingLearn from "@/assets/ai-sourcing-learn.jpg";
+import aiSourcingMatch from "@/assets/ai-sourcing-match.jpg";
+import rosteringHero from "@/assets/rostering-hero.jpg";
+import bookDemoHero from "@/assets/book-demo-hero.jpg";
+import newsFeatured from "@/assets/news-featured.jpg";
+import press1 from "@/assets/press-1.jpg";
+import press2 from "@/assets/press-2.jpg";
+import press3 from "@/assets/press-3.jpg";
+import press4 from "@/assets/press-4.jpg";
+import press5 from "@/assets/press-5.jpg";
+import press6 from "@/assets/press-6.jpg";
+import press7 from "@/assets/press-7.jpg";
+import press8 from "@/assets/press-8.jpg";
+
 export interface ArticleSection {
   heading?: string;
   headingLevel?: 2 | 3;
@@ -12,6 +39,7 @@ export interface Article {
   date: string;
   publishedDate: string;
   excerpt: string;
+  image: string;
   sections: ArticleSection[];
 }
 
@@ -24,6 +52,7 @@ export const articles: Article[] = [
     date: "November 26, 2025",
     publishedDate: "September 26, 2025",
     excerpt: "Discover how collaborative staffing models empower NHS Trusts with greater workforce control, reducing reliance on external agencies.",
+    image: hospitalsBanner,
     sections: [
       {
         content: [
@@ -120,6 +149,7 @@ export const articles: Article[] = [
     date: "November 26, 2025",
     publishedDate: "September 23, 2025",
     excerpt: "Learn practical strategies for reducing agency spend through collaborative staff bank models that prioritise internal capacity.",
+    image: hospitalsHero,
     sections: [
       {
         content: [
@@ -190,6 +220,7 @@ export const articles: Article[] = [
     date: "November 26, 2025",
     publishedDate: "September 19, 2025",
     excerpt: "A comprehensive guide for trust leaders on navigating the ICB consolidation and its implications for workforce management.",
+    image: primaryCareHero,
     sections: [
       {
         content: [
@@ -257,6 +288,7 @@ export const articles: Article[] = [
     date: "November 26, 2025",
     publishedDate: "September 19, 2025",
     excerpt: "Uncovering the true cost of inefficient workforce strategies and how trusts can reclaim millions through smarter staffing.",
+    image: nhsBadge,
     sections: [
       {
         content: [
@@ -327,6 +359,7 @@ export const articles: Article[] = [
     date: "November 26, 2025",
     publishedDate: "September 19, 2025",
     excerpt: "Examining how complex compliance requirements create bottlenecks in NHS recruitment and what can be done to streamline them.",
+    image: aiSourcingHero,
     sections: [
       {
         content: [
@@ -394,6 +427,7 @@ export const articles: Article[] = [
     date: "November 26, 2025",
     publishedDate: "July 7, 2025",
     excerpt: "Exploring modern approaches to NHS recruitment that improve efficiency, reduce costs and deliver better workforce outcomes.",
+    image: privateHealthcareHero,
     sections: [
       {
         content: [
@@ -451,6 +485,7 @@ export const articles: Article[] = [
     date: "November 26, 2025",
     publishedDate: "May 27, 2025",
     excerpt: "How innovative workforce technology can help NHS Trusts tackle referral-to-treatment waiting times and reduce patient backlogs.",
+    image: rosteringHero,
     sections: [
       {
         content: [
@@ -509,6 +544,7 @@ export const articles: Article[] = [
     date: "November 27, 2025",
     publishedDate: "May 16, 2025",
     excerpt: "Why legacy recruitment methods are failing NHS trusts and the case for adopting AI-powered, data-driven workforce solutions.",
+    image: primaryCare,
     sections: [
       {
         content: [
@@ -576,6 +612,7 @@ export const articles: Article[] = [
     date: "November 27, 2025",
     publishedDate: "May 16, 2025",
     excerpt: "Understanding the domino effect of recruitment delays on staffing gaps, patient care and trust budgets.",
+    image: socialCareHero,
     sections: [
       {
         content: [
@@ -641,6 +678,7 @@ export const articles: Article[] = [
     date: "November 27, 2025",
     publishedDate: "May 16, 2025",
     excerpt: "Analysing why over-reliance on agency staffing creates inefficiency and how trusts can shift to internal-first models.",
+    image: pharmacyHero,
     sections: [
       {
         content: [
@@ -705,6 +743,7 @@ export const articles: Article[] = [
     date: "November 27, 2025",
     publishedDate: "May 15, 2025",
     excerpt: "The gap between a professional accepting a position and working their first shift has grown into weeks of lost productivity, compounding the NHS staffing crisis.",
+    image: aiSourcingFill,
     sections: [
       {
         content: [
@@ -772,6 +811,7 @@ export const articles: Article[] = [
     date: "May 21, 2025",
     publishedDate: "May 15, 2025",
     excerpt: "With 6.8 million patients on waiting lists and over 112,000 staff vacancies, traditional recruitment methods simply cannot keep pace with the NHS staffing crisis.",
+    image: bookDemoHero,
     sections: [
       {
         content: [
@@ -821,6 +861,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "While money, buildings and equipment matter, the biggest limiting factor for the NHS elective backlog is people. Without enough professionals, waiting lists will continue to grow.",
+    image: primaryCarePractice,
     sections: [
       {
         content: [
@@ -865,6 +906,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Forward-thinking NHS leaders are embracing completely new ways of planning their workforce, from skills-based approaches to regional collaboration.",
+    image: privateHealthcare,
     sections: [
       {
         content: [
@@ -913,6 +955,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Rota gaps are becoming more common, more difficult to fill, and increasingly disruptive to patient care. The healthcare system needs a fundamental rethink.",
+    image: communityPharmacy,
     sections: [
       {
         content: [
@@ -956,6 +999,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Empty shifts that once could be filled with a few phone calls now often remain vacant despite our best efforts, creating a self-reinforcing cycle of shortages.",
+    image: aiSourcingLearn,
     sections: [
       {
         content: [
@@ -1005,6 +1049,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "The NHS staffing crisis directly affects the quality of care patients receive, from extended waiting times to reduced personal interactions and compromised clinical outcomes.",
+    image: aiSourcingMatch,
     sections: [
       {
         content: [
@@ -1054,6 +1099,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "What started as a quick fix for staffing gaps has turned into a dependency on agencies that drains resources and creates financial uncertainty for NHS Trusts.",
+    image: press1,
     sections: [
       {
         content: [
@@ -1094,6 +1140,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Many Trusts have fallen into a troubling pattern of agency dependency that threatens both financial stability and day-to-day effectiveness of healthcare delivery.",
+    image: press2,
     sections: [
       {
         content: [
@@ -1142,6 +1189,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "What starts as a short-term agency solution can gradually create serious long-term problems for NHS Trusts, from budget growth to retention challenges.",
+    image: press3,
     sections: [
       {
         content: [
@@ -1192,6 +1240,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "As reliance on agency staff increases, NHS Trusts gradually lose control over workforce decisions, organisational culture, and financial planning.",
+    image: press4,
     sections: [
       {
         content: [
@@ -1249,6 +1298,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Beneath the seemingly straightforward solution of agency staffing lies a complex set of risks that many Trusts only discover once they've become deeply dependent.",
+    image: press5,
     sections: [
       {
         content: [
@@ -1315,6 +1365,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Agency spend has been climbing steadily, creating significant challenges for NHS Trusts that go beyond the obvious financial strain.",
+    image: press6,
     sections: [
       {
         content: [
@@ -1363,6 +1414,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Budget caps have been proposed as a solution to NHS agency overspend, but they may be simply treating the symptoms rather than addressing the underlying condition.",
+    image: press7,
     sections: [
       {
         content: [
@@ -1422,6 +1474,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Understanding the interconnected factors behind the dramatic rise in NHS agency spending and why it matters for the future of healthcare.",
+    image: press8,
     sections: [
       {
         content: [
@@ -1472,6 +1525,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Finding ways to reduce agency dependency isn't just about saving money – it's about creating more sustainable staffing models that work better for everyone involved.",
+    image: newsFeatured,
     sections: [
       {
         content: [
@@ -1530,6 +1584,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 4, 2025",
     excerpt: "The growing dependence on agencies is creating financial strain that affects the entire healthcare system, with hidden costs that many organisations are only beginning to fully understand.",
+    image: hospitalsBanner,
     sections: [
       {
         content: [
