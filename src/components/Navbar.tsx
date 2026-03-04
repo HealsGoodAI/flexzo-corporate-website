@@ -112,8 +112,8 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             : "bg-background/90 backdrop-blur-xl border-b border-border/50"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <a href={regionPath("/")} className="relative z-[60] flex items-center">
+        <div className="mx-auto flex max-w-7xl items-stretch justify-between px-6">
+          <a href={regionPath("/")} className="relative z-[60] flex items-center py-5">
             <img
               src={isTransparent ? flexzoLogoWhite : flexzoLogo}
               alt="Flexzo"
@@ -122,24 +122,24 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
           </a>
 
           {/* Desktop */}
-          <div ref={navRef} className="hidden items-center gap-8 lg:flex">
+          <div ref={navRef} className="hidden items-stretch gap-8 lg:flex">
             {navItems.map((item) => {
               const hasDropdown = item in dropdownMenus;
               if (hasDropdown) {
                 const isOpen = openDropdown === item;
                 return (
-                  <div key={item} className="relative">
+                  <div key={item} className="relative flex items-center">
+                    {isNavItemActive(item) && (
+                      <span className="absolute top-0 left-0 right-0 h-[3px] bg-[#0075FF]" />
+                    )}
                     <button
                       onClick={() => setOpenDropdown(isOpen ? null : item)}
-                      className={`relative flex items-center gap-1 text-sm transition-colors ${
+                      className={`flex items-center gap-1 text-sm transition-colors ${
                         isTransparent
                           ? isNavItemActive(item) ? "text-white" : "text-white/70 hover:text-white"
                           : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      {isNavItemActive(item) && (
-                        <span className="absolute left-0 right-0 h-[3px] bg-[#0075FF]" style={{ top: 'calc(-1.25rem - 1px)' }} />
-                      )}
                       {item}
                       <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                     </button>
@@ -164,31 +164,33 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 <a
                   key={item}
                   href={resolveHref(simpleLinks[item] || `#${item.toLowerCase()}`)}
-                  className={`relative text-sm transition-colors ${
+                  className={`relative flex items-center text-sm transition-colors ${
                     isTransparent
                       ? isNavItemActive(item) ? "text-white" : "text-white/70 hover:text-white"
                       : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {isNavItemActive(item) && (
-                    <span className="absolute left-0 right-0 h-[3px] bg-[#0075FF]" style={{ top: 'calc(-1.25rem - 1px)' }} />
+                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-[#0075FF]" />
                   )}
                   {item}
                 </a>
               );
             })}
-            <a
-              href={resolveHref("/book-demo")}
-              className={`rounded-md px-6 py-2.5 text-sm font-medium transition-all ${
-                isTransparent
-                  ? "bg-white/10 text-white border border-white/20 hover:bg-[#0075FF] hover:border-[#0075FF]"
-                  : "bg-primary text-primary-foreground hover:bg-[#0075FF] hover:text-white"
-              }`}
-            >
-              Book a demo
-            </a>
+            <div className="flex items-center">
+              <a
+                href={resolveHref("/book-demo")}
+                className={`rounded-md px-6 py-2.5 text-sm font-medium transition-all ${
+                  isTransparent
+                    ? "bg-white/10 text-white border border-white/20 hover:bg-[#0075FF] hover:border-[#0075FF]"
+                    : "bg-primary text-primary-foreground hover:bg-[#0075FF] hover:text-white"
+                }`}
+              >
+                Book a demo
+              </a>
+            </div>
             {/* Region dropdown */}
-            <div className="relative">
+            <div className="relative flex items-center">
               <button
                 onClick={() => setRegionDropdownOpen(!regionDropdownOpen)}
                 className={`flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium transition-all border ${
@@ -225,7 +227,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
 
           {/* Mobile toggle */}
           <button
-            className={`relative z-[60] lg:hidden ${isTransparent ? "text-white" : "text-foreground"}`}
+            className={`relative z-[60] py-5 lg:hidden ${isTransparent ? "text-white" : "text-foreground"}`}
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
