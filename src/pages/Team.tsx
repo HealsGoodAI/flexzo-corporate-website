@@ -229,8 +229,8 @@ const Team = () => {
                 variants={fadeUp}
                 className="group rounded-2xl border border-border bg-background p-6 transition-all hover:border-[#0075FF]/30 hover:shadow-lg hover:shadow-[#0075FF]/5"
               >
-                <div className="mb-5 flex items-start gap-5">
-                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-foreground">
+                <div className="mb-5 flex flex-col items-center text-center">
+                  <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full bg-foreground">
                     {member.image ? (
                       <img
                         src={member.image}
@@ -245,14 +245,12 @@ const Team = () => {
                       </div>
                     )}
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-lg font-bold text-foreground">
-                      {member.name}
-                    </h3>
-                    <p className="mt-0.5 text-sm font-medium text-[#0075FF]">
-                      {member.role}
-                    </p>
-                  </div>
+                  <h3 className="mt-4 text-lg font-bold text-foreground">
+                    {member.name}
+                  </h3>
+                  <p className="mt-0.5 text-sm font-medium text-[#0075FF]">
+                    {member.role}
+                  </p>
                 </div>
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {member.bio}
