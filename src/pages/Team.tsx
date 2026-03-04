@@ -254,7 +254,7 @@ const Team = () => {
                       className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0075FF] text-white transition-all hover:bg-[#0060D0]"
                       aria-label={`${member.name} on LinkedIn`}
                     >
-                      <Linkedin className="h-4 w-4" />
+                      <Linkedin className="h-4 w-4" fill="currentColor" />
                     </a>
                   </div>
                 )}
