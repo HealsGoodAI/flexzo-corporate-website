@@ -6,6 +6,7 @@ import teamMattPool from "@/assets/team-matt-pool.jpg";
 import teamBradleyPirie from "@/assets/team-bradley-pirie.jpg";
 import teamAliyaIrgaleeva from "@/assets/team-aliya-irgaleeva.jpg";
 import teamCharandasSingh from "@/assets/team-charandas-singh.jpg";
+import teamJackOconnell from "@/assets/team-jack-oconnell.jpg";
 import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -101,6 +102,13 @@ const teamMembers: TeamMember[] = [
     bio: "A proven product leader steering Flexzo's product strategy with a relentless focus on customers and commercial outcomes. Unites people, technology, and priorities to accelerate growth and deliver sustained value. Combining strong strategic vision with active execution, ensuring shared clarity and momentum — taking products from initial concept through to successful adoption and impact.",
     linkedin: "https://www.linkedin.com/in/charandas-singh/",
     image: teamCharandasSingh,
+  },
+  {
+    name: "Jack O'Connell",
+    role: "Resourcing & Client Delivery Manager",
+    bio: "A highly experienced healthcare recruiter with a strong understanding of both client and candidate needs. Builds long-term relationships through clear communication, market insight, and a consultative approach. With a deep grasp of the end-to-end recruitment process, he consistently keeps quality and outcomes at the forefront for all parties.",
+    linkedin: "https://www.linkedin.com/in/jack-o-connell-50592524/",
+    image: teamJackOconnell,
   },
 ];
 
