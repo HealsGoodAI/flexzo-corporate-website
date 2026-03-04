@@ -55,7 +55,7 @@ const JobDetail = () => {
             <h1 className="mb-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               {job.title}
             </h1>
-            <p className="mb-6 text-lg text-muted-foreground">{job.organisation}</p>
+            {job.organisation && <p className="mb-6 text-lg text-muted-foreground">{job.organisation}</p>}
 
             <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
               {job.location && (

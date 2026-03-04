@@ -89,7 +89,7 @@ export function normalizeRawJob(raw: RawJob): Job {
   return {
     id: raw.id,
     title: raw.job_title,
-    organisation: raw.country === "US" ? "Flexzo" : raw.organisation,
+    organisation: raw.country === "US" ? "" : raw.organisation,
     location: raw.location ?? raw.sub_specialism ?? raw.specialism ?? "",
     salary,
     posted: fmtDate(startDate),
