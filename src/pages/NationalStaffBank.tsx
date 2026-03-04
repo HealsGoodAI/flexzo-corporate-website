@@ -111,9 +111,9 @@ const benefits = [
 
 const stats = [
   { value: "40%", label: "Reduction in regional agency spend" },
-  { value: "6x", label: "Faster cross-site cover" },
+  { value: "lightning", label: "Faster cross-site cover", isIcon: true },
   { value: "100%", label: "Auditable governance trail" },
-  { value: "100+", label: "Partner organisations supported" },
+  { value: "50+", label: "Partner organisations supported" },
 ];
 
 const NationalStaffBank = () => {
@@ -176,7 +176,11 @@ const NationalStaffBank = () => {
                   variants={fadeUp}
                   className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-8 backdrop-blur-sm"
                 >
-                  <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
+                  {"isIcon" in stat && stat.isIcon ? (
+                    <Zap className="h-10 w-10 text-[#0075FF] md:h-12 md:w-12" />
+                  ) : (
+                    <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
+                  )}
                   <p className="mt-2 text-sm text-primary-foreground/50">{t(stat.label)}</p>
                 </motion.div>
               ))}
