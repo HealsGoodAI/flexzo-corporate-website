@@ -73,6 +73,7 @@ const AgentNetwork = () => {
     if (!ctx) return;
 
     let dpr = window.devicePixelRatio || 1;
+    let lastWidth = canvas.offsetWidth;
 
     const resize = () => {
       dpr = window.devicePixelRatio || 1;
@@ -125,8 +126,13 @@ const AgentNetwork = () => {
     };
 
     const handleResize = () => {
+      const currentWidth = canvas.offsetWidth;
       resize();
-      if (imagesLoaded.current) initNodes();
+      // Only reinitialise nodes when width actually changes (not mobile scroll bar hide/show)
+      if (Math.abs(currentWidth - lastWidth) > 2 && imagesLoaded.current) {
+        lastWidth = currentWidth;
+        initNodes();
+      }
     };
     window.addEventListener("resize", handleResize);
 
