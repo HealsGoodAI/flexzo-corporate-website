@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
+import { Users, Heart, Lightbulb, Shield, Target, Linkedin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RegionLink from "@/components/RegionLink";
@@ -40,25 +40,50 @@ const values = [
 interface TeamMember {
   name: string;
   role: string;
+  bio: string;
+  linkedin?: string;
   image?: string;
 }
 
 const teamMembers: TeamMember[] = [
-  { name: "Team Member", role: "CEO & Co-Founder" },
-  { name: "Team Member", role: "CTO & Co-Founder" },
-  { name: "Team Member", role: "COO" },
-  { name: "Team Member", role: "VP of Engineering" },
-  { name: "Team Member", role: "Head of Product" },
-  { name: "Team Member", role: "Head of Sales" },
-  { name: "Team Member", role: "Head of Operations" },
-  { name: "Team Member", role: "Head of Compliance" },
-  { name: "Team Member", role: "Senior Software Engineer" },
-  { name: "Team Member", role: "Senior Software Engineer" },
-  { name: "Team Member", role: "Product Designer" },
-  { name: "Team Member", role: "Account Manager" },
+  {
+    name: "Jack Henderson",
+    role: "Chief Executive Officer",
+    bio: "Serial entrepreneur with a proven track record in healthcare innovation. Founded KPI Health, scaling it from £0 to over £20m in revenue. Deep expertise in NHS operations, RTT performance, and healthcare staffing.",
+    linkedin: "https://www.linkedin.com/in/jack-henderson-18a78b173/",
+  },
+  {
+    name: "Sean McManus",
+    role: "Chief of Staff",
+    bio: "Experienced sales leader with a strong background in healthcare recruitment. Previously held senior roles at Medical-Locums Group, specialising in sales strategy, revenue growth, and building high-performing teams.",
+    linkedin: "https://www.linkedin.com/in/smmcmanus/",
+  },
+  {
+    name: "Charlie Meek",
+    role: "Head of Brand Marketing & Experience Design",
+    bio: "Growth-focused product and marketing leader driving Flexzo's global brand, marketing, and UX strategy. Deep expertise in growth marketing and brand development within the AI recruit-tech space.",
+    linkedin: "https://www.linkedin.com/in/charlie-meek-8821636/",
+  },
+  {
+    name: "Bradley Pirie",
+    role: "Chief Technology Officer",
+    bio: "Leading technology strategy, platform architecture, and engineering delivery across AI-driven healthcare solutions. Deep expertise in distributed systems, cloud infrastructure, and product-focused engineering.",
+    linkedin: "https://www.linkedin.com/in/bradley-pirie-7b9787151/",
+  },
+  {
+    name: "Aliya Irgaleeva",
+    role: "Head of AI",
+    bio: "AI and machine learning specialist with a background in biophysics. Extensive experience leading technology initiatives across startups and government projects, specialising in scalable AI systems for healthcare.",
+    linkedin: "https://www.linkedin.com/in/aliya-irgaleeva-594098209/",
+  },
+  {
+    name: "Matt Pool",
+    role: "Director of Strategic Partnerships",
+    bio: "Works with NHS leaders to redesign temporary workforce models. Over a decade in healthcare staffing and frontline recruitment operations, partnering with organisations to move towards AI-driven workforce models.",
+    linkedin: "https://www.linkedin.com/in/matthew-pool-848a0147/",
+  },
 ];
 
-// Generate initials colour from index
 const avatarColors = [
   "bg-[#0075FF]",
   "bg-[#0CE3FF]/80",
@@ -181,7 +206,7 @@ const Team = () => {
             </h2>
           </motion.div>
 
-          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {teamMembers.map((member, i) => (
               <motion.div
                 key={`${member.role}-${i}`}
@@ -190,28 +215,48 @@ const Team = () => {
                 viewport={{ once: true }}
                 custom={i}
                 variants={fadeUp}
-                className="group"
+                className="group rounded-2xl border border-border bg-background p-6 transition-all hover:border-[#0075FF]/30 hover:shadow-lg hover:shadow-[#0075FF]/5"
               >
-                <div className="mb-5 aspect-[3/4] overflow-hidden rounded-2xl bg-foreground relative">
-                  {member.image ? (
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className={`flex h-full w-full items-center justify-center ${avatarColors[i % avatarColors.length]}`}>
-                      <span className="text-5xl font-bold text-white/80">
-                        {member.name.split(" ").map(n => n[0]).join("")}
-                      </span>
+                <div className="mb-5 flex items-start gap-5">
+                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-foreground">
+                    {member.image ? (
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className={`flex h-full w-full items-center justify-center ${avatarColors[i % avatarColors.length]}`}>
+                        <span className="text-xl font-bold text-white/80">
+                          {member.name.split(" ").map(n => n[0]).join("")}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-bold text-foreground">
+                        {member.name}
+                      </h3>
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground transition-colors hover:text-[#0075FF]"
+                          aria-label={`${member.name} on LinkedIn`}
+                        >
+                          <Linkedin className="h-4 w-4" />
+                        </a>
+                      )}
                     </div>
-                  )}
+                    <p className="mt-0.5 text-sm font-medium text-[#0075FF]">
+                      {member.role}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-foreground">
-                  {member.name}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {member.role}
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {member.bio}
                 </p>
               </motion.div>
             ))}
