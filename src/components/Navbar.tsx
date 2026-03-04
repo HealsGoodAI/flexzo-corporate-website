@@ -112,10 +112,6 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             : "bg-background/90 backdrop-blur-xl border-b border-border/50"
         }`}
       >
-        {/* Full-width active page indicator at very top of navbar */}
-        {navItems.some((item) => isNavItemActive(item)) && (
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0075FF]" />
-        )}
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <a href={regionPath("/")} className="relative z-[60] flex items-center">
             <img
@@ -141,6 +137,9 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                           : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
+                      {isNavItemActive(item) && (
+                        <span className="absolute left-0 right-0 h-[3px] bg-[#0075FF]" style={{ top: 'calc(-1.25rem - 1px)' }} />
+                      )}
                       {item}
                       <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                     </button>
@@ -171,6 +170,9 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                       : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
+                  {isNavItemActive(item) && (
+                    <span className="absolute left-0 right-0 h-[3px] bg-[#0075FF]" style={{ top: 'calc(-1.25rem - 1px)' }} />
+                  )}
                   {item}
                 </a>
               );
