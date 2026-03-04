@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
 import { useRegion } from "@/hooks/useRegion";
+import SEO from "@/components/SEO";
 
 
 const categories = ["All", ...Array.from(new Set(articles.map((a) => a.category)))];
@@ -40,6 +41,11 @@ const News = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Knowledge Hub – Healthcare Staffing Insights"
+        description="Explore the latest insights, trends and news on AI-powered healthcare staffing, NHS workforce management, and healthcare recruitment."
+        path={`${regionPath("/news")}`}
+      />
       <Navbar />
 
       {/* ── HERO ── Pentagram-inspired: minimal, typographic */}

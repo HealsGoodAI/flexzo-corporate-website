@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
 import { useRegion } from "@/hooks/useRegion";
+import SEO, { breadcrumbSchema } from "@/components/SEO";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -52,6 +53,32 @@ const Article = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={article.title}
+        description={article.excerpt}
+        path={regionPath(`/news/${article.slug}`)}
+        type="article"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: article.title,
+            description: article.excerpt,
+            image: article.image,
+            datePublished: article.publishedDate,
+            publisher: {
+              "@type": "Organization",
+              name: "Flexzo",
+              logo: { "@type": "ImageObject", url: "https://flexzo.ai/Flexzo-Logo.svg" },
+            },
+          },
+          breadcrumbSchema([
+            { name: "Home", url: regionPath("/") },
+            { name: "Knowledge Hub", url: regionPath("/news") },
+            { name: article.title, url: regionPath(`/news/${article.slug}`) },
+          ]),
+        ]}
+      />
       <Navbar transparent />
 
       {/* ── HERO ── Full-bleed editorial header */}

@@ -9,6 +9,7 @@ import { useRegionText } from "@/lib/regionalize";
 import { sendBookDemoEmail } from "@/lib/emailService";
 import bookDemoHero from "@/assets/book-demo-hero.jpg";
 import ReCaptcha from "@/components/ReCaptcha";
+import SEO from "@/components/SEO";
 
 const BookDemo = () => {
   const navigate = useNavigate();
@@ -55,6 +56,11 @@ const BookDemo = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Book a Demo"
+        description="Book a demo with Flexzo to discover how AI-powered healthcare staffing can reduce costs, improve fill rates, and transform your workforce management."
+        path={`/${regionPath("/book-demo").slice(1)}`}
+      />
       <Navbar />
 
       <section className="bg-background pt-32 pb-20">

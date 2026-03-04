@@ -30,6 +30,12 @@ const GeoRedirect = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="h-8 w-8 animate-spin rounded-full border-2 border-foreground border-t-transparent" />
+      <noscript>
+        <meta httpEquiv="refresh" content="0;url=/uk" />
+        <p>
+          Redirecting to <a href="/uk">Flexzo UK</a>…
+        </p>
+      </noscript>
     </div>
   );
 };
