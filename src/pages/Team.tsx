@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import teamJackHenderson from "@/assets/team-jack-henderson.jpg";
 import teamSeanMcmanus from "@/assets/team-sean-mcmanus.jpg";
 import teamCharlieMeek from "@/assets/team-charlie-meek.jpg";
+import teamMattPool from "@/assets/team-matt-pool.jpg";
 import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -87,6 +88,7 @@ const teamMembers: TeamMember[] = [
     role: "Director of Strategic Partnerships",
     bio: "Works with NHS leaders to redesign temporary workforce models. Over a decade in healthcare staffing and frontline recruitment operations, partnering with organisations to move towards AI-driven workforce models.",
     linkedin: "https://www.linkedin.com/in/matthew-pool-848a0147/",
+    image: teamMattPool,
   },
 ];
 
