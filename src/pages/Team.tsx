@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import teamJackHenderson from "@/assets/team-jack-henderson.jpg";
+import teamSeanMcmanus from "@/assets/team-sean-mcmanus.jpg";
 import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -59,6 +60,7 @@ const teamMembers: TeamMember[] = [
     role: "Chief of Staff",
     bio: "Experienced sales leader with a strong background in healthcare recruitment. Previously held senior roles at Medical-Locums Group, specialising in sales strategy, revenue growth, and building high-performing teams.",
     linkedin: "https://www.linkedin.com/in/smmcmanus/",
+    image: teamSeanMcmanus,
   },
   {
     name: "Charlie Meek",
