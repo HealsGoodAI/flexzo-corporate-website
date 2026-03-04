@@ -120,7 +120,7 @@ const Footer = () => {
             </div>
 
             <p className="max-w-xs text-lg font-semibold leading-snug text-primary-foreground">
-              {t("Flexzo is an AI-powered healthcare staffing platform designed to simplify recruitment for NHS Trusts, recruitment agencies, and healthcare professionals.")}
+              {t("Flexzo is an AI-powered healthcare staffing platform designed to simplify recruitment for NHS Trusts, and healthcare professionals.")}
             </p>
 
             <a
