@@ -254,7 +254,8 @@ const AgentNetwork = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 h-full w-full"
+      className="absolute inset-0 h-full w-full pointer-events-none"
+      style={{ touchAction: "none" }}
     />
   );
 };
