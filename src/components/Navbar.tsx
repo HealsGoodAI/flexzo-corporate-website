@@ -112,6 +112,10 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             : "bg-background/90 backdrop-blur-xl border-b border-border/50"
         }`}
       >
+        {/* Full-width active page indicator at very top of navbar */}
+        {navItems.some((item) => isNavItemActive(item)) && (
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0075FF]" />
+        )}
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <a href={regionPath("/")} className="relative z-[60] flex items-center">
             <img
@@ -131,15 +135,12 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                   <div key={item} className="relative">
                     <button
                       onClick={() => setOpenDropdown(isOpen ? null : item)}
-                      className={`relative flex items-center gap-1 text-sm transition-colors pt-1 ${
+                      className={`relative flex items-center gap-1 text-sm transition-colors ${
                         isTransparent
                           ? isNavItemActive(item) ? "text-white" : "text-white/70 hover:text-white"
                           : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      {isNavItemActive(item) && (
-                        <span className="absolute top-0 left-0 right-0 h-[3px] rounded-full bg-[#0075FF]" />
-                      )}
                       {item}
                       <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                     </button>
@@ -164,15 +165,12 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 <a
                   key={item}
                   href={resolveHref(simpleLinks[item] || `#${item.toLowerCase()}`)}
-                  className={`relative text-sm transition-colors pt-1 ${
+                  className={`relative text-sm transition-colors ${
                     isTransparent
                       ? isNavItemActive(item) ? "text-white" : "text-white/70 hover:text-white"
                       : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {isNavItemActive(item) && (
-                    <span className="absolute top-0 left-0 right-0 h-[3px] rounded-full bg-[#0075FF]" />
-                  )}
                   {item}
                 </a>
               );
