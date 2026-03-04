@@ -252,11 +252,11 @@ const Team = () => {
                     {member.role}
                   </p>
                 </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="text-sm leading-relaxed text-muted-foreground text-center">
                   {member.bio}
                 </p>
                 {member.linkedin && (
-                  <div className="mt-5 pt-5 border-t border-border">
+                  <div className="mt-5 pt-5 border-t border-border flex justify-center">
                     <a
                       href={member.linkedin}
                       target="_blank"
