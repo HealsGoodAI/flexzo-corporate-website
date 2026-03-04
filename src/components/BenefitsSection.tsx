@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import platformDashboardMockup from "@/assets/platform-dashboard-mockup.png";
 import { TrendingDown, Zap, ShieldCheck, Users, BarChart3 } from "lucide-react";
 import { useRegionText } from "@/lib/regionalize";
 import ScrollReveal from "./ScrollReveal";
@@ -40,7 +41,7 @@ const BenefitsSection = () => {
   const { t } = useRegionText();
 
   return (
-    <section className="py-24">
+    <section className="pt-24 pb-0">
       <div className="mx-auto max-w-7xl px-6">
          <ScrollReveal animation="split" className="mb-16 max-w-2xl">
           <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
@@ -73,6 +74,20 @@ const BenefitsSection = () => {
           ))}
         </div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-20 w-full"
+      >
+        <img
+          src={platformDashboardMockup}
+          alt="Flexzo platform dashboard overview"
+          className="w-full object-cover"
+        />
+      </motion.div>
     </section>
   );
 };
