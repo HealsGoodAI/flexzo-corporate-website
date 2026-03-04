@@ -21,6 +21,7 @@ import {
   Brain,
   Target,
   ArrowRight,
+  ArrowUp,
 } from "lucide-react";
 
 const fadeUp = {
@@ -100,8 +101,8 @@ const benefits = [
 
 const stats = [
   { value: "40%", label: "Reduction in agency spend" },
-  { value: "3x", label: "Faster time-to-fill" },
-  { value: "98%", label: "Roster compliance rate" },
+  { value: "lightning", label: "Faster time-to-fill", isIcon: true },
+  { value: "arrow-up", label: "Roster compliance rate", isIcon: true },
   { value: "24/7", label: "Automated matching" },
 ];
 
@@ -175,7 +176,11 @@ const AiSourcing = () => {
                   variants={fadeUp}
                   className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-8 backdrop-blur-sm"
                 >
-                  <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
+                  {"isIcon" in stat && stat.isIcon ? (
+                    stat.value === "lightning" ? <Zap className="h-10 w-10 text-[#0075FF] md:h-12 md:w-12" /> : <ArrowUp className="h-10 w-10 text-[#0075FF] md:h-12 md:w-12" />
+                  ) : (
+                    <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
+                  )}
                   <p className="mt-2 text-sm text-primary-foreground/50">{stat.label}</p>
                 </motion.div>
               ))}
