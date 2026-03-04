@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import teamJackHenderson from "@/assets/team-jack-henderson.jpg";
 import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -51,6 +52,7 @@ const teamMembers: TeamMember[] = [
     role: "Chief Executive Officer",
     bio: "Serial entrepreneur with a proven track record in healthcare innovation. Founded KPI Health, scaling it from £0 to over £20m in revenue. Deep expertise in NHS operations, RTT performance, and healthcare staffing.",
     linkedin: "https://www.linkedin.com/in/jack-henderson-18a78b173/",
+    image: teamJackHenderson,
   },
   {
     name: "Sean McManus",
