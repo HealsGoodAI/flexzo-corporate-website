@@ -251,7 +251,7 @@ const Team = () => {
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-muted/50 text-muted-foreground transition-all hover:border-[#0075FF]/40 hover:bg-[#0075FF]/10 hover:text-[#0075FF]"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0075FF] text-white transition-all hover:bg-[#0060D0]"
                       aria-label={`${member.name} on LinkedIn`}
                     >
                       <Linkedin className="h-4 w-4" />
