@@ -234,22 +234,9 @@ const Team = () => {
                     )}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-lg font-bold text-foreground">
-                        {member.name}
-                      </h3>
-                      {member.linkedin && (
-                        <a
-                          href={member.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground transition-colors hover:text-[#0075FF]"
-                          aria-label={`${member.name} on LinkedIn`}
-                        >
-                          <Linkedin className="h-4 w-4" />
-                        </a>
-                      )}
-                    </div>
+                    <h3 className="text-lg font-bold text-foreground">
+                      {member.name}
+                    </h3>
                     <p className="mt-0.5 text-sm font-medium text-[#0075FF]">
                       {member.role}
                     </p>
@@ -258,6 +245,19 @@ const Team = () => {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {member.bio}
                 </p>
+                {member.linkedin && (
+                  <div className="mt-5 pt-5 border-t border-border">
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-muted/50 text-muted-foreground transition-all hover:border-[#0075FF]/40 hover:bg-[#0075FF]/10 hover:text-[#0075FF]"
+                      aria-label={`${member.name} on LinkedIn`}
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
