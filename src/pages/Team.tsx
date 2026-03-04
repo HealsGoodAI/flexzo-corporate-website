@@ -5,6 +5,7 @@ import teamCharlieMeek from "@/assets/team-charlie-meek.jpg";
 import teamMattPool from "@/assets/team-matt-pool.jpg";
 import teamBradleyPirie from "@/assets/team-bradley-pirie.jpg";
 import teamAliyaIrgaleeva from "@/assets/team-aliya-irgaleeva.jpg";
+import teamCharandasSingh from "@/assets/team-charandas-singh.jpg";
 import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -93,6 +94,13 @@ const teamMembers: TeamMember[] = [
     bio: "Works with NHS leaders to redesign temporary workforce models. Over a decade in healthcare staffing and frontline recruitment operations, partnering with organisations to move towards AI-driven workforce models.",
     linkedin: "https://www.linkedin.com/in/matthew-pool-848a0147/",
     image: teamMattPool,
+  },
+  {
+    name: "Charandas Singh",
+    role: "Senior Product Manager",
+    bio: "A proven product leader steering Flexzo's product strategy with a relentless focus on customers and commercial outcomes. Unites people, technology, and priorities to accelerate growth and deliver sustained value. Combining strong strategic vision with active execution, ensuring shared clarity and momentum — taking products from initial concept through to successful adoption and impact.",
+    linkedin: "https://www.linkedin.com/in/charandas-singh/",
+    image: teamCharandasSingh,
   },
 ];
 
