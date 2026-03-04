@@ -131,17 +131,17 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                   <div key={item} className="relative">
                     <button
                       onClick={() => setOpenDropdown(isOpen ? null : item)}
-                      className={`relative flex items-center gap-1 text-sm transition-colors pb-1 ${
+                      className={`relative flex items-center gap-1 text-sm transition-colors pt-1 ${
                         isTransparent
                           ? isNavItemActive(item) ? "text-white" : "text-white/70 hover:text-white"
                           : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
+                      {isNavItemActive(item) && (
+                        <span className="absolute top-0 left-0 right-0 h-[3px] rounded-full bg-[#0075FF]" />
+                      )}
                       {item}
                       <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
-                      {isNavItemActive(item) && (
-                        <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[#0075FF]" />
-                      )}
                     </button>
                     {isOpen && (
                       <div className="absolute left-0 top-full z-50 mt-3 w-56 rounded-md border border-border bg-background py-2 shadow-lg">
@@ -164,16 +164,16 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 <a
                   key={item}
                   href={resolveHref(simpleLinks[item] || `#${item.toLowerCase()}`)}
-                  className={`relative text-sm transition-colors pb-1 ${
+                  className={`relative text-sm transition-colors pt-1 ${
                     isTransparent
                       ? isNavItemActive(item) ? "text-white" : "text-white/70 hover:text-white"
                       : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {item}
                   {isNavItemActive(item) && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[#0075FF]" />
+                    <span className="absolute top-0 left-0 right-0 h-[3px] rounded-full bg-[#0075FF]" />
                   )}
+                  {item}
                 </a>
               );
             })}
