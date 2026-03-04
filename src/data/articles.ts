@@ -8,7 +8,6 @@ import privateHealthcare from "@/assets/private-healthcare.jpg";
 import pharmacyHero from "@/assets/pharmacy-hero.jpg";
 import socialCareHero from "@/assets/social-care-hero.jpg";
 import communityPharmacy from "@/assets/community-pharmacy.jpg";
-import nhsBadge from "@/assets/nhs-badge.jpg";
 import aiSourcingHero from "@/assets/ai-sourcing-hero.jpg";
 import aiSourcingFill from "@/assets/ai-sourcing-fill.jpg";
 import aiSourcingLearn from "@/assets/ai-sourcing-learn.jpg";
@@ -16,14 +15,15 @@ import aiSourcingMatch from "@/assets/ai-sourcing-match.jpg";
 import rosteringHero from "@/assets/rostering-hero.jpg";
 import bookDemoHero from "@/assets/book-demo-hero.jpg";
 import newsFeatured from "@/assets/news-featured.jpg";
-import press1 from "@/assets/press-1.jpg";
-import press2 from "@/assets/press-2.jpg";
-import press3 from "@/assets/press-3.jpg";
-import press4 from "@/assets/press-4.jpg";
-import press5 from "@/assets/press-5.jpg";
-import press6 from "@/assets/press-6.jpg";
-import press7 from "@/assets/press-7.jpg";
-import press8 from "@/assets/press-8.jpg";
+import collabStep1 from "@/assets/collab-step-1.jpg";
+import collabStep2 from "@/assets/collab-step-2.jpg";
+import collabStep3 from "@/assets/collab-step-3.jpg";
+import collabStep4 from "@/assets/collab-step-4.jpg";
+import staffBankStep from "@/assets/staff-bank-step.jpg";
+import staffBankStep2 from "@/assets/staff-bank-step-2.jpg";
+import staffBankStep3 from "@/assets/staff-bank-step-3.jpg";
+import staffBankStep4 from "@/assets/staff-bank-step-4.jpg";
+import aboutMission from "@/assets/about-mission.jpg";
 
 export interface ArticleSection {
   heading?: string;
@@ -288,7 +288,7 @@ export const articles: Article[] = [
     date: "November 26, 2025",
     publishedDate: "September 19, 2025",
     excerpt: "Uncovering the true cost of inefficient workforce strategies and how trusts can reclaim millions through smarter staffing.",
-    image: nhsBadge,
+    image: aboutMission,
     sections: [
       {
         content: [
@@ -1099,7 +1099,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "What started as a quick fix for staffing gaps has turned into a dependency on agencies that drains resources and creates financial uncertainty for NHS Trusts.",
-    image: press1,
+    image: collabStep1,
     sections: [
       {
         content: [
@@ -1140,7 +1140,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Many Trusts have fallen into a troubling pattern of agency dependency that threatens both financial stability and day-to-day effectiveness of healthcare delivery.",
-    image: press2,
+    image: collabStep2,
     sections: [
       {
         content: [
@@ -1189,7 +1189,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "What starts as a short-term agency solution can gradually create serious long-term problems for NHS Trusts, from budget growth to retention challenges.",
-    image: press3,
+    image: collabStep3,
     sections: [
       {
         content: [
@@ -1240,7 +1240,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "As reliance on agency staff increases, NHS Trusts gradually lose control over workforce decisions, organisational culture, and financial planning.",
-    image: press4,
+    image: collabStep4,
     sections: [
       {
         content: [
@@ -1298,7 +1298,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Beneath the seemingly straightforward solution of agency staffing lies a complex set of risks that many Trusts only discover once they've become deeply dependent.",
-    image: press5,
+    image: staffBankStep,
     sections: [
       {
         content: [
@@ -1365,7 +1365,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Agency spend has been climbing steadily, creating significant challenges for NHS Trusts that go beyond the obvious financial strain.",
-    image: press6,
+    image: staffBankStep2,
     sections: [
       {
         content: [
@@ -1414,7 +1414,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Budget caps have been proposed as a solution to NHS agency overspend, but they may be simply treating the symptoms rather than addressing the underlying condition.",
-    image: press7,
+    image: staffBankStep3,
     sections: [
       {
         content: [
@@ -1474,7 +1474,7 @@ export const articles: Article[] = [
     date: "April 17, 2025",
     publishedDate: "April 7, 2025",
     excerpt: "Understanding the interconnected factors behind the dramatic rise in NHS agency spending and why it matters for the future of healthcare.",
-    image: press8,
+    image: staffBankStep4,
     sections: [
       {
         content: [
