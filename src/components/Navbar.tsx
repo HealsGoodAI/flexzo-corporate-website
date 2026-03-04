@@ -47,12 +47,17 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [regionDropdownOpen, setRegionDropdownOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const mobileRegionRef = useRef<HTMLDivElement>(null);
   const { region, regionPath, switchRegion } = useRegion();
   const { t } = useRegionText();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (
+        navRef.current && !navRef.current.contains(target) &&
+        (!mobileRegionRef.current || !mobileRegionRef.current.contains(target))
+      ) {
         setOpenDropdown(null);
         setRegionDropdownOpen(false);
       }
@@ -223,7 +228,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
               <a href={regionPath("/")} onClick={() => setMobileOpen(false)} className="h-8 w-8 rounded-full bg-[#0CE3FF] block" />
 
               {/* Mobile region dropdown – matches desktop style */}
-              <div className="relative">
+              <div className="relative" ref={mobileRegionRef}>
                 <button
                   onClick={() => setRegionDropdownOpen(!regionDropdownOpen)}
                   className="flex items-center gap-2 rounded-md border border-primary-foreground/20 px-3 py-2 text-sm font-medium text-primary-foreground/70 transition-all hover:text-primary-foreground hover:border-primary-foreground/40"
@@ -240,6 +245,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                         onClick={() => {
                           switchRegion(r);
                           setRegionDropdownOpen(false);
+                          setMobileOpen(false);
                         }}
                         className={`flex w-full items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-muted ${
                           r === region ? "text-foreground font-medium" : "text-muted-foreground"
