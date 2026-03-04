@@ -4,6 +4,7 @@ import teamSeanMcmanus from "@/assets/team-sean-mcmanus.jpg";
 import teamCharlieMeek from "@/assets/team-charlie-meek.jpg";
 import teamMattPool from "@/assets/team-matt-pool.jpg";
 import teamBradleyPirie from "@/assets/team-bradley-pirie.jpg";
+import teamAliyaIrgaleeva from "@/assets/team-aliya-irgaleeva.jpg";
 import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -84,6 +85,7 @@ const teamMembers: TeamMember[] = [
     role: "Head of AI",
     bio: "AI and machine learning specialist with a background in biophysics. Extensive experience leading technology initiatives across startups and government projects, specialising in scalable AI systems for healthcare.",
     linkedin: "https://www.linkedin.com/in/aliya-irgaleeva-594098209/",
+    image: teamAliyaIrgaleeva,
   },
   {
     name: "Matt Pool",
