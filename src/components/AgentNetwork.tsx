@@ -44,9 +44,20 @@ const ALL_IMAGE_SOURCES = [
   { src: avatarWoman2, isAvatar: true },
 ];
 
-// Use fewer nodes on mobile
-const getMobileSources = () =>
-  window.innerWidth < 768 ? ALL_IMAGE_SOURCES.slice(0, 8) : ALL_IMAGE_SOURCES;
+// Use fewer/smaller nodes on mobile
+const getMobileSources = () => {
+  const w = window.innerWidth;
+  if (w < 480) return ALL_IMAGE_SOURCES.slice(0, 5);
+  if (w < 768) return ALL_IMAGE_SOURCES.slice(0, 8);
+  return ALL_IMAGE_SOURCES;
+};
+
+const getNodeSize = (isAvatar: boolean) => {
+  const w = window.innerWidth;
+  if (w < 480) return isAvatar ? 32 : 28;
+  if (w < 768) return isAvatar ? 40 : 36;
+  return isAvatar ? 48 : 44;
+};
 
 const AgentNetwork = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -106,7 +117,7 @@ const AgentNetwork = () => {
         y: Math.random() * (h * 0.85) + h * 0.05,
         vx: (Math.random() - 0.5) * 0.35,
         vy: (Math.random() - 0.5) * 0.35,
-        size: item.isAvatar ? 48 : 44,
+        size: getNodeSize(item.isAvatar),
         image: imagesRef.current[i] ?? null,
         pulsePhase: (i / sources.length) * Math.PI * 2,
         isAvatar: item.isAvatar,
@@ -254,7 +265,7 @@ const AgentNetwork = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 h-full w-full pointer-events-none"
+      className="absolute inset-0 h-full w-full pointer-events-none opacity-50 sm:opacity-70 md:opacity-100"
       style={{ touchAction: "none" }}
     />
   );
