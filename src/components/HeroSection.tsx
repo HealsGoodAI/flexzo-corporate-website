@@ -29,7 +29,7 @@ const HeroSection = () => {
            initial={{ opacity: 0, filter: "blur(12px)" }}
            animate={{ opacity: 1, filter: "blur(0px)" }}
            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-           className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-7xl"
+           className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-7xl"
          >
           {t("An Agentic AI")}
           <br />
@@ -56,7 +56,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground"
+          className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground px-2"
         >
           {t("Our agentic system doesn't just fill shifts. It identifies workforce gaps, activates the right supply tier, validates compliance in real time, and routes demand to the lowest-cost safe option —")}{" "}
           <strong className="text-foreground">{t("automatically")}</strong>.

@@ -245,8 +245,20 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
             transition={{ type: "tween", duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             className="fixed inset-0 z-[55] flex flex-col bg-foreground lg:hidden"
           >
-            <div className="flex items-center justify-between px-8 pt-6">
-              <a href={regionPath("/")} onClick={() => setMobileOpen(false)} className="h-8 w-8 rounded-full bg-[#0CE3FF] block" />
+            <div className="flex items-center justify-between px-6 pt-5">
+              <a href={regionPath("/")} onClick={() => setMobileOpen(false)}>
+                <img src={flexzoLogoWhite} alt="Flexzo" className="h-7" />
+              </a>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="text-primary-foreground p-1"
+                aria-label="Close menu"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-end px-6 pt-4">
 
               {/* Mobile region dropdown – matches desktop style */}
               <div className="relative" ref={mobileRegionRef}>
@@ -281,7 +293,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
               </div>
             </div>
 
-            <div className="flex flex-1 flex-col justify-center px-8">
+            <div className="flex flex-1 flex-col justify-center px-6 overflow-y-auto">
               <nav className="flex flex-col gap-2">
                 {navItems.map((item, i) => {
                   const hasDropdown = item in dropdownMenus;
