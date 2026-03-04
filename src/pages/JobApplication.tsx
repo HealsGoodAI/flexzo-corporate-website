@@ -130,7 +130,7 @@ const JobApplication = () => {
             <h1 className="mb-2 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
               {job.title}
             </h1>
-            <p className="text-base text-muted-foreground">{job.organisation} · {job.location}</p>
+            <p className="text-base text-muted-foreground">{[job.organisation, job.location].filter(Boolean).join(" · ")}</p>
           </motion.div>
         </div>
       </section>

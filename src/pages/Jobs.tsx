@@ -120,7 +120,7 @@ const Jobs = () => {
                       ) : null}
                     </div>
                     <h3 className="mb-1 font-display text-base font-semibold text-foreground group-hover:text-accent transition-colors line-clamp-2">{job.title}</h3>
-                    <p className="mb-4 text-sm text-muted-foreground">{job.organisation}</p>
+                    {job.organisation && <p className="mb-4 text-sm text-muted-foreground">{job.organisation}</p>}
                   </div>
                   <div className="flex flex-col gap-2 border-t border-border pt-4 text-sm text-muted-foreground">
                     {job.location && (

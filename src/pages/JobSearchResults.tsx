@@ -408,9 +408,11 @@ const [category, setCategory] = useState("All");
                           <h3 className="mb-1 font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
                             {job.title}
                           </h3>
-                          <p className="text-xs text-muted-foreground">
-                            {job.organisation}
-                          </p>
+                          {job.organisation && (
+                            <p className="text-xs text-muted-foreground">
+                              {job.organisation}
+                            </p>
+                          )}
                         </div>
                         <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-muted-foreground sm:shrink-0">
                           <span className="flex items-center gap-1.5">
