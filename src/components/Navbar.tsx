@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import RegionFlag from "@/components/RegionFlag";
 import flexzoLogo from "@/assets/Flexzo-Logo.svg";
@@ -50,6 +51,18 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
   const mobileRegionRef = useRef<HTMLDivElement>(null);
   const { region, regionPath, switchRegion } = useRegion();
   const { t } = useRegionText();
+  const location = useLocation();
+
+  const isNavItemActive = (item: string): boolean => {
+    const path = location.pathname;
+    if (item in dropdownMenus) {
+      return dropdownMenus[item].some((link) => path.includes(link.href));
+    }
+    if (item in simpleLinks) {
+      return path.includes(simpleLinks[item]);
+    }
+    return false;
+  };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -118,14 +131,17 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                   <div key={item} className="relative">
                     <button
                       onClick={() => setOpenDropdown(isOpen ? null : item)}
-                      className={`flex items-center gap-1 text-sm transition-colors ${
+                      className={`relative flex items-center gap-1 text-sm transition-colors pb-1 ${
                         isTransparent
-                          ? "text-white/70 hover:text-white"
-                          : "text-muted-foreground hover:text-foreground"
+                          ? isNavItemActive(item) ? "text-white" : "text-white/70 hover:text-white"
+                          : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
                       {item}
                       <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                      {isNavItemActive(item) && (
+                        <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[#0075FF]" />
+                      )}
                     </button>
                     {isOpen && (
                       <div className="absolute left-0 top-full z-50 mt-3 w-56 rounded-md border border-border bg-background py-2 shadow-lg">
@@ -148,13 +164,16 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                 <a
                   key={item}
                   href={resolveHref(simpleLinks[item] || `#${item.toLowerCase()}`)}
-                  className={`text-sm transition-colors ${
+                  className={`relative text-sm transition-colors pb-1 ${
                     isTransparent
-                      ? "text-white/70 hover:text-white"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? isNavItemActive(item) ? "text-white" : "text-white/70 hover:text-white"
+                      : isNavItemActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item}
+                  {isNavItemActive(item) && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[#0075FF]" />
+                  )}
                 </a>
               );
             })}
