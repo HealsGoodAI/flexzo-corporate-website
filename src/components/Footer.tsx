@@ -32,7 +32,7 @@ const footerColumns = [
         { label: "About", href: "/about" },
         { label: "Investors", href: "/investors" },
         { label: "News", href: "/news" },
-        { label: "Team", href: "#" },
+        { label: "Team", href: "/team" },
       ],
     },
   },

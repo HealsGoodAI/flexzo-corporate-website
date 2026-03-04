@@ -37,6 +37,7 @@ import Pharmacy from "./pages/Pharmacy";
 import SocialCare from "./pages/SocialCare";
 import Rostering from "./pages/Rostering";
 import CarbonReductionPlan from "./pages/CarbonReductionPlan";
+import Team from "./pages/Team";
 import EmailTemplateTest from "./pages/EmailTemplateTest";
 import NotFound from "./pages/NotFound";
 
@@ -77,6 +78,7 @@ const App = () => (
             <Route path="terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="carbon-reduction-plan" element={<CarbonReductionPlan />} />
+            <Route path="team" element={<Team />} />
             <Route path="book-demo" element={<BookDemo />} />
             <Route path="book-demo/success" element={<BookDemoSuccess />} />
             <Route path="contact" element={<Contact />} />
