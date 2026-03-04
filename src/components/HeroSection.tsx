@@ -25,7 +25,12 @@ const HeroSection = () => {
       <AgentNetwork />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 text-center">
-         <ScrollReveal animation="blur" duration={0.9} className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-7xl">
+         <motion.div
+           initial={{ opacity: 0, filter: "blur(12px)" }}
+           animate={{ opacity: 1, filter: "blur(0px)" }}
+           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+           className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-7xl"
+         >
           {t("An Agentic AI")}
           <br />
           {t("Workforce System")}
@@ -45,7 +50,7 @@ const HeroSection = () => {
               </motion.span>
             </AnimatePresence>
           </span>
-        </ScrollReveal>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
