@@ -3,6 +3,7 @@ import teamJackHenderson from "@/assets/team-jack-henderson.jpg";
 import teamSeanMcmanus from "@/assets/team-sean-mcmanus.jpg";
 import teamCharlieMeek from "@/assets/team-charlie-meek.jpg";
 import teamMattPool from "@/assets/team-matt-pool.jpg";
+import teamBradleyPirie from "@/assets/team-bradley-pirie.jpg";
 import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -76,6 +77,7 @@ const teamMembers: TeamMember[] = [
     role: "Chief Technology Officer",
     bio: "Leading technology strategy, platform architecture, and engineering delivery across AI-driven healthcare solutions. Deep expertise in distributed systems, cloud infrastructure, and product-focused engineering.",
     linkedin: "https://www.linkedin.com/in/bradley-pirie-7b9787151/",
+    image: teamBradleyPirie,
   },
   {
     name: "Aliya Irgaleeva",
