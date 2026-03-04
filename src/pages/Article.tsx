@@ -56,10 +56,9 @@ const Article = () => {
 
       {/* ── HERO ── Full-bleed editorial header */}
       <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-foreground">
-        {/* Subtle radial accent */}
-        <div className="absolute inset-0 opacity-[0.08]" style={{
-          backgroundImage: `radial-gradient(circle at ${accentX}% ${accentY}%, hsl(210 100% 45% / 0.5) 0%, transparent 50%)`
-        }} />
+        {/* Article hero image */}
+        <img src={article.image} alt={article.title} className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/70 to-foreground/30" />
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-40">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
@@ -292,13 +291,14 @@ const Article = () => {
                     to={regionPath(`/news/${rel.slug}`)}
                     className="group block"
                   >
-                    <div className="mb-5 aspect-[16/10] overflow-hidden rounded-xl bg-foreground flex items-end p-6 relative">
-                      <div className="absolute inset-0 opacity-[0.06]" style={{
-                        backgroundImage: `radial-gradient(circle at ${30 + (i * 23) % 50}% ${20 + (i * 17) % 40}%, hsl(210 100% 45% / 0.3) 0%, transparent 60%)`
-                      }} />
-                      <span className="relative z-10 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-medium text-primary-foreground/70 backdrop-blur-sm">
-                        {rel.category}
-                      </span>
+                    <div className="mb-5 aspect-[16/10] overflow-hidden rounded-xl bg-foreground relative">
+                      <img src={rel.image} alt={rel.title} className="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
+                      <div className="absolute bottom-0 left-0 p-6">
+                        <span className="relative z-10 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-medium text-primary-foreground/70 backdrop-blur-sm">
+                          {rel.category}
+                        </span>
+                      </div>
                     </div>
                     <h3 className="text-lg font-bold leading-snug text-foreground transition-colors group-hover:text-[#0075FF]">
                       {rel.title}
