@@ -10,6 +10,7 @@ import { sendBookDemoEmail } from "@/lib/emailService";
 import bookDemoHero from "@/assets/book-demo-hero.jpg";
 import ReCaptcha from "@/components/ReCaptcha";
 import SEO from "@/components/SEO";
+import { trackEvent } from "@/lib/analytics";
 
 const BookDemo = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const BookDemo = () => {
         _hp_field: honeypot,
         _form_loaded_at: formLoadedAt,
       });
+      trackEvent("form_submission", { form_name: "book_demo", organisation: form.organisation });
       navigate(regionPath("/book-demo/success"));
     } catch (err) {
       setError("Something went wrong. Please try again or email us at sales@flexzo.ai");

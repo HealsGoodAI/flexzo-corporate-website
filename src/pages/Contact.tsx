@@ -10,6 +10,7 @@ import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 import { sendContactEmail } from "@/lib/emailService";
 import ReCaptcha from "@/components/ReCaptcha";
+import { trackEvent } from "@/lib/analytics";
 
 const offices_uk = [
   { name: "UK Head Office", address: "Noble House, Capital Dr, Milton Keynes, MK14 6QP" },
@@ -56,6 +57,7 @@ const Contact = () => {
         _hp_field: honeypot,
         _form_loaded_at: formLoadedAt,
       });
+      trackEvent("form_submission", { form_name: "contact", company: form.company });
       navigate(regionPath("/contact/success"));
     } catch (err) {
       setError("Something went wrong. Please try again or email us at sales@flexzo.ai");

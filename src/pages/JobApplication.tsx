@@ -9,6 +9,7 @@ import { useRegion } from "@/hooks/useRegion";
 import { useRegionText } from "@/lib/regionalize";
 import { sendApplicationEmails } from "@/lib/emailService";
 import ReCaptcha from "@/components/ReCaptcha";
+import { trackEvent } from "@/lib/analytics";
 
 const JobApplication = () => {
   const { id } = useParams<{ id: string }>();
@@ -87,6 +88,7 @@ const JobApplication = () => {
         _hp_field: honeypot,
         _form_loaded_at: formLoadedAt,
       });
+      trackEvent("form_submission", { form_name: "job_application", job_title: job!.title, job_id: id! });
       navigate(regionPath(`/jobs/${id}/apply/success`), { state: { jobTitle: job?.title } });
     } catch {
       setErrors((prev) => ({
