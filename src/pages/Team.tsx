@@ -230,7 +230,7 @@ const Team = () => {
                 className="group rounded-2xl border border-border bg-background p-6 transition-all hover:border-[#0075FF]/30 hover:shadow-lg hover:shadow-[#0075FF]/5"
               >
                 <div className="mb-5 flex items-start gap-5">
-                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-foreground">
+                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-foreground">
                     {member.image ? (
                       <img
                         src={member.image}
