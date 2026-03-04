@@ -21,9 +21,9 @@ const fadeUp = {
 };
 
 const stats = [
-  { value: "2M+", label: "Staff rostered across the UK" },
+  { value: "people", label: "Staff rostered across the UK", isIcon: true },
   { value: "30%", label: "Reduction in unfilled shifts" },
-  { value: "99%", label: "Roster compliance rate" },
+  { value: "100%", label: "Compliance audit trail" },
   { value: "24/7", label: "Real-time visibility" },
 ];
 
@@ -78,7 +78,11 @@ const Rostering = () => {
             <motion.div initial="hidden" animate="visible" custom={2} variants={fadeUp} className="grid grid-cols-2 gap-6">
               {stats.map((stat, i) => (
                 <motion.div key={stat.label} custom={i + 2} initial="hidden" animate="visible" variants={fadeUp} className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-8 backdrop-blur-sm">
-                  <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
+                  {"isIcon" in stat && stat.isIcon ? (
+                    <Users className="h-10 w-10 text-[#0075FF] md:h-12 md:w-12" />
+                  ) : (
+                    <p className="text-4xl font-bold text-[#0075FF] md:text-5xl">{stat.value}</p>
+                  )}
                   <p className="mt-2 text-sm text-primary-foreground/50">{t(stat.label)}</p>
                 </motion.div>
               ))}
