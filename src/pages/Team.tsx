@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import teamJackHenderson from "@/assets/team-jack-henderson.jpg";
 import teamSeanMcmanus from "@/assets/team-sean-mcmanus.jpg";
+import teamCharlieMeek from "@/assets/team-charlie-meek.jpg";
 import { Users, Heart, Lightbulb, Shield, Target } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -67,6 +68,7 @@ const teamMembers: TeamMember[] = [
     role: "Head of Brand Marketing & Experience Design",
     bio: "Growth-focused product and marketing leader driving Flexzo's global brand, marketing, and UX strategy. Deep expertise in growth marketing and brand development within the AI recruit-tech space.",
     linkedin: "https://www.linkedin.com/in/charlie-meek-8821636/",
+    image: teamCharlieMeek,
   },
   {
     name: "Bradley Pirie",
