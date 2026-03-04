@@ -15,6 +15,7 @@ import {
   Heart,
   WifiOff,
   ArrowRight,
+  Bot,
 } from "lucide-react";
 import employeeAppMockup from "@/assets/employee-app-mockup.jpg";
 import employeeAppStep1 from "@/assets/employee-app-step-1.jpg";
@@ -61,6 +62,12 @@ const features = [
     title: "Offline Support & Secure Integrations",
     description:
       "Progressive sync for low-connectivity areas, encrypted storage and seamless integration with Portal, Bank and rostering.",
+  },
+  {
+    icon: Bot,
+    title: "AI Agentic Outreach",
+    description:
+      "Autonomous AI agents proactively contact clinicians via SMS, email and in-app messaging to fill open shifts — matching credentials, preferences and availability without manual intervention.",
   },
 ];
 
