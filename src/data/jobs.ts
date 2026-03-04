@@ -86,10 +86,19 @@ export function normalizeRawJob(raw: RawJob): Job {
   const startDate = raw.dates?.start ?? raw.start_date;
   const endDate = raw.dates?.end ?? raw.end_date;
 
+  const isUS = raw.country === "US";
+  const originalOrg = raw.organisation;
+
+  // For US jobs, replace client names with "Flexzo" in text fields
+  const replaceOrg = (text: string) => {
+    if (!isUS || !originalOrg || !text) return text;
+    return text.split(originalOrg).join("Flexzo");
+  };
+
   return {
     id: raw.id,
     title: raw.job_title,
-    organisation: raw.country === "US" ? "" : raw.organisation,
+    organisation: isUS ? "" : raw.organisation,
     location: raw.location ?? raw.sub_specialism ?? raw.specialism ?? "",
     salary,
     posted: fmtDate(startDate),
@@ -101,10 +110,10 @@ export function normalizeRawJob(raw: RawJob): Job {
     band: raw.grade,
     speciality: raw.specialism,
     region: raw.country,
-    description: raw.about_the_role ?? "",
-    responsibilities: raw.key_responsibilities ?? [],
-    requirements: raw.requirements ?? [],
-    benefits: raw.benefits ?? [],
+    description: replaceOrg(raw.about_the_role ?? ""),
+    responsibilities: (raw.key_responsibilities ?? []).map(replaceOrg),
+    requirements: (raw.requirements ?? []).map(replaceOrg),
+    benefits: (raw.benefits ?? []).map(replaceOrg),
   };
 }
 
