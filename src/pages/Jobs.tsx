@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { useJobs } from "@/hooks/useJobs";
 import { useRegionText } from "@/lib/regionalize";
 import { useRegion } from "@/hooks/useRegion";
+import SEO from "@/components/SEO";
 
 const whyFlexzo = [
   { icon: Smartphone, title: "Ditch the Agency Hassle", description: "No more juggling multiple agencies, endless phone calls, and constant paperwork. One intelligent platform replaces it all." },
@@ -57,6 +58,17 @@ const Jobs = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Healthcare Jobs"
+        description="Find healthcare jobs across the UK. Browse nursing, pharmacy, social care and hospital roles. Apply directly through Flexzo's AI-powered staffing platform."
+        path={regionPath("/jobs")}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "JobPosting",
+          description: "Browse healthcare staffing opportunities on Flexzo",
+          hiringOrganization: { "@type": "Organization", name: "Flexzo" },
+        }}
+      />
       <Navbar />
 
       <section className="border-b border-border bg-muted pt-32 pb-16">

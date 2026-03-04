@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://flexzo.ai/uk</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://flexzo.ai/us</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+
+  <!-- Products -->
+  <url><loc>https://flexzo.ai/uk/products/ai-sourcing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/products/internal-staff-bank</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/products/collaborative-staff-bank</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/products/national-staff-bank</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/products/amplify</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/products/clinical-services-planner</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/products/employee-app</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/products/rostering</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Sectors -->
+  <url><loc>https://flexzo.ai/uk/sectors/hospitals</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/sectors/primary-care</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/sectors/private-healthcare</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/sectors/pharmacy</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/sectors/social-care</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Company -->
+  <url><loc>https://flexzo.ai/uk/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://flexzo.ai/uk/team</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://flexzo.ai/uk/investors</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://flexzo.ai/uk/news</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- Info -->
+  <url><loc>https://flexzo.ai/uk/jobs</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://flexzo.ai/uk/book-demo</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/uk/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://flexzo.ai/uk/platform-features</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Legal -->
+  <url><loc>https://flexzo.ai/uk/terms-and-conditions</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://flexzo.ai/uk/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://flexzo.ai/uk/carbon-reduction-plan</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+  <!-- US versions of key pages -->
+  <url><loc>https://flexzo.ai/us/products/ai-sourcing</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://flexzo.ai/us/jobs</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://flexzo.ai/us/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://flexzo.ai/us/book-demo</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://flexzo.ai/us/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>

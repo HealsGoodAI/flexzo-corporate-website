@@ -6,15 +6,27 @@ import { useRegionText } from "@/lib/regionalize";
 import RegionLink from "@/components/RegionLink";
 import aboutVision from "@/assets/about-vision.jpg";
 import aboutMission from "@/assets/about-mission.jpg";
+import SEO, { breadcrumbSchema } from "@/components/SEO";
+import { useRegion } from "@/hooks/useRegion";
 
 import jackHenderson from "@/assets/jack-henderson.jpg";
 import healsgoodLogo from "@/assets/healsgood-logo.png";
 
 const About = () => {
   const { t } = useRegionText();
+  const { region } = useRegion();
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="About Flexzo"
+        description="Learn about Flexzo AI – redefining healthcare recruitment through intelligent, AI-powered solutions connecting NHS Trusts with compliance-ready healthcare professionals."
+        path={`/${region}/about`}
+        jsonLd={breadcrumbSchema([
+          { name: "Home", url: `/${region}` },
+          { name: "About", url: `/${region}/about` },
+        ])}
+      />
       <Navbar transparent />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[#0a2540] pt-32 pb-20">
