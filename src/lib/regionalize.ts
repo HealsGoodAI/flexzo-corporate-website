@@ -5,6 +5,12 @@
 
 // Domain-specific replacements (order matters – longer phrases first)
 const domainReplacements: [RegExp, string][] = [
+  // Rostering variations (US: Scheduling)
+  [/Rostering/g, "Scheduling"],
+  [/rostering/g, "scheduling"],
+  [/Roster/g, "Schedule"],
+  [/roster/g, "schedule"],
+
   // Social Care variations (US: Skilled Nursing)
   [/Social Care Homes/gi, "Skilled Nursing Facilities"],
   [/Social Care/gi, "Skilled Nursing"],
