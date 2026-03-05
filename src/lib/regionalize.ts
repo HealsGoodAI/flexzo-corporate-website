@@ -5,6 +5,13 @@
 
 // Domain-specific replacements (order matters – longer phrases first)
 const domainReplacements: [RegExp, string][] = [
+  // Social Care variations (US: Skilled Nursing)
+  [/Social Care Homes/gi, "Skilled Nursing Facilities"],
+  [/Social Care/gi, "Skilled Nursing"],
+  [/social care homes/gi, "skilled nursing facilities"],
+  [/social care/gi, "skilled nursing"],
+  [/care homes/gi, "nursing facilities"],
+
   // Staff Bank variations
   [/Collaborative Staff Bank/gi, "Collaborative Float Pool"],
   [/National Staff Bank/gi, "National Float Pool"],
