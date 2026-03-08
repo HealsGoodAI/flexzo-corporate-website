@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,40 +7,41 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import RegionLayout from "@/components/RegionLayout";
 import GeoRedirect from "@/pages/GeoRedirect";
 import ScrollToTop from "@/components/ScrollToTop";
-import Index from "./pages/Index";
-import AiSourcing from "./pages/AiSourcing";
-import InternalStaffBank from "./pages/InternalStaffBank";
-import CollaborativeStaffBank from "./pages/CollaborativeStaffBank";
-import NationalStaffBank from "./pages/NationalStaffBank";
-import ClinicalServicesPlanner from "./pages/ClinicalServicesPlanner";
-import Amplify from "./pages/Amplify";
-import EmployeeApp from "./pages/EmployeeApp";
-import PlatformFeatures from "./pages/PlatformFeatures";
-import Jobs from "./pages/Jobs";
-import JobDetail from "./pages/JobDetail";
-import JobApplicationSuccess from "./pages/JobApplicationSuccess";
-import JobSearchResults from "./pages/JobSearchResults";
-import JobApplication from "./pages/JobApplication";
-import News from "./pages/News";
-import Article from "./pages/Article";
-import Investors from "./pages/Investors";
-import About from "./pages/About";
-import TermsAndConditions from "./pages/TermsAndConditions";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import BookDemo from "./pages/BookDemo";
-import BookDemoSuccess from "./pages/BookDemoSuccess";
-import Contact from "./pages/Contact";
-import ContactSuccess from "./pages/ContactSuccess";
-import PrimaryCare from "./pages/PrimaryCare";
-import Hospitals from "./pages/Hospitals";
-import PrivateHealthcare from "./pages/PrivateHealthcare";
-import Pharmacy from "./pages/Pharmacy";
-import SocialCare from "./pages/SocialCare";
-import Rostering from "./pages/Rostering";
-import CarbonReductionPlan from "./pages/CarbonReductionPlan";
-import Team from "./pages/Team";
-import EmailTemplateTest from "./pages/EmailTemplateTest";
-import NotFound from "./pages/NotFound";
+
+const Index = lazy(() => import("./pages/Index"));
+const AiSourcing = lazy(() => import("./pages/AiSourcing"));
+const InternalStaffBank = lazy(() => import("./pages/InternalStaffBank"));
+const CollaborativeStaffBank = lazy(() => import("./pages/CollaborativeStaffBank"));
+const NationalStaffBank = lazy(() => import("./pages/NationalStaffBank"));
+const ClinicalServicesPlanner = lazy(() => import("./pages/ClinicalServicesPlanner"));
+const Amplify = lazy(() => import("./pages/Amplify"));
+const EmployeeApp = lazy(() => import("./pages/EmployeeApp"));
+const PlatformFeatures = lazy(() => import("./pages/PlatformFeatures"));
+const Jobs = lazy(() => import("./pages/Jobs"));
+const JobDetail = lazy(() => import("./pages/JobDetail"));
+const JobApplicationSuccess = lazy(() => import("./pages/JobApplicationSuccess"));
+const JobSearchResults = lazy(() => import("./pages/JobSearchResults"));
+const JobApplication = lazy(() => import("./pages/JobApplication"));
+const News = lazy(() => import("./pages/News"));
+const Article = lazy(() => import("./pages/Article"));
+const Investors = lazy(() => import("./pages/Investors"));
+const About = lazy(() => import("./pages/About"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const BookDemo = lazy(() => import("./pages/BookDemo"));
+const BookDemoSuccess = lazy(() => import("./pages/BookDemoSuccess"));
+const Contact = lazy(() => import("./pages/Contact"));
+const ContactSuccess = lazy(() => import("./pages/ContactSuccess"));
+const PrimaryCare = lazy(() => import("./pages/PrimaryCare"));
+const Hospitals = lazy(() => import("./pages/Hospitals"));
+const PrivateHealthcare = lazy(() => import("./pages/PrivateHealthcare"));
+const Pharmacy = lazy(() => import("./pages/Pharmacy"));
+const SocialCare = lazy(() => import("./pages/SocialCare"));
+const Rostering = lazy(() => import("./pages/Rostering"));
+const CarbonReductionPlan = lazy(() => import("./pages/CarbonReductionPlan"));
+const Team = lazy(() => import("./pages/Team"));
+const EmailTemplateTest = lazy(() => import("./pages/EmailTemplateTest"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -50,6 +52,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           {/* Root: geo-detect and redirect to /uk or /us */}
           <Route path="/" element={<GeoRedirect />} />
@@ -95,6 +98,7 @@ const App = () => (
           {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
