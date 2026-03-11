@@ -187,12 +187,12 @@ const ClientBankingRegistration = () => {
                   <Input id="city" required value={form.city} onChange={(e) => handleChange("city", e.target.value)} className={inputClass} />
                 </div>
                 <div>
-                  <Label htmlFor="state">State / Province *</Label>
-                  <Input id="state" required value={form.state} onChange={(e) => handleChange("state", e.target.value)} className={inputClass} />
+                  <Label htmlFor="state">State *</Label>
+                  <Input id="state" required value={form.state} onChange={(e) => handleChange("state", e.target.value)} placeholder="e.g. Delaware" className={inputClass} />
                 </div>
                 <div>
-                  <Label htmlFor="postalCode">Postal Code *</Label>
-                  <Input id="postalCode" required value={form.postalCode} onChange={(e) => handleChange("postalCode", e.target.value)} className={inputClass} />
+                  <Label htmlFor="postalCode">ZIP Code *</Label>
+                  <Input id="postalCode" required value={form.postalCode} onChange={(e) => handleChange("postalCode", e.target.value)} placeholder="e.g. 19901" className={inputClass} />
                 </div>
                 <div>
                   <Label htmlFor="country">Country *</Label>
