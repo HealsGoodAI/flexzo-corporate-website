@@ -40,6 +40,7 @@ const SocialCare = lazy(() => import("./pages/SocialCare"));
 const Rostering = lazy(() => import("./pages/Rostering"));
 const CarbonReductionPlan = lazy(() => import("./pages/CarbonReductionPlan"));
 const Team = lazy(() => import("./pages/Team"));
+const ClientBankingRegistration = lazy(() => import("./pages/ClientBankingRegistration"));
 const EmailTemplateTest = lazy(() => import("./pages/EmailTemplateTest"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -91,6 +92,7 @@ const App = () => (
             <Route path="sectors/private-healthcare" element={<PrivateHealthcare />} />
             <Route path="sectors/pharmacy" element={<Pharmacy />} />
             <Route path="sectors/social-care" element={<SocialCare />} />
+            <Route path="client-banking-registration" element={<ClientBankingRegistration />} />
             <Route path="internal/email-test" element={<EmailTemplateTest />} />
             <Route path="*" element={<NotFound />} />
           </Route>
