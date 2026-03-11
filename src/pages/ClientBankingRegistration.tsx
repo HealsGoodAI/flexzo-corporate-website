@@ -1,5 +1,9 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { supabase } from "@/integrations/supabase/client";
+import { useRegion } from "@/hooks/useRegion";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
