@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 const GMAIL_USER = "applications@flexzo.ai";
-const SALES_EMAIL = "sales@flexzo.co.uk";
+const SALES_EMAIL = "sales@flexzo.ai";
 const LOGO_URL = "https://nlallbutnmsyeqyawzbh.supabase.co/storage/v1/object/public/email-assets/flexzo-logo-white.png";
 
 const ALLOWED_ORIGINS = [
