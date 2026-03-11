@@ -94,6 +94,7 @@ const App = () => (
             <Route path="sectors/pharmacy" element={<Pharmacy />} />
             <Route path="sectors/social-care" element={<SocialCare />} />
             <Route path="client-banking-registration" element={<ClientBankingRegistration />} />
+            <Route path="client-banking-registration/success" element={<ClientBankingRegistrationSuccess />} />
             <Route path="internal/email-test" element={<EmailTemplateTest />} />
             <Route path="*" element={<NotFound />} />
           </Route>
