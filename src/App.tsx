@@ -92,6 +92,7 @@ const App = () => (
             <Route path="sectors/private-healthcare" element={<PrivateHealthcare />} />
             <Route path="sectors/pharmacy" element={<Pharmacy />} />
             <Route path="sectors/social-care" element={<SocialCare />} />
+            <Route path="client-banking-registration" element={<ClientBankingRegistration />} />
             <Route path="internal/email-test" element={<EmailTemplateTest />} />
             <Route path="*" element={<NotFound />} />
           </Route>
