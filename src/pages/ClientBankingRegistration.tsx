@@ -106,11 +106,32 @@ const ClientBankingRegistration = () => {
 
     setSubmitting(true);
 
-    // Simulate submission
-    await new Promise((r) => setTimeout(r, 1500));
+    try {
+      // Get signature as data URL
+      const signatureDataUrl = canvasRef.current?.toDataURL("image/png") || "";
 
-    toast({ title: "Banking information submitted successfully!", description: "Our team will review your details shortly." });
-    setSubmitting(false);
+      const { data, error: fnError } = await supabase.functions.invoke("send-banking-registration", {
+        body: {
+          ...form,
+          signatureDataUrl,
+          date: today,
+        },
+      });
+
+      if (fnError) throw fnError;
+      if (data?.error) throw new Error(data.error);
+
+      navigate(regionPath("/client-banking-registration/success"));
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      toast({
+        title: "Submission failed",
+        description: err?.message || "Please try again or contact support.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const today = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
