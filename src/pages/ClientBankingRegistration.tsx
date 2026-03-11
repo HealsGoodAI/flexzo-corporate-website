@@ -17,6 +17,8 @@ import SEO from "@/components/SEO";
 
 const ClientBankingRegistration = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const { regionPath } = useRegion();
   const [submitting, setSubmitting] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
