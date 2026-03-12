@@ -27,6 +27,7 @@ const ClientBankingRegistration = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [hasSigned, setHasSigned] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const [form, setForm] = useState({
     businessLegalName: "",
