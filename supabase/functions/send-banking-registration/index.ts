@@ -244,8 +244,37 @@ Deno.serve(async (req) => {
       businessLegalName, dba, businessAddress, city, state, postalCode, country,
       contactName, email, phone,
       bankName, bankAddress, accountHolderName, accountType, accountNumber, routingNumber, swiftCode, iban,
-      paymentMethod, signatoryName, titlePosition, signatureDataUrl, date,
+      paymentMethod, signatoryName, titlePosition, signatureDataUrl, date, recaptchaToken,
     } = body;
+
+    // ── reCAPTCHA verification ──
+    if (!recaptchaToken) {
+      return new Response(JSON.stringify({ error: "reCAPTCHA verification required" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const recaptchaSecret = Deno.env.get("RECAPTCHA_SECRET_KEY");
+    if (!recaptchaSecret) {
+      throw new Error("RECAPTCHA_SECRET_KEY not configured");
+    }
+    const verifyRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${encodeURIComponent(recaptchaSecret)}&response=${encodeURIComponent(recaptchaToken)}`,
+    });
+    const verifyData = await verifyRes.json();
+    if (!verifyData.success) {
+      console.error("reCAPTCHA failed:", verifyData);
+      return new Response(JSON.stringify({ error: "reCAPTCHA verification failed" }), {
+        status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (verifyData.hostname && !ALLOWED_RECAPTCHA_HOSTNAMES.includes(verifyData.hostname)) {
+      console.error("reCAPTCHA hostname mismatch:", verifyData.hostname);
+      return new Response(JSON.stringify({ error: "reCAPTCHA hostname mismatch" }), {
+        status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     if (!businessLegalName || !email || !bankName || !accountNumber || !routingNumber) {
       return new Response(JSON.stringify({ error: "Missing required fields" }), {
