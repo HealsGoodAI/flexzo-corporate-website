@@ -100,6 +100,10 @@ const ClientBankingRegistration = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!recaptchaToken) {
+      toast({ title: "Please complete the reCAPTCHA verification.", variant: "destructive" });
+      return;
+    }
     if (!confirmed) {
       toast({ title: "Please confirm the banking information is accurate.", variant: "destructive" });
       return;
