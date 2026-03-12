@@ -124,6 +124,7 @@ const ClientBankingRegistration = () => {
           ...form,
           signatureDataUrl,
           date: today,
+          recaptchaToken,
         },
       });
 
