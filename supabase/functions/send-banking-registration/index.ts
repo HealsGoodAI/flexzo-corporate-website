@@ -27,11 +27,10 @@ function createSmtpClient(appPassword: string) {
   });
 }
 
-/* ── Simple PDF builder (minimal valid PDF with text content) ── */
+/* ── PDF builder ── */
 
-function buildPdf(data: Record<string, string>, signatureDataUrl: string): Uint8Array {
+function buildPdf(data: Record<string, string>): Uint8Array {
   const lines: string[] = [];
-
   lines.push("FLEXZO AI");
   lines.push("Business Banking Information Form");
   lines.push("");
@@ -66,7 +65,8 @@ function buildPdf(data: Record<string, string>, signatureDataUrl: string): Uint8
   lines.push(`Preferred Payment Method: ${methods[data.paymentMethod] || data.paymentMethod || ""}`);
   lines.push("");
   lines.push("--- VERIFICATION ---");
-  lines.push("The submitter confirmed that all banking information is accurate and belongs to the business listed above.");
+  lines.push("The submitter confirmed that all banking information is accurate");
+  lines.push("and belongs to the business listed above.");
   lines.push("");
   lines.push("--- SIGNATURE ---");
   lines.push(`Authorized Signatory: ${data.signatoryName || ""}`);
@@ -74,185 +74,154 @@ function buildPdf(data: Record<string, string>, signatureDataUrl: string): Uint8
   lines.push(`Date: ${data.date || ""}`);
   lines.push("[Signature provided electronically]");
 
-  // Build a minimal valid PDF
-  const content = lines.join("\n");
-  const textEncoder = new TextEncoder();
+  const textContent = lines.join("\n");
+  const encoder = new TextEncoder();
 
-  // We'll build a simple PDF with text stream
-  const pdfLines: string[] = [];
-  const offsets: number[] = [];
-  let pos = 0;
-
-  const addLine = (line: string) => {
-    pdfLines.push(line);
-    pos += textEncoder.encode(line + "\n").length;
-  };
-
-  const markObj = () => { offsets.push(pos); };
-
-  addLine("%PDF-1.4");
-
-  // Object 1: Catalog
-  markObj();
-  addLine("1 0 obj");
-  addLine("<< /Type /Catalog /Pages 2 0 R >>");
-  addLine("endobj");
-
-  // Object 2: Pages
-  markObj();
-  addLine("2 0 obj");
-  addLine("<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
-  addLine("endobj");
-
-  // Object 4: Font
-  markObj();
-  addLine("4 0 obj");
-  addLine("<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>");
-  addLine("endobj");
-
-  // Build content stream - split into pages if needed but keep it simple
-  const streamLines = content.split("\n");
-  const streamContent: string[] = [];
-  streamContent.push("BT");
-  streamContent.push("/F1 10 Tf");
+  // Build content stream
+  const streamLines: string[] = ["BT", "/F1 10 Tf"];
   let yPos = 770;
-  for (const sl of streamLines) {
-    if (yPos < 40) {
-      // Simple: just continue on same page (won't overflow for typical form data)
-      yPos = 770;
-    }
-    // Escape parentheses in PDF string
-    const escaped = sl.replace(/\\\\/g, "\\\\\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
-    streamContent.push(`1 0 0 1 40 ${yPos} Tm`);
-    streamContent.push(`(${escaped}) Tj`);
+  for (const line of textContent.split("\n")) {
+    if (yPos < 40) yPos = 770;
+    const escaped = line.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+    streamLines.push(`1 0 0 1 40 ${yPos} Tm`);
+    streamLines.push(`(${escaped}) Tj`);
     yPos -= 14;
   }
-  streamContent.push("ET");
-  const streamStr = streamContent.join("\n");
-  const streamBytes = textEncoder.encode(streamStr);
+  streamLines.push("ET");
+  const stream = streamLines.join("\n");
+  const streamLen = encoder.encode(stream).length;
 
-  // Object 5: Content stream
-  markObj();
-  addLine("5 0 obj");
-  addLine(`<< /Length ${streamBytes.length} >>`);
-  addLine("stream");
-  addLine(streamStr);
-  addLine("endstream");
-  addLine("endobj");
+  // Build PDF with correct sequential object numbering and tracked offsets
+  const parts: string[] = [];
+  let currentPos = 0;
+  const objOffsets: number[] = []; // index 0 = obj 1, index 1 = obj 2, etc.
 
-  // Object 3: Page
-  markObj();
-  addLine("3 0 obj");
-  addLine("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 4 0 R >> >> >>");
-  addLine("endobj");
+  const write = (s: string) => {
+    parts.push(s);
+    currentPos += encoder.encode(s).length;
+  };
 
-  // Cross-reference table
-  const xrefPos = pos;
-  addLine("xref");
-  addLine(`0 ${offsets.length + 1}`);
-  addLine("0000000000 65535 f ");
-  for (const o of offsets) {
-    addLine(`${String(o).padStart(10, "0")} 00000 n `);
+  write("%PDF-1.4\n");
+
+  // Obj 1: Catalog
+  objOffsets.push(currentPos);
+  write("1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n");
+
+  // Obj 2: Pages
+  objOffsets.push(currentPos);
+  write("2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n");
+
+  // Obj 3: Page
+  objOffsets.push(currentPos);
+  write("3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>\nendobj\n");
+
+  // Obj 4: Content stream
+  objOffsets.push(currentPos);
+  write(`4 0 obj\n<< /Length ${streamLen} >>\nstream\n${stream}\nendstream\nendobj\n`);
+
+  // Obj 5: Font
+  objOffsets.push(currentPos);
+  write("5 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>\nendobj\n");
+
+  // Xref
+  const xrefPos = currentPos;
+  const numObjs = objOffsets.length + 1; // +1 for object 0
+  write("xref\n");
+  write(`0 ${numObjs}\n`);
+  write("0000000000 65535 f \n");
+  for (const offset of objOffsets) {
+    write(`${String(offset).padStart(10, "0")} 00000 n \n`);
   }
 
-  addLine("trailer");
-  addLine(`<< /Size ${offsets.length + 1} /Root 1 0 R >>`);
-  addLine("startxref");
-  addLine(String(xrefPos));
-  addLine("%%EOF");
+  write("trailer\n");
+  write(`<< /Size ${numObjs} /Root 1 0 R >>\n`);
+  write("startxref\n");
+  write(`${xrefPos}\n`);
+  write("%%EOF\n");
 
-  return textEncoder.encode(pdfLines.join("\n"));
+  return encoder.encode(parts.join(""));
 }
 
-/* ── HTML email template ── */
+/* ── HTML email template (using real tables for email client compatibility) ── */
 
 function buildEmailHtml(data: Record<string, string>): string {
   const methods: Record<string, string> = { ach: "ACH Transfer", wire: "Wire Transfer", international: "International Transfer" };
   const accountTypes: Record<string, string> = { checking: "Business Checking", savings: "Business Savings" };
+
+  const row = (label: string, value: string) =>
+    value ? `<tr><td style="padding:7px 16px 7px 0;font-size:13px;color:#6B7280;white-space:nowrap;vertical-align:top;width:160px">${label}</td><td style="padding:7px 0;font-size:13px;color:#063165;font-weight:600;vertical-align:top">${value}</td></tr>` : "";
+
+  const divider = `<tr><td colspan="2" style="padding:0"><div style="height:1px;background:#E5E7EB;margin:20px 0"></div></td></tr>`;
+  const sectionLabel = (text: string) =>
+    `<tr><td colspan="2" style="padding:0 0 10px 0;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#9CA3AF">${text}</td></tr>`;
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>New Banking Registration – ${data.businessLegalName}</title>
-  <style>
-    body{margin:0;padding:0;background:#F4F5F7;font-family:'Helvetica Neue',Arial,sans-serif;color:#0a2540}
-    .wrap{width:100%;padding:32px 0 40px}
-    .card{width:92%;max-width:680px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
-    .header{background:#063165;padding:22px 32px}
-    .header img{height:28px;width:auto;display:block}
-    .alert-bar{background:#0075FF;padding:10px 32px;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
-    .content{padding:28px 32px 24px}
-    .heading{font-size:20px;font-weight:700;color:#063165;margin:0 0 6px}
-    .sub{font-size:13px;color:#6B7280;margin:0 0 24px}
-    .divider{height:1px;background:#E5E7EB;margin:20px 0}
-    .section-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#9CA3AF;margin:0 0 10px}
-    .detail-grid{display:table;width:100%;border-collapse:collapse}
-    .detail-row{display:table-row}
-    .detail-key{display:table-cell;padding:7px 16px 7px 0;font-size:13px;color:#6B7280;white-space:nowrap;vertical-align:top;width:160px}
-    .detail-val{display:table-cell;padding:7px 0;font-size:13px;color:#063165;font-weight:600;vertical-align:top}
-    .footer{background:#063165;padding:20px 32px;font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6}
-  </style>
+  <title>New Banking Registration - ${data.businessLegalName}</title>
 </head>
-<body>
-<div class="wrap">
-  <div class="card">
-    <div class="header"><img src="${LOGO_URL}" alt="Flexzo"/></div>
-    <div class="alert-bar">New Client Banking Registration</div>
-    <div class="content">
-      <p class="heading">Banking details submitted by ${data.businessLegalName}</p>
-      <p class="sub">A new client has submitted their banking information. A PDF copy is attached.</p>
+<body style="margin:0;padding:0;background:#F4F5F7;font-family:'Helvetica Neue',Arial,sans-serif;color:#0a2540">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F5F7;padding:32px 0 40px">
+<tr><td align="center">
+  <table width="680" cellpadding="0" cellspacing="0" border="0" style="max-width:680px;width:92%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)">
+    <!-- Header -->
+    <tr><td style="background:#063165;padding:22px 32px">
+      <img src="${LOGO_URL}" alt="Flexzo" style="height:28px;width:auto;display:block"/>
+    </td></tr>
+    <!-- Alert bar -->
+    <tr><td style="background:#0075FF;padding:10px 32px;color:#ffffff;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">
+      New Client Banking Registration
+    </td></tr>
+    <!-- Content -->
+    <tr><td style="padding:28px 32px 24px">
+      <p style="font-size:20px;font-weight:700;color:#063165;margin:0 0 6px">Banking details submitted by ${data.businessLegalName}</p>
+      <p style="font-size:13px;color:#6B7280;margin:0 0 24px">A new client has submitted their banking information. A PDF copy is attached.</p>
 
-      <div class="divider"></div>
-      <p class="section-label">Business Information</p>
-      <div class="detail-grid">
-        <div class="detail-row"><div class="detail-key">Business Legal Name</div><div class="detail-val">${data.businessLegalName}</div></div>
-        ${data.dba ? `<div class="detail-row"><div class="detail-key">DBA</div><div class="detail-val">${data.dba}</div></div>` : ""}
-        <div class="detail-row"><div class="detail-key">Address</div><div class="detail-val">${data.businessAddress}, ${data.city}, ${data.state} ${data.postalCode}, ${data.country}</div></div>
-      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        ${divider}
+        ${sectionLabel("Business Information")}
+        ${row("Business Legal Name", data.businessLegalName)}
+        ${row("DBA", data.dba)}
+        ${row("Address", `${data.businessAddress}, ${data.city}, ${data.state} ${data.postalCode}, ${data.country}`)}
 
-      <div class="divider"></div>
-      <p class="section-label">Contact Information</p>
-      <div class="detail-grid">
-        <div class="detail-row"><div class="detail-key">Contact Name</div><div class="detail-val">${data.contactName}</div></div>
-        <div class="detail-row"><div class="detail-key">Email</div><div class="detail-val">${data.email}</div></div>
-        <div class="detail-row"><div class="detail-key">Phone</div><div class="detail-val">${data.phone}</div></div>
-      </div>
+        ${divider}
+        ${sectionLabel("Contact Information")}
+        ${row("Contact Name", data.contactName)}
+        ${row("Email", data.email)}
+        ${row("Phone", data.phone)}
 
-      <div class="divider"></div>
-      <p class="section-label">Banking Information</p>
-      <div class="detail-grid">
-        <div class="detail-row"><div class="detail-key">Bank Name</div><div class="detail-val">${data.bankName}</div></div>
-        <div class="detail-row"><div class="detail-key">Bank Address</div><div class="detail-val">${data.bankAddress}</div></div>
-        <div class="detail-row"><div class="detail-key">Account Holder</div><div class="detail-val">${data.accountHolderName}</div></div>
-        <div class="detail-row"><div class="detail-key">Account Type</div><div class="detail-val">${accountTypes[data.accountType] || data.accountType}</div></div>
-        <div class="detail-row"><div class="detail-key">Account Number</div><div class="detail-val">${data.accountNumber}</div></div>
-        <div class="detail-row"><div class="detail-key">Routing Number</div><div class="detail-val">${data.routingNumber}</div></div>
-        ${data.swiftCode ? `<div class="detail-row"><div class="detail-key">SWIFT / BIC</div><div class="detail-val">${data.swiftCode}</div></div>` : ""}
-        ${data.iban ? `<div class="detail-row"><div class="detail-key">IBAN</div><div class="detail-val">${data.iban}</div></div>` : ""}
-      </div>
+        ${divider}
+        ${sectionLabel("Banking Information")}
+        ${row("Bank Name", data.bankName)}
+        ${row("Bank Address", data.bankAddress)}
+        ${row("Account Holder", data.accountHolderName)}
+        ${row("Account Type", accountTypes[data.accountType] || data.accountType)}
+        ${row("Account Number", data.accountNumber)}
+        ${row("Routing Number", data.routingNumber)}
+        ${row("SWIFT / BIC", data.swiftCode)}
+        ${row("IBAN", data.iban)}
 
-      <div class="divider"></div>
-      <p class="section-label">Payment Preferences</p>
-      <div class="detail-grid">
-        <div class="detail-row"><div class="detail-key">Payment Method</div><div class="detail-val">${methods[data.paymentMethod] || data.paymentMethod}</div></div>
-      </div>
+        ${divider}
+        ${sectionLabel("Payment Preferences")}
+        ${row("Payment Method", methods[data.paymentMethod] || data.paymentMethod)}
 
-      <div class="divider"></div>
-      <p class="section-label">Signature</p>
-      <div class="detail-grid">
-        <div class="detail-row"><div class="detail-key">Signatory</div><div class="detail-val">${data.signatoryName}</div></div>
-        <div class="detail-row"><div class="detail-key">Title</div><div class="detail-val">${data.titlePosition}</div></div>
-        <div class="detail-row"><div class="detail-key">Date</div><div class="detail-val">${data.date}</div></div>
-      </div>
-    </div>
-    <div class="footer">
+        ${divider}
+        ${sectionLabel("Signature")}
+        ${row("Signatory", data.signatoryName)}
+        ${row("Title", data.titlePosition)}
+        ${row("Date", data.date)}
+      </table>
+    </td></tr>
+    <!-- Footer -->
+    <tr><td style="background:#063165;padding:20px 32px;font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6">
       <strong>Flexzo AI</strong> &middot; Confidential Banking Information<br/>
       This email contains sensitive financial data. Handle in accordance with data protection policies.
-    </div>
-  </div>
-</div>
+    </td></tr>
+  </table>
+</td></tr>
+</table>
 </body>
 </html>`;
 }
@@ -262,7 +231,6 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
-  // Origin validation
   const origin = req.headers.get("origin");
   if (origin && !ALLOWED_ORIGINS.some((o) => origin.startsWith(o))) {
     return new Response(JSON.stringify({ error: "Forbidden origin" }), {
@@ -298,9 +266,7 @@ Deno.serve(async (req) => {
       paymentMethod, signatoryName, titlePosition, date: date || new Date().toLocaleDateString("en-US"),
     };
 
-    // Generate PDF
-    const pdfBytes = buildPdf(data, signatureDataUrl || "");
-
+    const pdfBytes = buildPdf(data);
     const client = createSmtpClient(appPassword);
 
     await client.send({
