@@ -380,9 +380,17 @@ const ClientBankingRegistration = () => {
               </CardContent>
             </Card>
 
+            {/* reCAPTCHA */}
+            <div className="flex justify-center">
+              <ReCaptcha
+                onVerify={(token) => setRecaptchaToken(token)}
+                onExpire={() => setRecaptchaToken("")}
+              />
+            </div>
+
             <Button
               type="submit"
-              disabled={submitting || !confirmed || !hasSigned}
+              disabled={submitting || !confirmed || !hasSigned || !recaptchaToken}
               className="w-full h-12 text-base font-semibold"
               size="lg"
             >
