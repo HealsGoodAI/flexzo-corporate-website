@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import SEO from "@/components/SEO";
+import ReCaptcha from "@/components/ReCaptcha";
 
 const ClientBankingRegistration = () => {
   const { toast } = useToast();
