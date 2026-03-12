@@ -16,7 +16,13 @@ const ALLOWED_ORIGINS = [
   "https://id-preview--619f4086-4b06-4f96-83a0-3895208dee1c.lovable.app",
 ];
 
-function createSmtpClient(appPassword: string) {
+const ALLOWED_RECAPTCHA_HOSTNAMES = [
+  "flexzo.ai",
+  "www.flexzo.ai",
+  "id-preview--619f4086-4b06-4f96-83a0-3895208dee1c.lovable.app",
+];
+
+
   return new SMTPClient({
     connection: {
       hostname: "smtp.gmail.com",
