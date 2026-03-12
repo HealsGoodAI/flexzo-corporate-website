@@ -22,7 +22,7 @@ const ALLOWED_RECAPTCHA_HOSTNAMES = [
   "id-preview--619f4086-4b06-4f96-83a0-3895208dee1c.lovable.app",
 ];
 
-
+function createSmtpClient(appPassword: string) {
   return new SMTPClient({
     connection: {
       hostname: "smtp.gmail.com",
