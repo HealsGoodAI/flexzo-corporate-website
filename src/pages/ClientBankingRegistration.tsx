@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import SEO from "@/components/SEO";
+import ReCaptcha from "@/components/ReCaptcha";
 
 const ClientBankingRegistration = () => {
   const { toast } = useToast();
@@ -26,6 +27,7 @@ const ClientBankingRegistration = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [hasSigned, setHasSigned] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const [form, setForm] = useState({
     businessLegalName: "",
@@ -98,6 +100,10 @@ const ClientBankingRegistration = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!recaptchaToken) {
+      toast({ title: "Please complete the reCAPTCHA verification.", variant: "destructive" });
+      return;
+    }
     if (!confirmed) {
       toast({ title: "Please confirm the banking information is accurate.", variant: "destructive" });
       return;
@@ -118,6 +124,7 @@ const ClientBankingRegistration = () => {
           ...form,
           signatureDataUrl,
           date: today,
+          recaptchaToken,
         },
       });
 
@@ -373,9 +380,17 @@ const ClientBankingRegistration = () => {
               </CardContent>
             </Card>
 
+            {/* reCAPTCHA */}
+            <div className="flex justify-center">
+              <ReCaptcha
+                onVerify={(token) => setRecaptchaToken(token)}
+                onExpire={() => setRecaptchaToken("")}
+              />
+            </div>
+
             <Button
               type="submit"
-              disabled={submitting || !confirmed || !hasSigned}
+              disabled={submitting || !confirmed || !hasSigned || !recaptchaToken}
               className="w-full h-12 text-base font-semibold"
               size="lg"
             >
