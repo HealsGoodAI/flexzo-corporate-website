@@ -59,16 +59,26 @@ const ClientBankingRegistration = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  // Signature pad logic
+  // Signature pad logic — helper to get canvas-relative coords with scaling
+  const getCanvasPoint = (canvas: HTMLCanvasElement, clientX: number, clientY: number) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY,
+    };
+  };
+
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     setIsDrawing(true);
-    const rect = canvas.getBoundingClientRect();
+    const { x, y } = getCanvasPoint(canvas, e.clientX, e.clientY);
     ctx.beginPath();
-    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx.moveTo(x, y);
   };
 
   const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -77,8 +87,8 @@ const ClientBankingRegistration = () => {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const rect = canvas.getBoundingClientRect();
-    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    const { x, y } = getCanvasPoint(canvas, e.clientX, e.clientY);
+    ctx.lineTo(x, y);
     ctx.strokeStyle = "hsl(213, 89%, 21%)";
     ctx.lineWidth = 2;
     ctx.lineCap = "round";
@@ -87,6 +97,42 @@ const ClientBankingRegistration = () => {
   };
 
   const stopDrawing = () => setIsDrawing(false);
+
+  // Touch event handlers for mobile signature
+  const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    setIsDrawing(true);
+    const touch = e.touches[0];
+    const { x, y } = getCanvasPoint(canvas, touch.clientX, touch.clientY);
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
+    if (!isDrawing) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const touch = e.touches[0];
+    const { x, y } = getCanvasPoint(canvas, touch.clientX, touch.clientY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = "hsl(213, 89%, 21%)";
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.stroke();
+    setHasSigned(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
+    setIsDrawing(false);
+  };
 
   const clearSignature = () => {
     const canvas = canvasRef.current;
@@ -361,11 +407,14 @@ const ClientBankingRegistration = () => {
                       ref={canvasRef}
                       width={600}
                       height={150}
-                      className="w-full cursor-crosshair"
+                      className="w-full cursor-crosshair touch-none"
                       onMouseDown={startDrawing}
                       onMouseMove={draw}
                       onMouseUp={stopDrawing}
                       onMouseLeave={stopDrawing}
+                      onTouchStart={handleTouchStart}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={handleTouchEnd}
                     />
                   </div>
                   <button type="button" onClick={clearSignature} className="text-sm text-accent hover:underline mt-1">
