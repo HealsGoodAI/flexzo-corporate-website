@@ -186,8 +186,8 @@ Deno.serve(async (req) => {
       throw new Error("GMAIL_APP_PASSWORD not configured");
     }
 
-    // ── reCAPTCHA verification (skip for testMode and generic internal emails) ──
-    if (!body.testMode && type !== "generic") {
+    // ── reCAPTCHA verification (skip for testMode only) ──
+    if (!body.testMode) {
       if (!recaptchaToken) {
         return new Response(JSON.stringify({ error: "reCAPTCHA verification required" }), {
           status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
