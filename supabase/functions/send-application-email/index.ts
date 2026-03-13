@@ -389,6 +389,17 @@ async function handleGeneric(body: Record<string, string>, appPassword: string, 
     });
   }
 
+  // Restrict recipients to @flexzo.ai addresses only
+  const recipients = Array.isArray(to) ? to : [to];
+  for (const addr of recipients) {
+    if (typeof addr !== "string" || !addr.trim().toLowerCase().endsWith("@flexzo.ai")) {
+      return new Response(JSON.stringify({ error: "Recipients must be @flexzo.ai addresses" }), {
+        status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+  }
+
+
   const vars = { subject, greeting: greeting || "", body: bodyContent, ctaLink: ctaLink || "https://flexzo.ai", ctaText: ctaText || "Visit Flexzo", note: note || "" };
 
   const client = createSmtpClient(appPassword);
