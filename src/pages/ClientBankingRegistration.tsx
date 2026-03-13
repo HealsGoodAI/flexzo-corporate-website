@@ -407,11 +407,14 @@ const ClientBankingRegistration = () => {
                       ref={canvasRef}
                       width={600}
                       height={150}
-                      className="w-full cursor-crosshair"
+                      className="w-full cursor-crosshair touch-none"
                       onMouseDown={startDrawing}
                       onMouseMove={draw}
                       onMouseUp={stopDrawing}
                       onMouseLeave={stopDrawing}
+                      onTouchStart={handleTouchStart}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={handleTouchEnd}
                     />
                   </div>
                   <button type="button" onClick={clearSignature} className="text-sm text-accent hover:underline mt-1">
