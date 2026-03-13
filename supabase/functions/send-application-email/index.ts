@@ -218,8 +218,8 @@ Deno.serve(async (req) => {
       }
     }
 
-    // ── Honeypot, timing, and content validation (skip for testMode and generic) ──
-    if (!body.testMode && type !== "generic") {
+    // ── Honeypot, timing, and content validation (skip for testMode only) ──
+    if (!body.testMode) {
       const contentError = validateContent(body);
       if (contentError) {
         return new Response(JSON.stringify({ error: contentError }), {
